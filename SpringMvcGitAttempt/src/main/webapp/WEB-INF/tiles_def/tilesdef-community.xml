@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<!-- <definition name="base_layout"
+		template="/WEB-INF/viewtiles/template/layout.jsp">
+		
+		<put-attribute name="header"
+			value="/WEB-INF/viewtiles/template/header.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/viewtiles/template/footer.jsp" />
+	</definition> -->
+
+	<definition name="community/boardContents" extends="base_layout">
+		<put-attribute name="title" value="게시글 확인" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/community/boardContents.jsp" />
+	</definition>
+	<definition name="community/boardWriteArticleForm" extends="base_layout">
+		<put-attribute name="title" value="게시글 쓰기" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/community/boardWriteArticleForm.jsp" />
+	</definition>
+	<definition name="community/mainBoard" extends="base_layout">
+		<put-attribute name="title" value="게시판" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/community/mainBoard.jsp" />
+	</definition>
+	<definition name="community/updateArticleForm" extends="base_layout">
+		<put-attribute name="title" value="게시글 업데이트" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/community/updateArticleForm.jsp" />
+	</definition>
+</tiles-definitions>

@@ -1,0 +1,37 @@
+@charset "utf-8";
+
+#wrap {
+}
+#wrap .location-bar{
+	border-bottom:1px solid #efefef;
+}
+
+#wrap section>div>h1 {
+	text-align: center;
+	padding: 10px 0;
+	font-size: 18px;
+}
+
+#wrap section .inner {
+	margin: 0 20px;
+}
+#wrap section .inner form .contents {
+	
+}
+#wrap section .inner form .contents .content-title > h2 {
+	font-size: 18px;
+	padding:10px 0;
+	border-bottom: 1px solid #efefef;
+}
+
+#wrap section .inner form .submit {
+	width: 100%;
+    height: 48px;
+    line-height: 46px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 35px auto 0;
+    background-color: #0383d8;
+    color: #fff;
+    border-color: #0383d8;
+}
