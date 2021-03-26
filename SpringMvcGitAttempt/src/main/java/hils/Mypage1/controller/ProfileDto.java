@@ -2,9 +2,11 @@ package hils.Mypage1.controller;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /*@Getter
 @Setter*/
+@ToString
 public class ProfileDto {
 
 	private String user_id;
@@ -20,6 +22,9 @@ public class ProfileDto {
 	private char is_withboard;
 	private String location;
 	private String profile_img;
+	
+	
+	
 	public String getUser_id() {
 		return user_id;
 	}

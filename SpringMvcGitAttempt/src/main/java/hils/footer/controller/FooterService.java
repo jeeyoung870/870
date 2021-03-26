@@ -13,5 +13,9 @@ public class FooterService {
 	public List<FooterDto> selectInfo(){
 		return dao.selectInfo();
 	}
+	
+	public int changeCInfo(FooterDto fdto) {
+		return dao.changeCInfo(fdto);
+	}
 
 }

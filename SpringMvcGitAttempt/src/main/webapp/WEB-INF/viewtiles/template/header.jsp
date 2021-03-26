@@ -57,6 +57,7 @@
 
 			<li><a href="#" class="iframe">(임시)관리자페이지</a>
 				<ul class="sub">
+					<li><a href="compinfo">기본 정보 수정</a></li>
 					<li><a href="modifymainimage">디자인설정</a></li>
 					<!-- <li><a href="#">test</a></li>
 					<li><a href="#">test</a></li> -->

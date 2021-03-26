@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>비밀번호 변경</title>
 <link href="${contextPath}/resources/css/default.css" rel="stylesheet" />
 <style type="text/css">
@@ -20,7 +20,7 @@
 		font-weight: 600; line-height: 52px;
 		text-align: center;
 	}
-	#upper img{position: absolute; left:570px;margin-top:13px; height:27px;}
+	#upper img{position: absolute; left:18px; margin-top:13px; height:27px;}
 	#upper hr{ background-color:#FF9A7F; border: 0; height: 20px; }
 	div{ width: 420px; margin:0 auto;
 	}
@@ -39,7 +39,7 @@
 	<input type="password" id="newp" name="newp"/><br>
 	새 비밀번호 확인<br>
 	<input type="password" id="checkp" name="checkp"/>
-	<%-- <input type="hidden" id="user_id" name="user_id" value="${ }"> --%>
+	<input type="hidden" id="user_id" name="user_id" value="${user.get(0)}">
 	<input type='submit' value='변경하기'>
 	
 </form>
@@ -51,7 +51,7 @@
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script type="text/javascript">
 function pwCheck(){
-	var passwd = ${pw};
+	var passwd = ${user.get(1)};
 	if(passwd != $("input#oldp").val()){
 		alert("기존 비밀번호가 틀렸습니다.");
 		return false;
@@ -61,6 +61,8 @@ function pwCheck(){
 	}else if($("input#newp").val() != $("input#checkp").val()){
 		alert("비밀번호가 일치하지 않습니다.");
 		return false;
+	}else{
+		alert("비밀번호가 변경됩니다.");
 	}
 }
 

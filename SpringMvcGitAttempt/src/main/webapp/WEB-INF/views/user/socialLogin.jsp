@@ -62,7 +62,7 @@
 				"userName" : userName
 			}
 			
-			let url = "/test/user/login/insertDB"
+			let url = "/mvc/user/login/insertDB"
 
 			$.ajax({ //컨트롤러와 통신.
 				dataType : "json",

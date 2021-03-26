@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>회원 탈퇴</title>
 <link href="${contextPath}/resources/css/default.css" rel="stylesheet" />
 <style type="text/css">

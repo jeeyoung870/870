@@ -1,8 +1,12 @@
 package hils.footer.controller;
 
+import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
+@Getter
+@ToString
 public class FooterDto {
 	
 	private int info_num;
@@ -13,5 +17,4 @@ public class FooterDto {
 	private String phone_number;
 	private String fax_number;
 	
-
 }

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>탈퇴 완료</title>
 <link href="${contextPath}/resources/css/default.css" rel="stylesheet" />
 <style type="text/css">

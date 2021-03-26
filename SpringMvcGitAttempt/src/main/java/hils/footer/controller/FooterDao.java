@@ -15,6 +15,10 @@ public class FooterDao {
 		return session.selectList("footer.cInfo");
 	}
 	
+	public int changeCInfo(FooterDto fdto) {
+		return session.update("footer.changeCInfo", fdto);
+	}
+	
 	public void setSession(SqlSession session) {
 		this.session = session;
 	}
