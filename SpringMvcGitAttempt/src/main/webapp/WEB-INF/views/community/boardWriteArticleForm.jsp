@@ -11,7 +11,7 @@
 <link href="${contextPath}/resources/css/default.css" rel="stylesheet" />
 <link href="${contextPath}/resources/css/mainBoard.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="/app/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mvc/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 
 </head>
 <body><!-- 커스텀 폼태그 사용가능 -->
@@ -19,14 +19,14 @@
 	<form:form method = "post" action = "./doWrite" modelAttribute = "writeArticleModel" id = "writeArticleForm">
 		<label for = "b_subject">enter your subject</label>
 		<form:input type = "text" path = "b_subject"></form:input>
+		<form:errors path = "b_subject"/>
 		<form:select name = "category" path = "category" class="selectpicker">
 			<form:option value = "general" selected="selected">general</form:option>
 			<form:option value = "ask">ask</form:option>
 			<form:option value = "tip">tip</form:option>
 		</form:select> 
-		<textarea name = "b_content" id = "ir1" rows="10" cols="100" style ="min-width:260px;width:100%">
-		에디터에 기본으로 삽입할 글(수정 모드)이 없다면 이 value 값을 지정하지 않으시면 됩니다.
-		</textarea>
+		<form:textarea name = "b_content" path = "b_content" id = "ir1" rows="10" cols="100" style ="min-width:260px;width:100%"/>
+		<form:errors path = "b_content"/>
 		<input type = "submit" value = "submit" id = "submitBtn" class = "boardBtn"></input>
 	</form:form>
 	</div>

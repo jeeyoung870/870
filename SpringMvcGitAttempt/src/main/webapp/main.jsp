@@ -14,5 +14,9 @@
 	<a href = "${contextPath}/customerService/goOneOneForm">gotoOneOneForm</a>
 	<a href = "${contextPath}/customerService/goCheckOneOne">goCheckOneOne</a>
 	<a href = "${contextPath }/timeLine1/goHilslinderCal">gotoHilsCalendar</a>
+	<a href = "${contextPath }/community/goChatRoom">gotoWebsocket</a>
+	<a href = "${contextPath }/manageCustomerService/goToOneVOneBoard">go to OneOneBoard</a>
+	<a href = "${contextPath }/manageCommunity/goToManageBoard">go to manageBoard</a>
+	<a href = "${contextPath }/manageCustomerService/goToAnnouncement">go to announce</a>
 </body>
-</html>
+</html>	     

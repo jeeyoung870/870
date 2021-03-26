@@ -1,12 +1,16 @@
 package hils.timeLine1.service;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hils.timeLine1.model.CaloryOnedayScheduleDto;
 import hils.timeLine1.model.CalorySchedulerDto;
+import hils.timeLine1.model.HilsCalendarDto;
 import hils.timeLine1.model.HilslinderDto;
 import hils.timeLine1.model.WorkoutCalendarOnedayDto;
 import hils.timeLine1.model.WorkoutCategoryDto;
@@ -42,6 +46,13 @@ public class HilslinderService {
 	}
 	public void insertScheduleSingle(CaloryOnedayScheduleDto caloryOnedaySchedulDto) {
 		hilslinderDao.insertCalorySingleSchedule(caloryOnedaySchedulDto);
+	}
+	///////////////////////////////////////////////////////////////////////////////////////
+	public List<HilsCalendarDto> getCalDataListService(String user_id, Date input_date){
+		Map<String, Object> paraMap = new HashMap<String, Object>();
+		paraMap.put("user_id", user_id);
+		paraMap.put("input_date", input_date);
+		return hilslinderDao.getCalDataList(paraMap);
 	}
 	
 }

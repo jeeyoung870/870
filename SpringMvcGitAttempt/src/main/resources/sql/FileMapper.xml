@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="file">
-	
+	<!-- 삭제 예정! -->
 	<insert id="addFile" parameterType="hils.managemainpage.model.FileDto">
 		insert into fileinfo values(fileno.NEXTVAL, #{OrigName}, #{savePath})
 	</insert>

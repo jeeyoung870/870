@@ -10,13 +10,13 @@
 }
 .popup .popuptext {
   visibility: hidden;
-  width: 160px;
-  background-color: #555;
-  color: #fff;
+  width: 300px;
+  background-color: white;
+  border : dotted 1px oragne;
   text-align: center;
-  border-radius: 6px;
+  border-radius: 2px;
   padding: 8px 0;
-  position: absolute;
+  position: relative;
   z-index: 1;
   bottom: 0%;
   left: 50%;
@@ -28,26 +28,25 @@
   animation: fadeIn 1s
 }
 .dummy{
-  height : 50px
 	
 }
 #backgroundBar{
-	height : 10px;
-	width : 420px;
+	height : 20px;
+	width : 380px;
 	background-color : beige;
 }
 
 #caloryBar{
-	height : 10px;
+	height : 20px;
 	width : 1%;
 	background-color : green;
 }
 
 #hilslinderBox{
 	position:relative;
-	height : 300px;
-	width : 300px;
-	border : solid 3px black;
+	height : 100px;
+	width : 100%;
+	border : solid 3px black;	
 	clear : left
 }
 .hilslinderUnit{

@@ -22,6 +22,11 @@ public class SetProfileController {
 	@Autowired
 	SetProfileService setp;
 	
+	@RequestMapping("pimgchange")
+	public String toPimgchange() {
+		
+		return "pimgchange";
+	}
 	
 	@PostMapping("saveIamge")
 	public String saveIamge(@RequestParam(value="croppedImage", required=true) MultipartFile[] file) {

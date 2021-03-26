@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+#wrap {
+	
+}
+
+#wrap .graybackground {background:#eee;}
+
+#wrap .location-bar {
+	border-bottom: 1px solid #333;
+}
+
+#wrap section > div.location-bar > h1 {
+	text-align: center;
+	padding: 10px 0;
+	font-size: 18px;
+}
+
+#wrap section .inner {
+	padding: 0 20px;
+}
+
+
+#wrap section .inner>.section-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 15px 0;
+}
+#wrap section .inner>.section-container:nth-child(1){
+	border-bottom: 1px solid #333;
+}
+
+#wrap section .Registration {
+	display: block;
+	background: #0383D8;
+	width: 80px;
+	text-align: center;
+	color: #fff;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+
+#wrap section table {
+	width: 420px;
+}
+
+#wrap section .page-container {
+		display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 15px 0;
+}

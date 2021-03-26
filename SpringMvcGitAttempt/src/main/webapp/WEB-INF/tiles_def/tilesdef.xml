@@ -96,19 +96,4 @@
 			value="/WEB-INF/views/ManageMainPage1/compInfo.jsp" />
 	</definition>
 	<!-- 여기에서 지정한 definition name을 컨트롤러에서 뷰네임으로 반환하면 타일즈가 반영된 상태로 출력된다! -->
-	<!-- 
-	manageMainPage2
-	 -->
-	<!-- <definition name="loginForm" extends="base_layout">
-		<put-attribute name="title" value="로그인폼" />
-		<put-attribute name="body"
-			value="/WEB-INF/view/jsp/loginForm.jsp" />
-	</definition>
-	
-	<definition name="loginSuccess" extends="base_layout">
-		<put-attribute name="title" value="로그인 성공" />
-		<put-attribute name="body"
-			value="/WEB-INF/view/jsp/loginSuccess.jsp" />
-	</definition> -->
-
 </tiles-definitions>

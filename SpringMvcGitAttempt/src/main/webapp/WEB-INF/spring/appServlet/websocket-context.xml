@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="echoHandler" class="hils.notification.websocket.EchoHandler"/>
+    <websocket:handlers>
+        <websocket:mapping handler="echoHandler" path="/echo-ws" />
+    </websocket:handlers>
+    
+    <bean id = "notificationHandler" class = "hils.notification.websocket.NotificationHandler"/>
+	<websocket:handlers>
+		
+		<websocket:mapping handler = "notificationHandler" path = "/noti"/>
+		<websocket:handshake-interceptors>
+			<bean class = "hils.notification.websocket.NotificationInterceptor"></bean>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
+</beans>
+

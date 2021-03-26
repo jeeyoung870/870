@@ -1,42 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>메인페이지</title>
 </head>
 <body>
-이건 로그인페이지로 하고 로긴 jsp는 로그인처리 페이지로 
-	<!-- ============================================================================================== -->
-	
-	<a href="user/login/G/Glogin">구글 로그인 테스트(컨트롤러)<br/><br/></a>
-	
-	<a>===================================================<br/><br/></a>
-	
-	<a href="user/login/Nlogin">소셜 로그인 테스트<br/></a>
-	
-	<a href="user/login/login">소셜 로그인 테스트<br/></a>
-	
-	<a href="user/login/logout">로그아웃 테스트<br/><br/></a>
-	
-	<a>===================================================<br/><br/></a>
-	
-	<a href="user/login/login">로그인 jsp 페이지 이동 테스트<br/><br/></a>
-	<a href="regi/member/regist">회원가입(스프링 커스텀 태그)</a><br>
 
-	<!-- ============================================================================================= -->
+	<script>
+		if (sessionStorage.email == null) {
+			document.write('<a href="user/login/SocialLogin">로그인</a>')
+		} else {
+			document.write('<a href="user/login/logout">로그아웃</a>')
+		}
+	</script>
 
-	<c:choose>
-		<c:when test="${sessionScope.id_token eq null}">
-			<a href="user/login/Nlogin"> 로그인 버튼 전환 테스트 <br/><br/></a>
-		</c:when>
-		<c:otherwise>
-		${sessionScope.id_token}님이 로그인 중입니다.
-			<a href="user/login/logout"> 로그아웃 버튼 전환 테스트 <br/><br/></a>
-		</c:otherwise>
-	</c:choose>
+	<a href="user/user/register">1111</a>
+	<!-- ====================================================================== -->
+
+	<!-- 테스트를 위한 신고 페이지 이동 버튼
+	(나중에 관리자 페이지의 신고관리 버튼으로 이동)-->
+	<a href="report/report/select">신고 관리</a>
+
+	<!-- ====================================================================== -->
+
+	<!-- 신고내용입력창 -->
+	<form action="report/report/insertDBReport" method="get">
+		<div>
+			신고내용 입력: <input type="text" name="contents" />
+		</div>
+		<input type="hidden" name="reporterName"
+			value="sessionStorage.getItem("userName")">
+		<div>
+			<input type="submit" value="전송" />
+		</div>
+	</form>
 
 </body>
 </html>

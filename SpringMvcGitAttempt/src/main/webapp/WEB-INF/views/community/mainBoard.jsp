@@ -63,14 +63,14 @@
 	
 	<div>
 		<table>
-		
+		 
 			<tr><td>
 				<ul class = "pagination">
 					<li><a href = "./goBoard?requestPage=${boardPaging.beginPageNumber }">${boardPaging.beginPageNumber }</a></li>
-				<c:if test = "${ boardPaging.endPageNumber} > 1">
+				<c:if test = "${ boardPaging.endPageNumber > 1}">
 					<c:forEach begin = "${boardPaging.beginPageNumber + 1 }" end = "${boardPaging.endPageNumber - 1 }" var = "pageNumber">
 				
-					<li><a href = "./goBoard?requestPage=${pageNumber }">${pageNumber }</a></li>
+						<li><a href = "./goBoard?requestPage=${pageNumber }">${pageNumber }</a></li>
 								
 					</c:forEach>
 				</c:if>

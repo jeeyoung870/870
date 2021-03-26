@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "manageCustService">
+	<insert id = "newAnnouncement" parameterType = "hils.manageCustomerService1.model.AnnouncementDto">
+		insert into ANNOUNCEMENT values(annou_seq.NEXTVAL, #{subject}, #{content}, sysdate, #{user_id})
+	</insert>
+	<select id = "searchAnnou" parameterType = "map" resultType = "hils.manageCustomerService1.model.AnnouncementDto">
+		select annou_writing_num, subject, content, annou_reg_date, user_id from ANNOUNCEMENT 
+		<where>
+		<if test = 'searchOption != "" and searchOption != null and searchKeyword !=null and searchKeyword != ""'>
+			<if test = 'searchOption == "general"'>
+				user_id like '%'||#{searchKeyword}||'%' or subject like '%'||#{searchKeyword}||'%'
+			</if>
+			<if test = 'searchOption == "user_id"'>
+				user_id like '%'||#{searchKeyword}||'%'
+			</if>
+			<if test = 'searchOption == "subject"'>
+				subject like '%'||#{searchKeyword}||'%'
+			</if>
+		</if>
+		</where>
+	</select>
+	<update id = "updateAnnou" parameterType = "map">
+		update ANNOUNCEMENT set subject = #{subject}, content = #{content} where annou_writing_num = #{annou_writing_num}
+	</update>
+	<delete id = "deleteAnnou" parameterType = "int">
+		delete from ANNOUNCEMENT where annou_writing_num = #{annou_writing_num}
+	</delete>
+	<select id = "countTotalAnnou" resultType = "int">
+		select count(*) from ANNOUNCEMENT
+	</select>
+	<select id = "selectAnnou" parameterType = "int" resultType = "hils.manageCustomerService1.model.AnnouncementDto">
+		select annou_writing_num, subject, content, annou_reg_date, user_id from ANNOUNCEMENT 
+		where annou_writing_num = #{annou_writing_num}
+	</select>
+<!-- ///////////////////////////oneVOne  -->
+	<select id = "selectAskList" parameterType = "map" resultType = "hils.customerService.model.AskDto">
+		select ask_num, user_id, ask_title, ask_content, ask_date, is_replied from (select ask_num, user_id, ask_title, ask_content, ask_date, is_replied, rownum r from ask)
+		 where r >= #{ask_start_num} and r &lt;= #{ask_end_num} order by r 
+	</select>
+	<select id = "selectTotalAskCount" resultType = "int">
+		select count(*) from ask
+	</select>
+	<select id = "selectAskAndReply" parameterType = "int" resultType = "hils.manageCustomerService1.model.AskAndReplyDto">
+	select a.ask_num, a.user_id, a.ask_title, a.ask_content, a.ask_date, a.is_replied, r.rep_num, r.rep_title, r.rep_content, r.rep_date 
+	from ask a left outer join reply r on r.ask_num = a.ask_num where a.ask_num = #{ask_num}
+
+	</select>
+</mapper>

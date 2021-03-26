@@ -3,12 +3,17 @@ package hils.community.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,11 +27,16 @@ import hils.community.model.BoardPaging;
 import hils.community.model.SubBoardDto;
 import hils.community.model.WriteArticleModel;
 import hils.community.service.BoardService;
+import hils.community.validator.BoardValidator;
+import hils.notification.websocket.NotificationController;
 
 @Controller
 public class BoardController implements ApplicationContextAware{
 	
 	private ApplicationContext applicationContext;
+	
+	@Autowired
+	private BoardValidator boardValidator;
 	
 	@Autowired
 	private BoardService boardService;
@@ -60,6 +70,8 @@ public class BoardController implements ApplicationContextAware{
 		
 		BoardPaging boardPaging = new BoardPaging();
 		boardPaging.setPer(per);
+		
+		//////////////////////////////////////////webscoket Testing
 		
 		System.out.println("successful Communication");
 		Gson json = new Gson();
@@ -102,17 +114,26 @@ public class BoardController implements ApplicationContextAware{
 	}
 	
 	@RequestMapping("/doWrite")
-	public String doWrite(@ModelAttribute("writeArticleModel")WriteArticleModel writeArticleModel) {
-		BoardDto boardDto = new BoardDto();
-		boardDto.setB_subject(writeArticleModel.getB_subject());
-		boardDto.setB_category(writeArticleModel.getCategory());
-		boardDto.setB_content(writeArticleModel.getB_content());
-		boardDto.setB_readcount(0);
-		boardDto.setB_recommendcount(0);
-		boardDto.setUser_id("empty");
-		boardService.insertNewArticleService(boardDto);
+	public String doWrite(@ModelAttribute("writeArticleModel") @Valid WriteArticleModel writeArticleModel, BindingResult bResult) {
+		boardValidator.validate(writeArticleModel, bResult);
 		
-		return "redirect:./goBoard";
+		if(bResult.hasErrors()) {
+			List<ObjectError> errorList = bResult.getAllErrors();
+			
+			return goToWriteForm(writeArticleModel);
+		}else { 
+			BoardDto boardDto = new BoardDto();
+			boardDto.setB_subject(writeArticleModel.getB_subject());
+			boardDto.setB_category(writeArticleModel.getCategory());
+			boardDto.setB_content(writeArticleModel.getB_content());
+			boardDto.setB_readcount(0);
+			boardDto.setB_recommendcount(0);
+			boardDto.setUser_id("empty");
+			boardService.insertNewArticleService(boardDto);
+			
+			return "redirect:./goBoard";
+		}
+		
 	}
 	@RequestMapping("/showArticleContent")
 	public ModelAndView showArticleContent(int b_number) {

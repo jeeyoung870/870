@@ -18,9 +18,6 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import hils.Login.Model.MemberDto;
 import hils.Login.Service.SocialLoginService;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 @RequestMapping("/login")
 public class SocialLoginController {
@@ -34,14 +31,8 @@ public class SocialLoginController {
 		this.naverLoginBO = naverLoginBO;
 	}
 
-	// 로그인 버튼 페이지 이동
-	@RequestMapping(value = { "/login", "/Glogin" }, method = { RequestMethod.GET, RequestMethod.POST })
-	public String GloginPage() {
-		return "user/socialLogin";
-	}
-
 	// 네이버 로그인 첫 화면 요청 메소드
-	@RequestMapping(value = "/Nlogin", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/SocialLogin", method = { RequestMethod.GET, RequestMethod.POST })
 	public String login(Model model, HttpSession session) {
 
 		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */

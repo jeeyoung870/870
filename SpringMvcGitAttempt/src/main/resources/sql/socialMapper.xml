@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="memberMapper">
 
 <insert id="register" parameterType="map"> 
-insert into userData (id_token, userName, email, userImg, ENABLED ) 
-	values ( #{id_token}, #{userName}, #{email}, #{userImg}, #{enabled})
+insert into userData (userName, email, userImg, ENABLED ) 
+	values (#{userName}, #{email}, #{userImg}, #{enabled})
 </insert>
 
 </mapper>

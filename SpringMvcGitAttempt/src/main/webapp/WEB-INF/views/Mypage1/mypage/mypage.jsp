@@ -36,7 +36,7 @@
 <span>마이페이지</span><hr>
 </div>
 <div>
-프로필 수정
+<a href ="pimgchange" >프로필 수정</a>
 </div>
 
 

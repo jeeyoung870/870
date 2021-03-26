@@ -15,6 +15,9 @@
 	.img-wrap img {
 		max-width: 300px;
 	}
+	.input-img {
+	padding: 10px 0;
+	}
 </style>
 <script>
 	// div:nth-child(4) > img
@@ -24,26 +27,14 @@
 			var file = this.files[0];
 			let reader = new FileReader();
 			reader.onload = function(e) {
-				var selector = "#"+name;
-				var s = "input[name='"+name+"'] + div img";
-				console.log($(s).attr("class"))
-				$(selector).attr("src", e.target.result).width(300);
+				var selector = "input[name='"+name+"']";
+				
+				$(selector).next().next().children("img").attr("src", e.target.result).width(300);
 			}
 			reader.readAsDataURL(file);   
 			
 		})
 	});
-	
-/* 	function handleImgFileSelect(e) {	
-			//console.log(this); // 해당 input 정보 출력
-			var file    = document.querySelector('input[type=file]').files[0];
-			let reader = new FileReader();
-			reader.onload = function(e) {
-				$('img').attr("src", e.target.result).width(300);
-			}
-			reader.readAsDataURL(file);
-	}
-	 */
 </script>
 </head>
 <body>

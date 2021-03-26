@@ -1,11 +1,15 @@
 package hils.community.model;
 
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.stereotype.Component;
 
 
 public class WriteArticleModel {
 	private String category;
+	@NotEmpty
 	private String b_subject;
+	@NotEmpty
 	private String b_content;
 	public String getCategory() {
 		return category;
