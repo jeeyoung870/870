@@ -22,4 +22,16 @@ public class ManageBoardService implements IManageBoardService {
 	public List<BoardDto> managerSearchBoardService(ManagerSearchVO managerSearchVO){
 		return manageBoardDao.managerSearchBoard(managerSearchVO);
 	}
+	public void doManagerDeleteArticle(int b_number) {
+		manageBoardDao.doManagerDeleteAritlce(b_number);
+	}
+	public BoardDto getBoardContent(int b_number) {
+		return manageBoardDao.selectBoardContent(b_number);
+	}
+	
+	public void doManagerUpdateArticleService(BoardDto boardDto) {
+		manageBoardDao.doManagerUpdateArticle(boardDto);
+	}
+
+
 }

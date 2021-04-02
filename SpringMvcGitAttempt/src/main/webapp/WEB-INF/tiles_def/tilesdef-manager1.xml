@@ -7,7 +7,10 @@
   		<put-attribute name = "title" value = "게시판 관리"/>
   		<put-attribute name = "body" value = "/WEB-INF/views/managePosting/manageBoard.jsp"/>
   	</definition>
-  	
+  	<definition name = "managePosting/manageUpdateArticle" extends = "base_layout">
+  		<put-attribute name = "title" value = "게시판 관리자 업데이트"/>
+  		<put-attribute name = "body" value = "/WEB-INF/views/managePosting/manageUpdateArticle.jsp"/>
+  	</definition>
   	<definition name = "manageCustomerService1/oneVOneBoard" extends = "base_layout">
   		<put-attribute name = "title" value = "1 대 1 게시판"/>
   		<put-attribute name = "body" value = "/WEB-INF/views/manageCustomerService1/oneVOneBoard.jsp"/>
@@ -23,10 +26,19 @@
   		<put-attribute name="body" value = "/WEB-INF/views/manageCustomerService1/newAnnounceForm.jsp"></put-attribute>
   		
   	</definition>
-  		<definition name = "manageCustomerService1/manageOneVOneContent" extends = "base_layout">
+  	<definition name = "manageCustomerService1/manageOneVOneContent" extends = "base_layout">
   		<put-attribute name="title" value = "1 대 1 관리"></put-attribute>
   		<put-attribute name="body" value = "/WEB-INF/views/manageCustomerService1/manageOneVOneContent.jsp"></put-attribute>
   		
   	</definition>
- 
+  	<definition name = "manageCustomerService1/annouContent" extends = "base_layout">
+  		<put-attribute name="title" value = "공지 사항 조회"></put-attribute>
+  		<put-attribute name="body" value = "/WEB-INF/views/manageCustomerService1/annouContent.jsp"></put-attribute>
+  		
+  	</definition>
+ 	<definition name = "manageCustomerService1/updateAnnounceContentForm" extends = "base_layout">
+  		<put-attribute name="title" value = "공지 사항 업데이트"></put-attribute>
+  		<put-attribute name="body" value = "/WEB-INF/views/manageCustomerService1/updateAnnounceContentForm.jsp"></put-attribute>
+  		
+  	</definition>
 </tiles-definitions>

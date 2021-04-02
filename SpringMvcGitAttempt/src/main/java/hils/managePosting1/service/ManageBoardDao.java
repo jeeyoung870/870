@@ -25,4 +25,13 @@ public class ManageBoardDao {
 
 		return sqlSession.selectList("manageBoard.searchArticle", managerSearchVO);
 	}
+	public void doManagerDeleteAritlce(int b_number) {
+		sqlSession.delete("manageBoard.managerDeleteArticle", b_number);
+	}
+	public BoardDto selectBoardContent(int b_number) {
+		return sqlSession.selectOne("board.selectSpecificContent",b_number );
+	}
+	public void doManagerUpdateArticle(BoardDto boardDto) {
+		sqlSession.update("manageBoard.managerUpdateArticle", boardDto);
+	}
 }

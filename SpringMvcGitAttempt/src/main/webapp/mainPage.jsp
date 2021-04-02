@@ -16,7 +16,9 @@
 			document.write('<a href="user/login/logout">로그아웃</a>')
 		}
 	</script>
-
+	<div>
+		<a href = "/mvc/hils/main">go to index</a>
+	</div>
 	<a href="user/user/register">1111</a>
 	<!-- ====================================================================== -->
 

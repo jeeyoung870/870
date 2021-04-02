@@ -32,7 +32,21 @@ public class SettingController {
 	@Autowired
 	UserSettingService uset;
 	
-	//ºñ¹Ğ¹øÈ£ º¯°æÇÏ±â
+	//ì„¤ì • ë° íšŒì›ì •ë³´ë¡œ ì´ë™
+	@RequestMapping("usersetting")
+	public ModelAndView toUsersetting() {
+		List<ProfileDto> userInfo = uset.userInfo("jyjy");
+		//pwë¥¼ *ë¡œ ì¶œë ¥í•˜ê¸° ìœ„í•œ ì½”ë“œ
+		String pw = userInfo.get(0).getPassword();
+		String pwpw = "";
+		for(int i=0; i < pw.length(); i++) {
+			pwpw += "*";
+		}
+		userInfo.get(0).setPassword(pwpw);
+		return new ModelAndView("usersetting", "userInfo", userInfo);
+	}
+	
+	//ë¹„ë°€ë²ˆí˜¸ ë³€ê²½í•˜ê¸°
 	@PostMapping(value = "pwchanged", produces = "application/text; charset=UTF-8")
 	public String chPassword(@RequestParam(value = "user_id") String user_id, 
 			HttpServletRequest request, HttpServletResponse res) throws IOException {
@@ -43,7 +57,6 @@ public class SettingController {
 		System.out.println(user_id + "  "+newpw);
 		int success = uset.changePw(pdto);
 		System.out.println(success);
-		//java´Ü¿¡¼­ alert ¶ç¿ì±â
 		return "redirect:usersetting";
 	}
 	
@@ -61,20 +74,20 @@ public class SettingController {
 		return new ModelAndView("emailchange", "user", user_id);
 	}
 	
-	 //ÀÌ¸ŞÀÏ ÀÎÁõ¿ë ¸ŞÀÏ º¸³»±â
+	 //ì´ë©”ì¼ ì¸ì¦ìš© ë©”ì¼ ë³´ë‚´ê¸°
 	 @PostMapping(value="mailcheck", produces = "text/plain;charset=UTF-8")
-		@ResponseBody	//°¡ ¹ŞÀº °´Ã¼¸¦ Å¬¶óÀÌ¾ğÆ®view·Î º¸³¿
+		@ResponseBody	//ê°€ ë°›ì€ ê°ì²´ë¥¼ í´ë¼ì´ì–¸íŠ¸viewë¡œ ë³´ëƒ„
 	    public String sendMail(String newmail) throws Exception {
 		 	System.out.println(newmail);
 	        EmailVO email = new EmailVO();
 				/*
-				 * String receiver = "¸ŞÀÏ ¹ŞÀ» ÁÖ¼Ò"; 
-				 * String subject = "Email Á¦¸ñ"; 
-				 * String content = "Email ³»¿ë";
+				 * String receiver = "ë©”ì¼ ë°›ì„ ì£¼ì†Œ"; 
+				 * String subject = "Email ì œëª©"; 
+				 * String content = "Email ë‚´ìš©";
 				 */
 	         String receiver = newmail;
-	         String subject  = "[HILS]¸ŞÀÏ È®ÀÎ¿ë ÀÎÁõ¹øÈ£ Àü¼Û";
-	         String content = "¾Æ·¡ÀÇ ¼ıÀÚ¸¦ Á¤È®ÇÏ°Ô ÀÔ·ÂÇØ ÁÖ¼¼¿ä.\n";
+	         String subject  = "[HILS]ë©”ì¼ í™•ì¸ìš© ì¸ì¦ë²ˆí˜¸ ì „ì†¡";
+	         String content = "ì•„ë˜ì˜ ìˆ«ìë¥¼ ì •í™•í•˜ê²Œ ì…ë ¥í•´ ì£¼ì„¸ìš”.\n";
 
 	        email.setReceiver(receiver);
 	        email.setSubject(subject);
@@ -82,8 +95,8 @@ public class SettingController {
 	        
 	        int min = 1000;
 	        int max = 9999;
-	        int random = (int) ((Math.random() * (max - min)) + min);  //1000~9999 Áß¿¡¼­ ·£´ı»Ì±â
-	        boolean result = uset.sendMail(email, random);	//¼º°ø½Ã true, ½ÇÆĞ½Ã false
+	        int random = (int) ((Math.random() * (max - min)) + min);  //1000~9999 ì¤‘ì—ì„œ ëœë¤ë½‘ê¸°
+	        boolean result = uset.sendMail(email, random);	//ì„±ê³µì‹œ true, ì‹¤íŒ¨ì‹œ false
 	        System.out.println(result);
 	        
 	        Gson json = new Gson(); 
@@ -92,7 +105,7 @@ public class SettingController {
 			/* return "random:"+random; */
 
 	    }
-	 //ÀÌ¸ŞÀÏ º¯°æ
+	 //ì´ë©”ì¼ ë³€ê²½
 	 @PostMapping(value = "emailchanged")
 		public String chEmail(@RequestParam(value = "user_id") String user_id, 
 				@RequestParam(value = "newmail") String newmail,
@@ -103,7 +116,7 @@ public class SettingController {
 			System.out.println(user_id + "  "+newmail);
 			int success = uset.changeEmail(pdto);
 			System.out.println(success);
-			//java´Ü¿¡¼­ alert ¶ç¿ì±â
+			//javaë‹¨ì—ì„œ alert ë„ìš°ê¸°
 			return "redirect:usersetting";
 		}
 		  
@@ -117,7 +130,7 @@ public class SettingController {
 		return new ModelAndView("phonechange", "user", user);
 	}
 	
-	//ajax - º¯°æÇÒ phone¿¬¶ôÃ³°¡ ´Ù¸¥ »ç¿ëÀÚ¿Í Áßº¹ÀÎÁö Ã¼Å©
+	//ajax - ë³€ê²½í•  phoneì—°ë½ì²˜ê°€ ë‹¤ë¥¸ ì‚¬ìš©ìì™€ ì¤‘ë³µì¸ì§€ ì²´í¬
 	@RequestMapping(value = "phonecheck", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody  
 	public String phoneCheck(String newphone) throws Exception {
@@ -125,10 +138,10 @@ public class SettingController {
 		/* List<Map<String,Object>> list = emp.selectEmps(deptno); */
 		Gson json = new Gson(); 
 		System.out.println(json.toJson(count));
-		//ºÎ¼­¹øÈ£·Î °Ë»öÇÑ enameÀ» ¸®ÅÏÇÔ
+		//ë¶€ì„œë²ˆí˜¸ë¡œ ê²€ìƒ‰í•œ enameì„ ë¦¬í„´í•¨
 		return json.toJson(count);	
 	}
-	//phone º¯°æÇÏ±â
+	//phone ë³€ê²½í•˜ê¸°
 	@PostMapping(value = "phonechanged",  produces = "application/text; charset=UTF-8")
 	public String chPhone(@RequestParam(value = "user_id") String user_id, 
 			HttpServletRequest request, HttpServletResponse res) throws IOException {
@@ -142,7 +155,7 @@ public class SettingController {
 		return "redirect:usersetting";
 	}
 	
-	//Èú¸°´õ ºñ°ø°³¿©ºÎ º¯°æ
+	//íë¦°ë” ë¹„ê³µê°œì—¬ë¶€ ë³€ê²½
 	@PostMapping(value = "hilopenchange")
 	public String chHilendarOpen(char data, String user_id) {
 		System.out.println(data + user_id);
@@ -154,7 +167,7 @@ public class SettingController {
 		return "redirect:usersetting";
 	}
 	
-	//Èú¸°´õ °Ô½ÃÆÇ ¿¬µ¿¿©ºÎ º¯°æ
+	//íë¦°ë” ê²Œì‹œíŒ ì—°ë™ì—¬ë¶€ ë³€ê²½
 	@PostMapping(value = "hilwithboard")
 	public String chHilWithBoard(char data, String user_id) {
 		System.out.println(data + user_id);
@@ -173,9 +186,9 @@ public class SettingController {
 		return "locset";
 	}
 	
-	//À§Ä¡ ¼³Á¤ÇÏ±â
+	//ìœ„ì¹˜ ì„¤ì •í•˜ê¸°
 	@PostMapping(value = "locset")
-	//d_address : »ó¼¼ÁÖ¼Ò 
+	//d_address : ìƒì„¸ì£¼ì†Œ 
 	public String changeLoc(HttpServletRequest request, String user_id) {
 		String postcode = request.getParameter("postcode");
 		String address = request.getParameter("address");

@@ -54,8 +54,8 @@
 					html += "<span class = 'unitline1'>" + searchResult.b_subject + "</span><br/><br/>"
 					html += "<span class = 'unitline2'>" + searchResult.user_id + "</span> | "
 					html += "<span class = 'unitline2'>" + searchResult.b_reg_date + "</span><br/><br/>"
-					html += "<span class = 'CRUDBox'><a href = 'managerUpdateArticle?b_number='" + searchResult.b_number + "'>수정</a></span>"
-					html += "<span class = 'CRUDBox'><a href = 'managerDeleteArticle?b_number='" + searchResult.b_number + "'>삭제	</a></span>"
+					html += "<span class = 'CRUDBox'><a href = 'goToManagerUpdateArticle?b_number=" + searchResult.b_number + "'>수정</a></span>"
+					html += "<span class = 'CRUDBox'><a href = 'managerDeleteArticle?b_number=" + searchResult.b_number + "'>삭제	</a></span>"
 				}  
 				document.getElementById("result").innerHTML = html;
 			}).fail(function(){

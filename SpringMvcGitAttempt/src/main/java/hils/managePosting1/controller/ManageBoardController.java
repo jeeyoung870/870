@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
@@ -52,5 +53,28 @@ public class ManageBoardController {
 		model.addAttribute("searchResultList", searchBoardList);
 		Gson json = new Gson();
 		return json.toJson(model);
+	}
+	@RequestMapping("managerDeleteArticle")
+	public String managerDeleteArticle(int b_number) {
+		iManageBoardService.doManagerDeleteArticle(b_number);
+		
+		return "redirect:goToManageBoard";
+	}
+	@RequestMapping("goToManagerUpdateArticle")
+	public ModelAndView goToUpdateManagerArticle(int b_number) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("article", iManageBoardService.getBoardContent(b_number)); 
+		mav.setViewName("managePosting/manageUpdateArticle");
+		return mav;
+	}
+	@RequestMapping("managerUpdateArticle")
+	public String managerUpdateArticle(int b_number, String subject, String content) {
+		BoardDto boardDto = new BoardDto();
+		boardDto.setB_content(content);
+		boardDto.setB_number(b_number);
+		boardDto.setB_subject(subject);
+		iManageBoardService.doManagerUpdateArticleService(boardDto);
+		
+		return "redirect:goToManageBoard";
 	}
 }

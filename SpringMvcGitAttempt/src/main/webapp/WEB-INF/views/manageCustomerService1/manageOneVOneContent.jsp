@@ -59,5 +59,16 @@
 		</table>
 	</c:if>
 	</div>
+	<c:if test = "${askAndReplyList.is_replied eq 'N' }">
+	<form action = "writeReply" method = "Post">
+		<input type = "hidden" name = "ask_num" value = "${askAndReplyList.ask_num }"/>
+		<label for = "c_content"></label>
+		<input type = "text" name = "rep_title"/>
+		<div class = "form-group">
+			<textarea name = "rep_content" class = "form-control">enter Comments</textarea>
+			<input type = "submit" value = "write Reply" class = "boardBtn"></input>
+		</div>
+	</form>
+	</c:if>
 </body>
 </html>

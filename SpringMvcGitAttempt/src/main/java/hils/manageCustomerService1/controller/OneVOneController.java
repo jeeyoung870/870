@@ -11,6 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import hils.community.model.BoardPaging;
 import hils.customerService.model.AskDto;
+import hils.customerService.model.ReplyDto;
+import hils.customerService.service.OneOneDao;
+import hils.customerService.service.OneOneService;
 import hils.manageCustomerService1.model.AskAndReplyDto;
 import hils.manageCustomerService1.service.IOneVOneService;
 
@@ -21,6 +24,12 @@ public class OneVOneController {
 	@Qualifier("oneVOneService")
 	private IOneVOneService iOneVOneService;
 	
+	@Autowired
+	private OneOneService oneOneService;
+	
+	public void setOneOneService(OneOneService oneOneService) {
+		this.oneOneService = oneOneService;
+	}
 	
 	public OneVOneController() {};
 	
@@ -61,5 +70,10 @@ public class OneVOneController {
 		mav.addObject("askAndReplyList", askAndReplyList);
 		mav.setViewName("manageCustomerService1/manageOneVOneContent");
 		return mav;
+	}
+	@RequestMapping("writeReply")
+	public String writeReply(ReplyDto replyDto) {
+		oneOneService.insertNewReply(replyDto);
+		return "redirect:/manageCustomerService/showOneVOneBoard";
 	}
 }

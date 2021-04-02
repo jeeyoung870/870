@@ -3,6 +3,8 @@ package hils.community.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.BeansException;
@@ -114,9 +116,10 @@ public class BoardController implements ApplicationContextAware{
 	}
 	
 	@RequestMapping("/doWrite")
-	public String doWrite(@ModelAttribute("writeArticleModel") @Valid WriteArticleModel writeArticleModel, BindingResult bResult) {
+	public String doWrite(HttpServletRequest request, @ModelAttribute("writeArticleModel") @Valid WriteArticleModel writeArticleModel, BindingResult bResult) {
 		boardValidator.validate(writeArticleModel, bResult);
-		
+		HttpSession session = request.getSession();
+		System.out.println((String)session.getAttribute("Email"));
 		if(bResult.hasErrors()) {
 			List<ObjectError> errorList = bResult.getAllErrors();
 			
@@ -128,7 +131,7 @@ public class BoardController implements ApplicationContextAware{
 			boardDto.setB_content(writeArticleModel.getB_content());
 			boardDto.setB_readcount(0);
 			boardDto.setB_recommendcount(0);
-			boardDto.setUser_id("empty");
+			boardDto.setUser_id((String)session.getAttribute("Email"));
 			boardService.insertNewArticleService(boardDto);
 			
 			return "redirect:./goBoard";

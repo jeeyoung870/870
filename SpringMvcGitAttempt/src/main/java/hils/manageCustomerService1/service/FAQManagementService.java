@@ -28,7 +28,7 @@ public class FAQManagementService {
 
 		return new FAQManagementListModel(list, pageNum, p.totalPageCount, start, p, count);
 	}*/
-	
+		
 	public FAQManagementListModel faqManageSearchBoardlist(int pageNum, int per, String category, String searchWord) {
 		int count = dao.count();
 		if (count == 0) {

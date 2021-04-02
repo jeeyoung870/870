@@ -12,9 +12,12 @@
 	<form:form method = "post" action="./doOneOne" modelAttribute = "writeOneOneVO">	
 		<label for = "userEmail">Your E-mail</label>
 		<form:input type = "text" id = "userEmail" path = "userEmail"/>
+		<form:errors path = "userEmail"/>
 		<label for = "userSubject">Your subject</label>
 		<form:input type = "text" id = "userPhone" path = "userSubject"/>
-		<textarea id = "textToManager" name = "textToManager"></textarea>
+		<form:errors path = "userSubject"/>
+		<form:textarea path = "textToManager" id = "textToManager" name = "textToManager"/>
+		<form:errors path = "textToManager"/>
 		<input type = "submit" value = "submit"/>
 	</form:form>
 </body>

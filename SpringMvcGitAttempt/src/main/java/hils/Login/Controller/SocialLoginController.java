@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
@@ -23,7 +24,7 @@ import hils.Login.Service.SocialLoginService;
 public class SocialLoginController {
 
 	/* NaverLoginBO */
-	private NLoginBO naverLoginBO;  
+	private NLoginBO naverLoginBO;
 	private String apiResult = null;
 
 	@Autowired
@@ -31,41 +32,42 @@ public class SocialLoginController {
 		this.naverLoginBO = naverLoginBO;
 	}
 
-	// 네이버 로그인 첫 화면 요청 메소드
+	// �꽕�씠踰� 濡쒓렇�씤 泥� �솕硫� �슂泥� 硫붿냼�뱶
 	@RequestMapping(value = "/SocialLogin", method = { RequestMethod.GET, RequestMethod.POST })
 	public String login(Model model, HttpSession session) {
 
-		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+		// �꽕�씠踰꾩븘�씠�뵒濡� �씤利� URL�쓣 �깮�꽦�븯湲� �쐞�븯�뿬 naverLoginBO�겢�옒�뒪�쓽 getAuthorizationUrl硫붿냼�뱶 �샇異�
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		System.out.println("네이버:" + naverAuthUrl);
+		System.out.println("�꽕�씠踰�:" + naverAuthUrl);
 
-		// 네이버
+		// �꽕�씠踰� URL ���옣
 		model.addAttribute("naver_url", naverAuthUrl);
 
-		/* 생성한 인증 URL을 View로 전달 */
+		// �깮�꽦�븳 �씤利� URL�쓣 View濡� �쟾�떖
 		return "user/socialLogin";
 	}
 
-	// 네이버 로그인 성공시 callback호출 메소드
+	// �꽕�씠踰� 濡쒓렇�씤 �꽦怨듭떆 callback�샇異� 硫붿냼�뱶
 	@RequestMapping(value = "/NmainPass", method = { RequestMethod.GET, RequestMethod.POST })
 	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
 			throws IOException {
-		System.out.println("네이버 로그인 성공");
+		System.out.println("�꽕�씠踰� 濡쒓렇�씤 �꽦怨�");
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
-		// 로그인 사용자 정보를 읽어온다.
+		// 濡쒓렇�씤 �궗�슜�옄 �젙蹂대�� �씫�뼱�삩�떎.
 		apiResult = naverLoginBO.getUserProfile(oauthToken);
 		model.addAttribute("result", apiResult);
 
-		/* 네이버 로그인 성공 페이지 View 호출 */
+		// �꽕�씠踰� 濡쒓렇�씤 �꽦怨� �럹�씠吏� View �샇異�
 		return "user/mainPass";
 	}
 
 //==============================================================================
+	// 援ш� 濡쒓렇�씤 �떆 �씠硫붿씪 �젙蹂� �꽭�뀡怨� DB�뿉 ���옣
+	
 	@Autowired
 	private SocialLoginService socialLoginService;
-	
-	
+
 	public SocialLoginService getSocialLoginService() {
 		return socialLoginService;
 	}
@@ -74,20 +76,24 @@ public class SocialLoginController {
 		this.socialLoginService = socialLoginService;
 	}
 
-	// 구글 로그인 후 DB에 유저 정보 전송
-	@RequestMapping(value = "/insertDB")
-	public void data(@RequestParam Map<String, Object> param, HttpServletRequest request, MemberDto MemberDto) {
-		System.out.println("param::"+param);
-		socialLoginService.method(param);
+	@RequestMapping(value = "/email")
+	public void email2(HttpServletRequest request, String email) {
+		socialLoginService.email(email);
+		
+		// sessionStorage 媛� session �뿉 ���옣
+		HttpSession session = request.getSession();
+		session.setAttribute("Email", email);
+		String se = (String) session.getAttribute("Email");
+		System.out.println(se);
 	}
 
 //==============================================================================
 
-	// 로그아웃
+	// 濡쒓렇�븘�썐	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logoutGET(HttpSession session) throws Exception {
-		session.invalidate(); // 세션 무효화 해서 로그아웃.
-		// return "redirect:/경로"; 얼럿창출력안하고 바로 지정 페이지로 이동할 때 사용
+		session.invalidate(); // �꽭�뀡 臾댄슚�솕 �빐�꽌 濡쒓렇�븘�썐.
+		// return "redirect:/寃쎈줈"; �뼹�읉李쎌텧�젰�븞�븯怨� 諛붾줈 吏��젙 �럹�씠吏�濡� �씠�룞�븷 �븣 �궗�슜
 		return "user/logout";
 	}
 }

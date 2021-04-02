@@ -8,10 +8,11 @@
 <!-- 구글 로그인 설정 -->
 <meta name="google-signin-scope" content="profile email">
 <meta name="google-signin-client_id"
-	content="682293530114-c80ahhfq30vtb3lgonk24tjh7o05v6l4.apps.googleusercontent.com">
+	content="682293530114-lsru175992b90da5c2c292i6orlcdr1b.apps.googleusercontent.com">
 
 <!-- 학원용 (lrsu) 집 (c80a) 클라이언트ID
-	682293530114-lsru175992b90da5c2c292i6orlcdr1b.apps.googleusercontent.com 
+	682293530114-lsru175992b90da5c2c292i6orlcdr1b.apps.googleusercontent.com
+	682293530114-c80ahhfq30vtb3lgonk24tjh7o05v6l4.apps.googleusercontent.com 
 -->
 
 <script src="https://apis.google.com/js/platform.js?onload=renderButton"
@@ -32,7 +33,7 @@
 		style="background-color: #f70000; width: 100%; height: 50px; text-align: center; color: white;">
 		<h3>HiLS</h3>
 	</div>
-
+	
 	<!-- 구글 로그인 -->
 	<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 	<script type="text/javascript">
@@ -57,17 +58,28 @@
 			sessionStorage.setItem('userName', userName);
 			console.log(sessionStorage.getItem("userName"));
 
-			let data = {
+			/* let data = {
 				"email" : email,
 				"userImg" : userImg,
 				"enabled" : 1,
 				"userName" : userName
 			}
-			
+
 			$.ajax({ //컨트롤러와 통신
 				dataType : "json",
 				method : "POST",
 				url : "/mvc/user/login/insertDB",
+				data : data
+			}).done(function() {
+				console.log("success!")
+			}) */
+
+			var data = "email="+ email;
+			
+			$.ajax({ //컨트롤러와 통신
+				dataType : "json",
+				method : "POST",
+				url : "/mvc/user/login/email",
 				data : data
 			}).done(function() {
 				console.log("success!")
@@ -84,5 +96,6 @@
 		<a href="${naver_url}"><img width="200"
 			src="${pageContext.request.contextPath}/resources/img/naver_w_in.PNG" /></a>
 	</div>
+	
 </body>
 </html>

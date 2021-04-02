@@ -175,14 +175,24 @@ box-sizing: border-box;
 			let html = ""
 			$(".hiddenCalLogs").each(function() {
 				let targetDate = $(this).val()
-				let productDate = targetDate.slice(0, -1) + (parseInt(targetDate[targetDate.length - 1]) - 1);
+				let testIsTenth = parseInt(targetDate.slice(-2));
+				console.log(testIsTenth);
+				let productDate = ""
+				if(testIsTenth - 10 == 0){
+					productDate = targetDate.slice(0, -2) + "0" + (testIsTenth - 1)
+				}else if((testIsTenth - 20 == 0) || (testIsTenth - 30 == 0)){
+					console.log("called")
+					productDate = targetDate.slice(0, -2) + "" +  (testIsTenth - 1)
+				}else{
+					productDate = targetDate.slice(0, -1) + (parseInt(targetDate[targetDate.length - 1]) - 1);
+				}
 				console.log(productDate)
 				$(".thisMonthDate").each(function(){
 					if($(this).attr("id") == productDate){
 						console.log("found")
 						
 						html += "<img src ='/mvc/resources/images/fist.png' style = 'width:100%;'/>"
-						$(this).html(html)
+						$(this).html(html)	
 					}
 				})
 				html = ""

@@ -15,4 +15,9 @@
 		<put-attribute name = "body"
 			value = "/WEB-INF/views/customerService/checkOneOne.jsp"/>
 	</definition>
+	<definition name = "customerService/checkOneOneAnswer" extends = "base_layout">
+		<put-attribute name = "title" value = "문의 내용 조회"/>
+		<put-attribute name = "body"
+			value = "/WEB-INF/views/customerService/checkOneOneAnswer.jsp"/>
+	</definition>
 </tiles-definitions>

@@ -38,5 +38,5 @@ public class OneVOneService implements IOneVOneService {
 	public int getTotalAskCount() {
 		return oneVOneDao.selectTotalAskCount();
 	}
-
+	
 }

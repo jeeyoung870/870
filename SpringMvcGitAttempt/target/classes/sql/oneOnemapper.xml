@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace = "oneOne">
+<mapper namespace = "oneOne">	
+	<insert id = "newReply" parameterType = "hils.customerService.model.ReplyDto">
+		insert into reply(ask_num, rep_num , rep_title, rep_content, rep_date) values(#{ask_num}, #{ask_num} ,#{rep_title}, #{rep_content}, sysdate)
+	</insert>
+	<update id = "updateReplied" parameterType = "int">
+		update ask set is_replied = 'Y' where ask_num = #{ask_num}
+	</update>
 	<insert id = "newOneOneAsk">
 		insert into ask values (ask_num_seq.NEXTVAL, #{user_id}, #{ask_title}, #{ask_content}, sysdate, #{is_replied})
 	</insert>
 	<select id = "selectAskList" parameterType = "String" resultType = "hils.customerService.model.AskDto">
 		select ask_num, user_id, ask_title, ask_content, ask_date, is_replied from ask where user_id = #{user_id}
+	</select>
+	<select id = "selectAskAndReply" parameterType = "map" resultType = "hils.customerService.model.AskAndReplyDto">
+		select a.ask_num, a.user_id, a.ask_title, a.ask_content, a.ask_date, a.is_replied, r.rep_content, r.rep_title, r.rep_date
+		from ask a join reply r on a.ask_num = r.ask_num
+		where a.user_id = #{user_id} and a.ask_num = #{ask_num}
+		
+	</select>
+	<select id = "selectAskBoardList" parameterType = "map" resultType = "hils.customerService.model.AskDto">
+		select ask_num, user_id, ask_title, ask_content, ask_date, is_replied 
+		from (ask_num, user_id, ask_title, ask_content, ask_date, is_replied, rownum r from ask)
+		where r >= #{start_oneone_num} and r %lt;= #{end_oneone_num}
 	</select>
 </mapper>

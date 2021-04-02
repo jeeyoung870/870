@@ -28,4 +28,7 @@ public class OneVOneDao {
 	public int selectTotalAskCount() {
 		return sqlSession.selectOne("manageCustService.selectTotalAskCount");
 	}
+	public List<AskDto> selectManagerOneOneBoard(Map<String, Integer>paraMap){
+		return sqlSession.selectList("oneOne.selectAskBoardList", paraMap);
+	}
 }

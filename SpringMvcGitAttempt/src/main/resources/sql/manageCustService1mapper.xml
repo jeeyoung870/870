@@ -5,6 +5,20 @@
 	<insert id = "newAnnouncement" parameterType = "hils.manageCustomerService1.model.AnnouncementDto">
 		insert into ANNOUNCEMENT values(annou_seq.NEXTVAL, #{subject}, #{content}, sysdate, #{user_id})
 	</insert>
+	
+	<update id = "updateAnnou" parameterType = "map">
+		update ANNOUNCEMENT set subject = #{subject}, content = #{content} where annou_writing_num = #{annou_writing_num}
+	</update>
+	<delete id = "deleteAnnou" parameterType = "int">
+		delete from ANNOUNCEMENT where annou_writing_num = #{annou_writing_num}
+	</delete>
+	<select id = "countTotalAnnou" resultType = "int">
+		select count(*) from ANNOUNCEMENT
+	</select>
+	<select id = "selectAnnou" parameterType = "int" resultType = "hils.manageCustomerService1.model.AnnouncementDto">
+		select annou_writing_num, subject, content, annou_reg_date, user_id from ANNOUNCEMENT 
+		where annou_writing_num = #{annou_writing_num}
+	</select>
 	<select id = "searchAnnou" parameterType = "map" resultType = "hils.manageCustomerService1.model.AnnouncementDto">
 		select annou_writing_num, subject, content, annou_reg_date, user_id from ANNOUNCEMENT 
 		<where>
@@ -20,19 +34,6 @@
 			</if>
 		</if>
 		</where>
-	</select>
-	<update id = "updateAnnou" parameterType = "map">
-		update ANNOUNCEMENT set subject = #{subject}, content = #{content} where annou_writing_num = #{annou_writing_num}
-	</update>
-	<delete id = "deleteAnnou" parameterType = "int">
-		delete from ANNOUNCEMENT where annou_writing_num = #{annou_writing_num}
-	</delete>
-	<select id = "countTotalAnnou" resultType = "int">
-		select count(*) from ANNOUNCEMENT
-	</select>
-	<select id = "selectAnnou" parameterType = "int" resultType = "hils.manageCustomerService1.model.AnnouncementDto">
-		select annou_writing_num, subject, content, annou_reg_date, user_id from ANNOUNCEMENT 
-		where annou_writing_num = #{annou_writing_num}
 	</select>
 <!-- ///////////////////////////oneVOne  -->
 	<select id = "selectAskList" parameterType = "map" resultType = "hils.customerService.model.AskDto">

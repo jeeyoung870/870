@@ -66,10 +66,10 @@ public class AnnouncementController {
 	public ModelAndView goToUpdateAnnou(int annou_writing_num) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("annou", iAnnouncementService.selectAnnouService(annou_writing_num));
-		mav.setViewName("updateAnnounceContentForm");
+		mav.setViewName("manageCustomerService1/updateAnnounceContentForm");
 		return mav;
 	}
-	@DeleteMapping("deleteAnnnou")
+	@RequestMapping("deleteAnnou")
 	public String deleteAnnou(int annou_writing_num) {
 		iAnnouncementService.deleteAnnou(annou_writing_num);
 		return "redirect:./goToAnnouncement";
@@ -80,5 +80,12 @@ public class AnnouncementController {
 		
 		return "redirect:./goToAnnouncement";
 	}
-	
+	@RequestMapping("manageSpecificAnnou")
+	public ModelAndView manageSpecificAnnou(int annou_writing_num) {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("annou", iAnnouncementService.selectAnnouService(annou_writing_num));
+		mav.setViewName("manageCustomerService1/annouContent");
+		return mav;
+	}
 }

@@ -8,6 +8,7 @@
 </head>
 <body>
 	<form action = "updateAnnou" method = "POST">
+		<input type = "hidden" name = "annou_writing_num" value = "${annou.annou_writing_num }"/>
 		<label for = "subject">제목</label>
 		<input type = "text" name = "subject" value = "${annou.subject }"> 
 		<br/>

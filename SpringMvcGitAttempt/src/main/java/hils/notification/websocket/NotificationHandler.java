@@ -12,6 +12,7 @@ import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+
 public class NotificationHandler extends TextWebSocketHandler{
 	//set이냐 list이냐		
 	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();

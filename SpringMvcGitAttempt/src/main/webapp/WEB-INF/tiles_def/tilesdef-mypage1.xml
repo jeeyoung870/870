@@ -24,5 +24,10 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/Mypage1/mypage/pimgchange.jsp" />
 	</definition>
+	<definition name="profilechange" extends="base_layout">
+		<put-attribute name="title" value="프로필 변경" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Mypage1/mypage/profilechange.jsp" />
+	</definition>
 	
 </tiles-definitions>

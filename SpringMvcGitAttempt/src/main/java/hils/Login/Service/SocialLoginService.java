@@ -1,6 +1,5 @@
 package hils.Login.Service;
 
-import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +20,8 @@ public class SocialLoginService {
 		this.sqlSession = sqlSession;
 	}
 
-	public void method(Map<String, Object> map) {
-		sqlSession.insert(NAMESPACE + ".register", map);
+	public void email(String email) {
+		sqlSession.insert(NAMESPACE + ".emailRegister", email);
 	}
 
 }

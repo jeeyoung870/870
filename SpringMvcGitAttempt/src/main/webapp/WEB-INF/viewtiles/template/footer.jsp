@@ -6,7 +6,7 @@
 
 <link href="${contextPath}/resources/css/default.css" rel="stylesheet" />
 <style>
-#area {
+#footerarea {
 	width: 420px; margin:0 auto;
 	background-color: #EBEBEB; text-align:center;
 	font-family: Noto Sans KR;
@@ -14,12 +14,12 @@
 	font-size: 10px;
 	color:#6B6B6B;
 }
-#text{
-	padding: 30px;
+#footerarea > #text{
+	padding: 30px 0;
 }
 </style>
 
-<div id="area">
+<div id="footerarea">
 <%-- <tiles:importAttribute name="menuList" />
 <c:forEach var="menu" items="${menuList}">${menu} </c:forEach>  --%>
 	<div id="text">
@@ -33,7 +33,6 @@
 	</div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script type="text/javascript">
 $(function() {
 	$.ajax({

@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace = "manageBoard">
+ 	<update id = "managerUpdateArticle" parameterType = "hils.community.model.BoardDto">
+ 		update board set b_content = #{b_content}, b_subject = #{b_subject} 
+ 		where b_number = #{b_number}
+ 	</update>
+ 	<delete id = "managerDeleteArticle" parameterType = "int">
+ 		delete from board where b_number = #{b_number}
+ 	</delete>
  	<select id = "searchArticle" parameterType = "hils.managePosting1.model.ManagerSearchVO" resultType = "hils.community.model.BoardDto">
  		select b_number, b_subject, b_reg_date, b_category, b_content, b_readcount, b_recommendcount, user_id
  		from board 
@@ -19,4 +26,5 @@
 		order by b_number
 		</where>
  	</select>
+ 	
  </mapper>

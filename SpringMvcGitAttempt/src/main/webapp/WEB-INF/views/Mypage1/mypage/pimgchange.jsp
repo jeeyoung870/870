@@ -49,13 +49,15 @@
 <div class="container">
     <h2>프로필용으로 사진 자르기</h2>
     <div class="upload">
-    	<input type="file" name="photoBtn" accept="image/jpeg, image/png" capture="camera" id="photoBtn"><label for="photoBtn">사진 첨부하기</label>
+    	<label for="photoBtn">사진 첨부하기</label><br>
+    	<input type="file" name="photoBtn" accept="image/jpeg, image/png" capture="camera" id="photoBtn">
     </div>
     <div class="them_img">
-      <img id="image" src="" alt="Picture">
+      <img id="image" src="resources/images/usersetting/imgbox.png" >
     </div>
     <h3>Result</h3>    
     <p>
+      <input type="hidden" id="user_id" value="${user_id}">
       <button type="button" id="button">등록하기</button>
     </p>
     <div id="result"></div>
@@ -129,6 +131,7 @@
 	     	          
 	     	         croppedCanvas.toBlob((blob) => {
 	     	        	  const formData = new FormData();
+	     	        	  var user_id = $('#user_id').val();
 
 	     	        	  // Pass the image file name as the third parameter if necessary.
 	     	        	  formData.append('croppedImage', blob/*, 'example.png' */);
@@ -136,12 +139,15 @@
 	     	        	  // Use `jQuery.ajax` method for example
 	     	        	  $.ajax( {
 	     	        	    method: 'POST',
-	     	        	    url: 'saveIamge',
+	     	        	    url: 'saveIamge?user_id='+user_id,
 	     	        	    data: formData,
+	     	        	   dataType: 'json',
 	     	        	    processData: false,
 	     	        	    contentType: false,
-	     	        	    success() {
+	     	        	    success(msg) {
 	     	        	      console.log('Upload success');
+	     	        	      alert(msg);
+	     	        	      window.location.href = 'profilechange?user_id='+user_id;
 	     	        	    },
 	     	        	    error() {
 	     	        	      console.log('Upload error');

@@ -96,8 +96,9 @@
 				</ul> -->
 				</li>
 
-			<li><a href="custcenter" class="iframe">고객센터</a>
+			<li><a href="#" class="iframe">고객센터</a>
 				<ul class = "sub">
+					<li><a href = "custcenter">고객 센터</a></li>
 					<li><a href = "${contextPath}/customerService/goOneOneForm">1 대 1 문의 하기</a></li>
 					<li><a href = "${contextPath}/customerService/goCheckOneOne">1 대 1 문의 내역</a></li>
 				</ul></li>

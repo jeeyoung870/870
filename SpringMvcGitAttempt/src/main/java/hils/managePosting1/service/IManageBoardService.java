@@ -7,5 +7,7 @@ import hils.managePosting1.model.ManagerSearchVO;
 
 public interface IManageBoardService {
 	public List<BoardDto> managerSearchBoardService(ManagerSearchVO managerSearchVO);
-	
+	public void doManagerDeleteArticle(int b_number);
+	public BoardDto getBoardContent(int b_number);
+	public void doManagerUpdateArticleService(BoardDto boardDto);
 }

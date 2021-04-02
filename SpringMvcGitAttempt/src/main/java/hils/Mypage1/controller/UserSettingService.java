@@ -19,9 +19,16 @@ public class UserSettingService {
 	@Autowired
     protected JavaMailSender  mailSender;
 	
-	 
-	public List<ProfileDto> userInfo() {
-		return dao.userInfo();
+	public void setDao(UserSettingDao dao) {
+		this.dao = dao;
+	}
+
+	
+	
+	
+	
+	public List<ProfileDto> userInfo(String user_id) {
+		return dao.userInfo(user_id);
 	}
 	
 	public String getPw(String user_id) {

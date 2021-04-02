@@ -20,7 +20,7 @@
 		<div class = "singleAsk">
 			<div class = "ask_title_box">
 			<ul>
-				<li>${ask.ask_title }
+				<li><a href = "checkOneOneContent?ask_num=${ask.ask_num }">${ask.ask_title }</a>
 				</li>
 				<li><fmt:formatDate value = "${ask.ask_date }" pattern = "yyyy-mm-dd"/>
 				</li>

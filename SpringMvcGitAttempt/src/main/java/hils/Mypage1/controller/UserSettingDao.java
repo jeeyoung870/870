@@ -10,14 +10,20 @@ import org.springframework.stereotype.Repository;
 import lombok.Setter;
 
 @Repository
-@Setter
 public class UserSettingDao {
 
 	@Autowired
 	SqlSession session;
+	
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
 
-	public List<ProfileDto> userInfo() {
-		return session.selectList("usersetting.uInfo");
+	
+	
+	
+	public List<ProfileDto> userInfo(String user_id) {
+		return session.selectList("usersetting.uInfo", user_id);
 	}
 	
 	public String getPw(String user_id) {

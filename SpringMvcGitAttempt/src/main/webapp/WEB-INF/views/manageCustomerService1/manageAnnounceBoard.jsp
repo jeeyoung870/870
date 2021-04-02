@@ -61,11 +61,11 @@
 				let html = ""
 				for (let annou of annouList){
 					html += "<div class = 'singleUnit'><span class = 'unitline1'>[ 일반 ] </span>"
-					html += "<span class = 'unitline1'>" + annou.subject + "</span><br/><br/>"
+					html += "<span class = 'unitline1'><a href = 'manageSpecificAnnou?annou_writing_num="+annou.annou_writing_num + "'>" + annou.subject + "</a></span><br/><br/>"
 					html += "<span class = 'unitline2'> 관리자 </span> | "
 					html += "<span class = 'unitline2'>" + annou.annou_reg_date + "</span><br/><br/>"
-					html += "<span class = 'CRUDBox'><a href = 'goToUpdateAnnou?annou_writing_num='" + annou.annou_writing_num + "'>수정</a></span>"
-					html += "<span class = 'CRUDBox'><a href = 'deleteAnnou?annou_writing_num='" + annou.annou_writing_num + "'>삭제	</a></span></div>"
+					html += "<span class = 'CRUDBox'><a href = 'goToUpdateAnnou?annou_writing_num="+annou.annou_writing_num + "'>수정</a></span>"
+					html += "<span class = 'CRUDBox'><a href = 'deleteAnnou?annou_writing_num="+annou.annou_writing_num + "'>삭제</a></span></div>"
 				}
 				$("#result").html(html);
 				
