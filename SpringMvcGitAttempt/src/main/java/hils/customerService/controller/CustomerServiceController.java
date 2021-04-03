@@ -2,6 +2,9 @@ package hils.customerService.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import hils.customerService.model.AskAndReplyDto;
 import hils.customerService.model.AskDto;
 import hils.customerService.model.WriteOneOneVO;
 import hils.customerService.service.OneOneDao;
@@ -38,8 +42,10 @@ public class CustomerServiceController {
 	}
 	
 	@RequestMapping("doOneOne")
-	public String doOneOneAsk(@ModelAttribute("writeOneOneVO") WriteOneOneVO writeOneOneVO, BindingResult bResult) {
+	public String doOneOneAsk(HttpServletRequest request, @ModelAttribute("writeOneOneVO") WriteOneOneVO writeOneOneVO, BindingResult bResult) {
 		oneVOneValidator.validate(writeOneOneVO, bResult);
+		
+		HttpSession session = request.getSession();
 		
 		if(bResult.hasErrors()) {
 			return goOneOneForm(writeOneOneVO);
@@ -47,7 +53,7 @@ public class CustomerServiceController {
 			AskDto askDto = new AskDto();
 			askDto.setAsk_content(writeOneOneVO.getTextToManager());
 			askDto.setAsk_title(writeOneOneVO.getUserSubject());
-			askDto.setUser_id("dummy");
+			askDto.setUser_id((String)session.getAttribute("Email"));
 			askDto.setIs_replied("N");
 			
 			oneOneService.writeNewOneOneService(askDto);
@@ -56,9 +62,11 @@ public class CustomerServiceController {
 		
 	}
 	@RequestMapping("checkOneOne")
-	public ModelAndView checkOneOne() {
+	public ModelAndView checkOneOne(HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		
-		String user_id = "dummy";
+		
+		String user_id = (String)session.getAttribute("Email");
 		List<AskDto> askList = oneOneService.selectAskListService(user_id);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("customerService/checkOneOne");
@@ -67,11 +75,14 @@ public class CustomerServiceController {
 		return mav;
 	}
 	@GetMapping("checkOneOneContent")
-	public ModelAndView checkOneOneContent(int ask_num) {
-		String user_id = "dummy";
+	public ModelAndView checkOneOneContent(HttpServletRequest request, int ask_num) {
+		HttpSession session = request.getSession();
 		
+		String user_id = (String)session.getAttribute("Email");
+		AskAndReplyDto askAndReply = oneOneService.selectAskAndReplyService(user_id, ask_num);
+		System.out.println("loggin oneone content :" + askAndReply.getAsk_content());
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("askAndReply", oneOneService.selectAskAndReplyService(user_id, ask_num));
+		mav.addObject("askAndReply", askAndReply);
 		mav.setViewName("customerService/checkOneOneAnswer");
 		return mav;
 	}

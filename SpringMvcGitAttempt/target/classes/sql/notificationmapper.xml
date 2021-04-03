@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace = "noti">
+ 	<insert id = "insertNoti" parameterType = "hils.notification.model.GeneralNotiDto">
+ 	  insert into noti_table (user_id, noti_date, noti_content, noti_identifier) values (#{user_id}, #{noti_date},#{noti_content}, noti_seq.NEXTVAL)
+ 	</insert>
+ 	<delete id = "deleteNoti" parameterType = "Map">
+ 	  delete from noti_table where user_id = #{user_id} 
+ 	  <if test = "noti_identifier != null and noti_identifier != ''">
+ 	  	and noti_identifier = #{noti_identifier}
+ 	  </if>
+ 	  <if test = "noti_date != null">
+ 	  and noti_date = #{noti_date}
+ 	  </if>
+ 	</delete>
+ 	
+ 	<select id = "selectUserNoti" parameterType = "String" resultType = "hils.notification.model.GeneralNotiDto">
+ 		select user_id, noti_date, noti_content, noti_identifier from noti_table where user_id = #{user_id}
+ 	</select>
+  	<!-- select boardSubject by b_number -->
+  	<select id = "selectBoardSubject" parameterType = "int" resultType = "String">
+  		select b_subject from board where b_number = #{b_number}
+  	</select>
+  	<select id = "checkThereisNoti" parameterType = "String" resultType = "String">
+  		select count(*) from noti_table where user_id = #{user_id}
+  	</select>
+ </mapper>

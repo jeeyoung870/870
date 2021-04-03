@@ -28,12 +28,12 @@
 				<td width="330">
 					<select id="category" name="category">
 						<option value="general">::글목록선택::</option>
-						<option value="계정문제">계정 문제</option>
-						<option value="커뮤니티">커뮤니티</option>
-						<option value="모바일">모바일</option>
-						<option value="기능">기능</option>
-						<option value="통계">통계</option>
-						<option value="기타">기타</option>
+						<option value="0">계정 문제</option>
+						<option value="1">커뮤니티</option>
+						<option value="2">모바일</option>
+						<option value="3">기능</option>
+						<option value="4">통계</option>
+						<option value="5">기타</option>
 					</select>
 				</td>
 			</tr>

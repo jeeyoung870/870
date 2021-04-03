@@ -34,4 +34,16 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/community/updateArticleForm.jsp" />
 	</definition>
+	<!-- noti -->
+	<definition name="notification/seeNotiPage" extends="base_layout">
+		<put-attribute name="title" value="알림 전체 확인" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/notification/seeNotiPage.jsp" />
+	</definition>
+	<!-- annou -->
+	<definition name="community/userAnnouBoard" extends="base_layout">
+		<put-attribute name="title" value="공지 사항 확인" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/community/userAnnouBoard.jsp" />
+	</definition>
 </tiles-definitions>

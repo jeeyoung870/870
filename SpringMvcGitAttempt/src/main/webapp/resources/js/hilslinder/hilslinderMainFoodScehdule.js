@@ -43,13 +43,14 @@ $(document).on("change", "#selectFood", () =>{
 function handleSelectFood(){
 }
 */
-$("#caloryGoal").blur(handleCaloryGoal)
+$("#caloryGoal").change(handleCaloryGoal)
 function handleCaloryGoal(){
 	let caloryGoal = $("#caloryGoal").val()
-	
+	console.log("logging" + caloryGoal);
 	if(isNaN(caloryGoal)){
 		$("#failCode").text("잘못된 입력 값!")
 	}else{
+		document.getElementById("food_goal").value = caloryGoal
 		//document.getElementById("backgroundBar").style.width = parseInt(caloryGoal)	 + "px"
 	}
 }	

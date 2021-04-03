@@ -15,23 +15,6 @@ public class FAQService {
 	@Autowired
 	private FAQDao dao;
 	
-/*
- * 	public FAQListModel faqViewList(int pageNum, int per) {
-		int count = dao.count();
-		if (count == 0) {
-			return new FAQListModel();
-		}
-
-		int start = (pageNum - 1) * per + 1;
-		int end = start * per;
-		List<FAQDto> list = dao.getList(start, end);
-
-		Paging p = new Paging().paging(pageNum, count, per);
-
-		return new FAQListModel(list, pageNum, p.totalPageCount, start, p, count);
-	}
- * */
-	
 	public FAQListModel faqViewListCategory(int pageNum, int per, String category) {
 		int count = dao.getPagingCategory(category);
 		if (count == 0) {

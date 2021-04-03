@@ -3,6 +3,7 @@ package hils.community.model;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 
 public class WriteArticleModel {
@@ -11,6 +12,16 @@ public class WriteArticleModel {
 	private String b_subject;
 	@NotEmpty
 	private String b_content;
+	private MultipartFile imageFile;
+	
+	
+	
+	public MultipartFile getImageFile() {
+		return imageFile;
+	}
+	public void setImageFile(MultipartFile imageFile) {
+		this.imageFile = imageFile;
+	}
 	public String getCategory() {
 		return category;
 	}

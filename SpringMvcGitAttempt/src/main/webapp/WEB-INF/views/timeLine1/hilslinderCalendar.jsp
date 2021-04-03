@@ -10,39 +10,40 @@
 <title>Insert title here</title>
 <link href="${contextPath}/resources/css/default.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-<link rel = "stylesheet" href = "${contextPath}/resources/css/hilslinderMain.css">
 <jsp:useBean id= "now" class = "java.util.Date"/>
 <style>
 .calBtn {
-   -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  width: 80px;
-  padding: 5px;
-  overflow: hidden;
-  border: 1px solid rgba(175,175,175,1);
-  font: normal 16px/1 "Times New Roman", Times, serif;
-  color: rgba(122,176,191,1);
-  text-align: center;
-  -o-text-overflow: ellipsis;
-  text-overflow: ellipsis;
-  background: #ffffff;
-  -webkit-box-shadow: 2px 2px 1px 0 rgba(0,0,0,0.3) ;
-  box-shadow: 2px 2px 1px 0 rgba(0,0,0,0.3) ;
-  text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
+  box-sizeing: border-box;
+	-moz-box-sizing: border-box;
+	width: 80px;
+	padding: 5px;
+	overflow: hidden;
+	border: 1px solid rgba(175, 175, 175, 1);
+	font: normal 16px/1 "Times New Roman", Times, serif;
+	color: #fff;
+	text-align: center;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	background: #FF3600;
+	-moz-box-sizing: border-box;
 }
 #calendar{
 box-sizing: border-box;
+    width: 350px;
+    margin: 0 auto;
 }
 .calendar_day{
-	display : inline-block;
-	vertical-align: bottom;
-    width: calc(97% / 7);
-    height: calc(40% / 5);
+	display: inline-block;
+    vertical-align: bottom;
+    /* width: calc(97%/ 7); */
+    /* height: calc(60%/ 5); */
+    height: 68px;
+    width: 50px;
     box-sizing: border-box;
     border-radius: 5px;
-    padding: 20px;
-    font-weight : bold
+    /* padding: 20px; */
+    font-weight: bold;
+    border: 1px solid #eee;
 }
 #hiddenDate{
 	display : none;
@@ -54,6 +55,16 @@ box-sizing: border-box;
 .hiddenCalLogs{
 	
 }
+.month{
+	text-align : center;
+	color : grey;
+}
+.myActivity-schedule-div {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	height: 50px;
+}
 </style>
 </head>
 <body>
@@ -63,21 +74,26 @@ box-sizing: border-box;
 	<input type = "hidden" value = "${month }" id = "newMonth">
 	<input type = "hidden" value = "${year }" id = "newYear">
 	<input type = "date" value = "" id = "hiddenDate" name = "date">
+ <div class = "myActivity-schedule-div">
  	<a href = "" id = "prev" class = "calBtn">이전 달로</a>
-	<a href = "" id = "next" class = "calBtn">다음 달로</a>
+	
 	<c:choose>
 		<c:when test = "${month ne null }">
 		<div class = "month">
-			${month }
+			${month }월 입니다,
 		</div>
 		</c:when>
 		<c:otherwise>
 			<fmt:formatDate value="${now }" pattern = "MM" var = "today"/>
 			<div class = "month">
-				<c:out value = "${today }"/>
+				<c:out value = "${today }"/>월 입니다.
 			</div>
 		</c:otherwise>
 	</c:choose>
+	<div>
+		<a href = "" id = "next" class = "calBtn">다음 달로</a>	
+	</div>
+</div>
 	<div class = "inner">
 		<div id = "calendar">
 		</div>
@@ -156,6 +172,7 @@ box-sizing: border-box;
 		}
 		setCalImage();
 		changePassedDay();
+	
 		///////////////////////////////////////////////////////////////////////////////////////////
 			
 		//let thisMonthList = document.querySelectorAll("calendar_day thisMonth")
@@ -193,6 +210,8 @@ box-sizing: border-box;
 						
 						html += "<img src ='/mvc/resources/images/fist.png' style = 'width:100%;'/>"
 						$(this).html(html)	
+						$(this).parent("div").removeClass("thisMonth")
+						$(this).parent("div").addClass("disabled")
 					}
 				})
 				html = ""
@@ -202,9 +221,20 @@ box-sizing: border-box;
 			const today = new Date();
 			let todayValue = ""
 			if(today.getMonth() + 1 < 10){
-				todayValue += today.getFullYear() + "0" +  (today.getMonth() + 1) + (today.getDate() - 1);
+				if(today.getDate() < 10){
+					todayValue += today.getFullYear() + "0" +  (today.getMonth() + 1) + "0" +  (today.getDate() - 1);
+				}else{
+					todayValue += today.getFullYear() + "0" +  (today.getMonth() + 1) + (today.getDate() - 1);
+				}
+				
 			}else{
-				todayValue += today.getFullYear() + (today.getMonth() + 1) + (today.getDate() - 1);
+				if(today.getDate() < 10){
+					todayValue += today.getFullYear() + (today.getMonth() + 1) + "0" + (today.getDate() - 1);
+				}
+				else{
+					todayValue += today.getFullYear() + (today.getMonth() + 1) + (today.getDate() - 1);
+				}
+				
 			}
 			$(".thisMonthDate").each(function(){
 				if($(this).attr("id") < todayValue){
@@ -214,6 +244,7 @@ box-sizing: border-box;
 				}
 			})
 		}
+		
 		
 	</script>
 	

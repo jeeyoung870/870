@@ -1,0 +1,164 @@
+@charset "utf-8";
+
+a {
+	text-decoration: none;
+	color: #000;
+}
+
+header {
+	height: 50px;
+	background: #0383D8;
+	display: flex;
+	align-items: center;
+}
+
+header .logo {
+	margin: 0 auto;
+	width: 50px;
+	text-align: center;
+	position: relative;
+}
+
+header .logo>a>img {
+	width: 90px;
+}
+
+header .hamburger {
+	background: none;
+	position: absolute;
+	top: 3px;
+	left: 0;
+	line-height: 45px;
+	padding: 0px 15px 0px 15px;
+	color: #fff;
+	border: 0;
+	font-size: 1.4em;
+	font-weight: bold;
+	cursor: pointer;
+	outline: none;
+	z-index: 100000;
+}
+
+header .notification {
+	padding: 0 15px;
+}
+
+header .notification>img {
+	width: 25px;
+}
+
+.cross {
+	background: none;
+	position: absolute;
+	right: 15px;
+	top: 10px;
+	color: fff;
+	border: 0;
+	font-size: 3.5em;
+	line-height: 45px;
+	font-weight: bold;
+	cursor: pointer;
+	outline: none;
+	z-index: 100000;
+}
+
+.menu {
+	position: absolute;
+	height: 100%;
+	z-index: 100000;
+	font-weight: bold;
+	font-size: 0.8em;
+	background: #fff;
+	left: 0;
+	top: 0;
+	width: 350px;
+	border-right: 1px solid #bbbbbb;
+	display: none;
+}
+
+.menu span {
+	padding: 20px 0 10px 20px;
+	display: block;
+}
+
+.menu div.user-id-container {
+	display: flex;
+	justify-content: center;
+	height: 50px;
+	align-items: center;
+	background: #0383D8;
+	color: #fff;
+}
+
+.menu span a {
+	display: block;
+	color: #999;
+}
+
+.menu ul {
+	margin: 0;
+	padding: 0;
+	background: #ffffff;
+}
+
+.menu li { /*border-bottom:red 1px solid;*/
+	text-indent: 20px;
+}
+
+.menu li:hover {
+	background: #eee;
+}
+
+.iframe {
+	font-size: 1.4em;
+}
+
+.if1 {
+	font-size: 1em;
+}
+
+.menu>ul>li>a {
+	display: block;
+	padding: 15px 0;
+	border-top:1px solid #efefef;
+	border-bottom:1px solid #efefef;
+}
+
+.menu ul li {
+	position: relative;
+}
+
+.menu>ul>li img {
+	position: absolute;
+	right: 10px;
+	top: 12px;
+}
+
+.sub a {
+	text-decoration: none;
+	margin: 0px;
+	color: #000;
+}
+
+.menu ul li a:hover {
+	text-decoration: none;
+}
+
+.menu ul li ul { /*display:none;*/
+	padding: 5px 0 10px 0;
+	background-color: #fff;
+}
+
+.menu>ul>li>ul>li {
+	text-indent: 50px;
+	padding: 0;
+}
+
+.menu>ul>li>ul>li>a {
+	padding: 5px 0 5px 0;
+	display: block;
+}
+
+#main img {
+	width: 100%;
+}

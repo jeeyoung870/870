@@ -60,13 +60,13 @@
 			<div class="faq-intro-content">
 				<div class="faq-container">
 					<div>
-						<a href="faqViewCategory?category=1"> <img
+						<a href="faqViewCategory?category=0"> <img
 							src="${contextPath}/resources/images/faq/faq1.png">
 							<p class="faq-intro-text">계정문제</p>
 						</a>
 					</div>
 					<div>
-						<a href="faqViewCategory?category=2"> <img
+						<a href="faqViewCategory?category=1"> <img
 							src="${contextPath}/resources/images/faq/faq2.png">
 							<p class="faq-intro-text">커뮤니티</p>
 						</a>
@@ -74,13 +74,13 @@
 				</div>
 				<div class="faq-container">
 					<div>
-						<a href="faqViewCategory?category=3"> <img
+						<a href="faqViewCategory?category=2"> <img
 							src="${contextPath}/resources/images/faq/faq3.png">
 							<p class="faq-intro-text">모바일</p>
 						</a>
 					</div>
 					<div>
-						<a href="faqViewCategory?category=4"> <img
+						<a href="faqViewCategory?category=3"> <img
 							src="${contextPath}/resources/images/faq/faq4.png">
 							<p class="faq-intro-text">기능</p>
 						</a>
@@ -88,13 +88,13 @@
 				</div>
 				<div class="faq-container">
 					<div>
-						<a href="faqViewCategory?category=5"> <img
+						<a href="faqViewCategory?category=4"> <img
 							src="${contextPath}/resources/images/faq/faq5.png">
 							<p class="faq-intro-text">통계</p>
 						</a>
 					</div>
 					<div>
-						<a href="faqViewCategory?category=6"> <img
+						<a href="faqViewCategory?category=5"> <img
 							src="${contextPath}/resources/images/faq/faq6.png">
 							<p class="faq-intro-text">기타</p>
 						</a>

@@ -38,4 +38,10 @@ public class AnnouncementDao {
 	public void updateAnnou(Map<String, Object> paraMap) {
 		sqlSession.update("manageCustService.updateAnnou", paraMap);
 	}
+	
+	/////user
+	public List<AnnouncementDto> userAnnouBoard(Map<String, Integer> paraMap){
+		return sqlSession.selectList("annou.userAnnouList", paraMap);
+	}
+	
 }

@@ -28,7 +28,7 @@ public class CompInfoController {
 	}
 	
 	@PostMapping(value = "compinfo")
-	//d_address : »ó¼¼ÁÖ¼Ò 
+	//d_address : ìƒì„¸ì£¼ì†Œ 
 	public String changeLoc(HttpServletRequest request) {
 		String company_name = request.getParameter("company_name");
 		String representative_name = request.getParameter("representative_name");

@@ -4,22 +4,33 @@
 <mapper namespace = "board">
 
 	<!-- mainBoard -->
+	<update id = "thumbDown" parameterType = "int">
+		update board set b_recommendcount = b_recommendcount - 1 where b_number = #{b_number}
+	</update>
+	<update id = "thumbUp" parameterType = "int">
+		update board set b_recommendcount = b_recommendcount + 1 where b_number = #{b_number}
+	</update>
+	<update id = "readcountUp" parameterType = "int">
+		update board set b_readCount = b_readCount + 1 where b_number = #{b_number}
+	</update>
 	<update id = "updateArticle" parameterType = "map">
 		update board set b_subject = #{b_subject}, b_content = #{b_content} where b_number = #{b_number}
 	</update>
 	<insert id = "insertNewArticle" parameterType = "hils.community.model.BoardDto">
-		insert into board values (main_board_seq.NEXTVAL, #{b_subject}, sysdate, #{user_id}, #{b_content}, #{b_category}, #{b_readcount}, #{b_recommendcount})
+		insert into board values (main_board_seq.NEXTVAL, #{b_subject}, sysdate, #{user_id}, #{b_content}, #{b_category}, #{b_readcount}, #{b_recommendcount}, #{board_img_path})
 	</insert>
 	<select id = "selectBoardList" parameterType = "map" resultType = "hils.community.model.BoardDto">
-		select b_number, b_subject, b_reg_date, user_id, b_content, b_category, b_readcount, b_recommendcount
-		from board where b_number >= #{start_writing_num} and b_number &lt;= #{end_writing_num}
+		select b_number, b_subject, b_reg_date, user_id, b_content, b_category, b_readcount, b_recommendcount, rownum
+		from (select b_number, b_subject, b_reg_date, user_id, b_content, b_category, b_readcount, b_recommendcount, rownum r from 
+		(select * from board order by b_number)
+		 order by b_number)
+		board where r >= #{start_writing_num} and r &lt;= #{end_writing_num}
 		<if test='b_category != null and b_category != ""'>
 		and b_category = #{b_category}
 		</if>
-		order by b_number
 	</select>
 	<select id = "checkTotalArticleCount" resultType = "int">
-		select nvl(max(b_number), 0) from board
+		select nvl(count(*), 0) from board
 	</select>
 	<select id = "selectSpecificContent" parameterType = "int" resultType = "hils.community.model.BoardDto">
 		select b_number, b_subject, b_reg_date, user_id, b_content, b_category, b_readcount, b_recommendcount
@@ -44,5 +55,15 @@
 	</select>
 	<select id = "selectCommentNumber" resultType = "int">
 		select nvl(max(c_number), 0) from sub_board
+	</select>
+	<!-- likeThumb -->
+	<insert id = "newLike" parameterType = "hils.community.model.LikeThumbDto">
+		insert into like_thumb(user_id, writing_num) values(#{user_id}, #{writing_num})
+	</insert>
+	<delete id = "cancelThumb" parameterType = "hils.community.model.LikeThumbDto">
+		delete from like_thumb where user_id = #{user_id} and writing_num = #{writing_num}
+	</delete>
+	<select id = "isThumb" resultType = "String" parameterType = "hils.community.model.LikeThumbDto">
+		select decode(count(*), 0 , 'N', 'Y') from like_thumb where user_id = #{user_id} and writing_num = #{writing_num}
 	</select>
 </mapper>

@@ -19,8 +19,8 @@ public class OneVOneValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		// TODO Auto-generated method stub
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userSubject", "notempty", "Á¦¸ñÀÌ ºñ¾ú½À´Ï´Ù.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "textToManager", "notempty", "³»¿ëÀÌ ºñ¾ú½À´Ï´Ù.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userSubject", "notempty", "ëˆ„ë½ëœ í•­ëª©ì´ ìˆìŠµë‹ˆë‹¤.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "textToManager", "notempty", "ëˆ„ë½ëœ í•­ëª©ì´ ìˆìŠµë‹ˆë‹¤.");
 	}
 
 }

@@ -6,14 +6,16 @@
 
 #wrap .graybackground {background:#eee;}
 
-#wrap .location-bar {
-	border-bottom: 1px solid #333;
-}
-
 #wrap section > div.location-bar > h1 {
 	text-align: center;
 	padding: 10px 0;
 	font-size: 18px;
+}
+
+#wrap section .location-bar hr {
+	background-color: #81C1EB;
+	border: 0;
+	height: 20px;
 }
 
 #wrap section .inner {

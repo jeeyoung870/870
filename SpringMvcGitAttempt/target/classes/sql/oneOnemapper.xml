@@ -16,7 +16,7 @@
 	</select>
 	<select id = "selectAskAndReply" parameterType = "map" resultType = "hils.customerService.model.AskAndReplyDto">
 		select a.ask_num, a.user_id, a.ask_title, a.ask_content, a.ask_date, a.is_replied, r.rep_content, r.rep_title, r.rep_date
-		from ask a join reply r on a.ask_num = r.ask_num
+		from ask a left outer join reply r on a.ask_num = r.ask_num
 		where a.user_id = #{user_id} and a.ask_num = #{ask_num}
 		
 	</select>

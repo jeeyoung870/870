@@ -22,8 +22,8 @@
 	}
 	#upper img{position: absolute; left:570px;margin-top:13px; height:27px;}
 	#upper hr{ background-color:#81C1EB; border: 0; height: 20px; }
-	div{ width: 420px; margin:0 auto;
-	}
+	/*div{ width: 420px; margin:0 auto;
+	}*/
 	#content hr{ background-color:#BDBDBD; border: 0; height: 1px; }
 </style>
 </head>

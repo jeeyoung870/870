@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mainPage">
+	<!-- 공용 -->
+	<select id="count" resultType="int">
+		select count(*) from faq
+	</select>
+	<select id="max" resultType="int">
+		select nvl(max(num),0) from faq
+	</select>
+
+	<select id="getPagingCategory" parameterType="String"
+		resultType="int">
+		select count(*) from faq where category=#{category}
+	</select>
+
+	<select id="viewOne"
+		resultType="hils.mainpage.model.MainBoardListDto" parameterType="int">
+		select * from faq where num = #{num}
+	</select>
+
+	<!-- 최신 게시글 요청 -->
+	<select id="searchList" parameterType="map"
+		resultType="hils.mainpage.model.MainBoardListDto">
+		select * from (select * from board order by b_reg_date
+		desc) where rownum &lt;= 4
+	</select>
+
+	<!-- 유저 리스트 요청 searchUserList -->
+	<select id="searchUserList" parameterType="map"
+		resultType="string">
+		  <![CDATA[
+			 select nvl(USER_ID,'test') user_id from (
+			    select USER_ID ,COUNT(*) as count
+			    from (select * from board where b_reg_date between to_date(#{main_bgndate},'yyyyMMdd') and to_date(#{main_enddate},'yyyyMMdd'))
+			    GROUP BY USER_ID order by count desc
+			) where rownum <=3 order by count desc	 
+    	]]>
+	</select>
+</mapper>

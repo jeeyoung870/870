@@ -68,31 +68,31 @@ public class UserSettingService {
 	}
 	
 	
-	//¸ŞÀÏÀü¼Û Service
+	//ë©”ì¼ì „ì†¡ Service
 	public boolean sendMail(EmailVO email, int random) throws Exception {
 
         try{
-        	//Àü¼ÛÇÒ ¸ŞÀÏ °´Ã¼ »ı¼º
+        	//ì „ì†¡í•  ë©”ì¼ ê°ì²´ ìƒì„±
 	        MimeMessage msg = mailSender.createMimeMessage();
 
-	        msg.setSubject(email.getSubject());//Á¦¸ñ ¼³Á¤
-	       	// ³»¿ë ¼³Á¤ 
-	        // ÀÏ¹İ ÅØ½ºÆ®¸¸ Àü¼ÛÇÏ·Á´Â °æ¿ì
+	        msg.setSubject(email.getSubject());//ì œëª© ì„¤ì •
+	       	// ë‚´ìš© ì„¤ì • 
+	        // ì¼ë°˜ í…ìŠ¤íŠ¸ë§Œ ì „ì†¡í•˜ë ¤ëŠ” ê²½ìš°
 	        msg.setText(email.getContent()); 
-	        // HTML ÄÁÅÙÃ÷¸¦ Àü¼Û½Ã »ç¿ë
+	        // HTML ì»¨í…ì¸ ë¥¼ ì „ì†¡ì‹œ ì‚¬ìš©
 	        String htmlContent = "<br><span style='font-family:Noto Sans;font-size:30px;'>";
 	        msg.setContent(email.getContent()+htmlContent+random+"</span>", "text/html;charset=utf-8");
-	        //¼ö½ÅÀÚ ¼³Á¤
+	        //ìˆ˜ì‹ ì ì„¤ì •
 	        msg.setRecipient(RecipientType.TO , new InternetAddress(email.getReceiver()));
-	        //¿©·¯¸í¿¡°Ô Àü¼ÛÇÒ °æ¿ì, InternetAddress[]¿¡ ÁÖ¼ÒµéÀ» ´ã¾Æ addRecipients()¸Ş¼Òµå·Î Ãß°¡ÇÑ´Ù.
+	        //ì—¬ëŸ¬ëª…ì—ê²Œ ì „ì†¡í•  ê²½ìš°, InternetAddress[]ì— ì£¼ì†Œë“¤ì„ ë‹´ì•„ addRecipients()ë©”ì†Œë“œë¡œ ì¶”ê°€í•œë‹¤.
 	        //InternetAddress[] addresses = {new InternetAddress(email.getReceiver()),new InternetAddress("y_096@naver.com") };
 	        //msg.addRecipients(RecipientType.TO , addresses);
 	       
-	       //¸ŞÀÏ Àü¼Û  
+	       //ë©”ì¼ ì „ì†¡  
 	       mailSender.send(msg);
-		//¹®Á¦¾øÀÌ Àü¼ÛÇß´Ù¸é,
+		//ë¬¸ì œì—†ì´ ì „ì†¡í–ˆë‹¤ë©´,
 	        return true;
-	//¹®Á¦°¡ »ı°å´Ù¸é,
+	//ë¬¸ì œê°€ ìƒê²¼ë‹¤ë©´,
         }catch(Exception ex) {
         	ex.printStackTrace();
         }

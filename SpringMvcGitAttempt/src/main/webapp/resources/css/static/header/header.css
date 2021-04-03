@@ -7,6 +7,9 @@ a {
 
 header {
 	height: 50px;
+	background: #FF3600;
+	display: flex;
+	align-items: center;
 }
 
 header .logo {
@@ -16,21 +19,28 @@ header .logo {
 	position: relative;
 }
 
+header .logo > a >img {width:90px;}
 
-.hamburger {
+header .hamburger {
 	background: none;
 	position: absolute;
-	top: 0;
+	top: 3px;
 	left: 0;
 	line-height: 45px;
 	padding: 0px 15px 0px 15px;
-	color: #000;
+	color: #fff;
 	border: 0;
 	font-size: 1.4em;
 	font-weight: bold;
 	cursor: pointer;
 	outline: none;
 	z-index: 100000;
+}
+header .notification {
+	padding:0 15px;
+}
+header .notification>img {
+	width: 25px;
 }
 
 .cross {
@@ -59,7 +69,7 @@ header .logo {
 	top: 0;
 	width: 350px;
 	border-right: 1px solid #bbbbbb;
-	display:none;
+	display: none;
 }
 
 .menu span {

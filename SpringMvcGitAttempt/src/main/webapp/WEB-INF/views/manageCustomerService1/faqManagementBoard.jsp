@@ -42,9 +42,11 @@ table .table-button>td>a {
 	padding: 10px 0;
 }
 
-.pagebar {
-	
-}
+#wrap section .location-bar hr {
+	background-color: #81C1EB;
+	border: 0;
+	height: 20px;
+	}
 </style>
 </head>
 <body>
@@ -52,6 +54,7 @@ table .table-button>td>a {
 		<section>
 			<div class="location-bar">
 				<h1>FAQ</h1>
+				<hr/>
 			</div>
 			<div class="inner graybackground">
 				<div class="section-container">
@@ -79,15 +82,16 @@ table .table-button>td>a {
 				</table>
 			</c:if>
 			<c:if test="${list.count > 0}">
+			<c:set var="faqmanageboardArray" value="${faqmanageboardArray}" />
 				<table id="tableTest" border="0" cellpadding="0" cellspacing="0"
 					align="center">
 					<c:forEach var="article" items="${list.boardList}">
 						<tr height="30">
-							<td colspan="2" class="table-subject"><a
-								href="faqContent?num=${article.num}&p=${list.requestPage}"><span>[${article.category}]</span>${article.subject}</a>
+							<td colspan="2" class="table-subject">
+								<a href="faqContent?num=${article.num}&p=${list.requestPage}"><span>[<c:out value=" ${faqmanageboardArray[article.category]}"/>]</span>${article.subject}</a>
 							</td>
 						</tr>
-						<tr>
+						<tr>   
 							<td colspan="2" class="table-writer">관리자</td>
 						</tr>
 						<tr class="table-button">

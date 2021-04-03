@@ -96,7 +96,7 @@
 				<beans:value>/WEB-INF/tiles_def/tilesdef-faq.xml</beans:value>
 				<beans:value>/WEB-INF/tiles_def/tilesdef-manager1.xml</beans:value>
 				<beans:value>/WEB-INF/tiles_def/tilesdef-mypage1.xml</beans:value>
-
+				<beans:value>/WEB-INF/tiles_def/tilesdef-manageLayout.xml</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory"/>

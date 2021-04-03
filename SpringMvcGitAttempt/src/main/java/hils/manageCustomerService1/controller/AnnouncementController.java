@@ -2,6 +2,9 @@ package hils.manageCustomerService1.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -9,11 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
+import hils.community.model.BoardPaging;
 import hils.manageCustomerService1.model.AnnouncementDto;
 import hils.manageCustomerService1.service.IAnnouncementService;
 
@@ -53,11 +58,13 @@ public class AnnouncementController {
 		return json.toJson(model);
 	}
 	@RequestMapping("writeNewAnnouncement")
-	public String writeNewAnnouncement(String subject, String content) {
+	public String writeNewAnnouncement(HttpServletRequest request, String subject, String content) {
+		HttpSession session = request.getSession();
+		//Announcement must be written by manager, only manager, no more no less
 		AnnouncementDto announcementDto = new AnnouncementDto();
 		announcementDto.setSubject(subject);
 		announcementDto.setContent(content);
-		announcementDto.setUser_id("empty");
+		announcementDto.setUser_id((String)session.getAttribute("Email"));
 		
 		iAnnouncementService.newAnnouncementService(announcementDto);
 		return "redirect:./goToAnnouncement";
@@ -88,4 +95,24 @@ public class AnnouncementController {
 		mav.setViewName("manageCustomerService1/annouContent");
 		return mav;
 	}
+	///////////////user
+	@RequestMapping("/userAnnouBoard")
+	public ModelAndView userAnnouBoard	(@RequestParam(defaultValue = "10")int per, @RequestParam(defaultValue = "1")int requestPage) {
+		int start = (requestPage - 1) * per + 1;
+		int end = requestPage * per;
+		
+		List<AnnouncementDto> annouList = iAnnouncementService.userAnnouListService(start, end);
+		BoardPaging annouPaging = new BoardPaging();
+		annouPaging.setPer(per);
+		
+		int totalAnnouCount = iAnnouncementService.countTotalAnnouService();
+		
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("community/userAnnouBoard");
+		mav.addObject("annouPaging", annouPaging.doPageCalculate(requestPage, totalAnnouCount));
+		mav.addObject("annouList", annouList);
+		return mav;
+	}
+	
 }

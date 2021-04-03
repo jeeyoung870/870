@@ -11,6 +11,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <title>Insert title here</title>
 </head>
+<style>
+header{
+    	display:flex;
+    }
+</style>
 <body>
 	<div class = "inner">
 	<form action = "./updateArticle" method = "POST"> 

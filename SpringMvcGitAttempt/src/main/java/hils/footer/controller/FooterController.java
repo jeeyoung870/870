@@ -17,15 +17,15 @@ public class FooterController {
 	@Autowired
 	FooterService footS;
 	
-	//ajax¿äÃ»¿¡ µû¶ó °á°ú list¸¦ jsonÇü½ÄÀ¸·Î µ¹·ÁÁØ´Ù.
-		//HttpServletResponse resp : ¸Ş¼Òµå°¡ ³¡³ª¸é resp(response°´Ã¼)¸¦ ±×´ë·Î µ¹·ÁÁØ´Ù.(Ã¹¹øÂ° ¹æ¹ı)
+	//ajaxìš”ì²­ì— ë”°ë¼ ê²°ê³¼ listë¥¼ jsoní˜•ì‹ìœ¼ë¡œ ëŒë ¤ì¤€ë‹¤.
+		//HttpServletResponse resp : ë©”ì†Œë“œê°€ ëë‚˜ë©´ resp(responseê°ì²´)ë¥¼ ê·¸ëŒ€ë¡œ ëŒë ¤ì¤€ë‹¤.(ì²«ë²ˆì§¸ ë°©ë²•)
 		@RequestMapping(value = "footerInfo", method = RequestMethod.POST)
 		// = @PostMapping(value = "")
 		public void compInfo(HttpServletResponse resp) throws Exception {
 			List<FooterDto> list = footS.selectInfo();
 			Gson json = new Gson(); 		//java -> json
-			resp.setContentType("text/html;charset=utf-8");		//ÀÀ´äÁ¤º¸ °á°ú¹° ¼³Á¤
-			PrintWriter out = resp.getWriter(); 	//response°´Ã¼¿¡ µ¥ÀÌÅÍ¸¦ Ãâ·ÂÇÏ´Â ½ºÆ®¸² ¿¬°á
+			resp.setContentType("text/html;charset=utf-8");		//ì‘ë‹µì •ë³´ ê²°ê³¼ë¬¼ ì„¤ì •
+			PrintWriter out = resp.getWriter(); 	//responseê°ì²´ì— ë°ì´í„°ë¥¼ ì¶œë ¥í•˜ëŠ” ìŠ¤íŠ¸ë¦¼ ì—°ê²°
 			out.print(json.toJson(list));
 			//System.out.println(json.toJson(list));
 		}

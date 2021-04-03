@@ -8,12 +8,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,9 +53,11 @@ public class HilslinderController implements ApplicationContextAware{
 		return "timeLine1/hilslinderMain";
 	}
 	@RequestMapping("goHilslinderCalChange")
-	public ModelAndView goHilslinderCalChange(String year, String month) {
+	public ModelAndView goHilslinderCalChange(HttpServletRequest request, String year, String month) {
+		HttpSession session = request.getSession();
 		
-		String user_id = "dummy";
+		
+		String user_id = (String)session.getAttribute("Email");
 		
 		String zeroDay = "01";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -84,8 +90,11 @@ public class HilslinderController implements ApplicationContextAware{
 		return mav;
 	}
 	@RequestMapping("goHilslinderCal")
-	public ModelAndView goHilslinderCal() {
-		String user_id = "dummy";
+	public ModelAndView goHilslinderCal(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		
+		
+		String user_id = (String)session.getAttribute("Email");
 		Date input_date = new Date();
 		ModelAndView mav = new ModelAndView();
 		List<HilsCalendarDto> hilsCalList = hilslinderService.getCalDataListService(user_id, input_date);
@@ -127,7 +136,12 @@ public class HilslinderController implements ApplicationContextAware{
 	}
 	
 	@RequestMapping(value = "submitHilslinder")
-	public String submitHilslinder(@RequestParam String workout_one_day, MultipartFile imageFile, @DateTimeFormat(pattern="yyyy-MM-dd") Date date, String foodSchedule) {
+	@Transactional
+	public String submitHilslinder(HttpServletRequest request,@RequestParam String workout_one_day, 
+			MultipartFile imageFile, @DateTimeFormat(pattern="yyyy-MM-dd") Date date, String foodSchedule,
+			int food_goal) {
+		
+		
 		
 		/////////////////////// date processed ///////////////////////
 		
@@ -137,9 +151,11 @@ public class HilslinderController implements ApplicationContextAware{
 		
 		String originalFileName = imageFile.getOriginalFilename();
 		String url = applicationContext.getServletContext().getRealPath("");
-		File file = new File(url + "/tempRepository");
+		url += "/tempRepository";
+		File file = new File(url);
 		file.mkdirs();
-		file =  new File(url + originalFileName);
+		url += originalFileName;
+		file =  new File(url);
 		try {
 			imageFile.transferTo(file); // Destination file [C:\ProjectMergedRepository\main\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SpringMvcGitAttempt] already exists and could not be deleted
 		} catch (IllegalStateException | IOException e) {
@@ -147,17 +163,20 @@ public class HilslinderController implements ApplicationContextAware{
 			e.printStackTrace();
 		}
 		HilslinderDto hilslinderDto = new HilslinderDto();
-		hilslinderDto.setUser_id("dummy");
+		
+		HttpSession session = request.getSession();
+		String user_id = (String)session.getAttribute("Email");
+		hilslinderDto.setUser_id(user_id);
 		hilslinderDto.setWeight(70);
 		hilslinderDto.setWorkout_certi_path(url);
-			
-		String workoutKey = "du" + currentTimeIdentifier; ///// 조정 필요 du is user_id initial
+		//"@"를 포함하고 잇는지 체크해야 한다	
+		String workoutKey = user_id.split("@")[0] + currentTimeIdentifier; ///// 조정 필요 du is user_id initial
 		hilslinderDto.setWorkout_key(workoutKey);
 		hilslinderDto.setWorkout_reg_date(date);
 		hilslinderService.insertHilslinderService(hilslinderDto);
 		
 		///////////////////////////////////////food schedule//////////////////////
-		uploadFoodSchedule(foodSchedule, date);
+		uploadFoodSchedule(request, foodSchedule, date, food_goal);
 		
 		////////////////////////////////////////////////////////////
 	
@@ -172,15 +191,18 @@ public class HilslinderController implements ApplicationContextAware{
 		return "redirect:goHilslinderCal";
 	}
 	
-	public void uploadFoodSchedule(String foodSchedule,@DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
+	@Transactional
+	public void uploadFoodSchedule(HttpServletRequest request, String foodSchedule,@DateTimeFormat(pattern = "yyyy-MM-dd") Date date, int food_goal) {
 		
 		CalorySchedulerDto calorySchedulerDto = new CalorySchedulerDto();
 		CaloryOnedayScheduleDto caloryOnedayScheduleDto = new CaloryOnedayScheduleDto();
 		
-		calorySchedulerDto.setUser_id("dummy");
+		HttpSession session = request.getSession();
+		String user_id = (String)session.getAttribute("Email");
+		calorySchedulerDto.setUser_id(user_id);
 		//calorySchedulerDto.setFood_schedule_key();
 		String dateToken = makeDateToIdentifierToken(date);
-		String identifier = "du" + dateToken; // du는 user_id 이니셜입니다.
+		String identifier = user_id + dateToken; // du는 user_id 이니셜입니다.
 		calorySchedulerDto.setFood_schedule_key(identifier);
 		calorySchedulerDto.setSchedule_date(date);
 		hilslinderService.insertCaloryScheduler(calorySchedulerDto);
@@ -189,6 +211,7 @@ public class HilslinderController implements ApplicationContextAware{
 		String[] commaProcessedSchedule = foodSchedule.split(",");
 		for(String elem : commaProcessedSchedule) {
 			String[] finalSplitedSchedule = elem.split(":");
+			caloryOnedayScheduleDto.setFood_goal(food_goal);
 			caloryOnedayScheduleDto.setFood_amount(Integer.parseInt(finalSplitedSchedule[2]));
 			caloryOnedayScheduleDto.setFood_calory(Integer.parseInt(finalSplitedSchedule[1]));
 			caloryOnedayScheduleDto.setFood_identifier(finalSplitedSchedule[0]);
@@ -205,7 +228,7 @@ public class HilslinderController implements ApplicationContextAware{
 	
 	public String makeDateToIdentifierToken(Date date) {
 		Date currentDate = date;
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYMMddHHmmss");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 		String currentTimeIdentifier = simpleDateFormat.format(currentDate);
 		return currentTimeIdentifier;
 	}

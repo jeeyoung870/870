@@ -13,6 +13,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Insert title here</title>
+<style>
+header{
+    	display:flex;
+    }
+</style>
 </head>
 <body>
 	
@@ -50,7 +55,7 @@
 				<c:forEach var = "article" items = "#{boardArticleList }" >
 					<tr>
 						<td>${article.b_category} </td>
-						<td>${article.b_number }</td>
+						<td>${article.rownum }</td>
 						<td><a href = "./showArticleContent?b_number=${article.b_number }">${article.b_subject }</a> </td>
 						<td>${article.user_id } </td>
 						<!-- 
@@ -61,7 +66,7 @@
 				</c:forEach>
 		</table>
 	
-	<div>
+		<div>
 		<table>
 		 
 			<tr><td>
@@ -82,7 +87,7 @@
 			</td>
 			</tr>
 		</table>
-	</div>
+		</div>
 	</div>
 	<script type = "text/javascript">
 		/*$("#writeBtn").click(goToWriteForm)

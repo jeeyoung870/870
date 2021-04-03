@@ -11,12 +11,21 @@
 <link href="${contextPath}/resources/css/default.css" rel="stylesheet" />
 <link href="${contextPath}/resources/css/mainBoard.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="/mvc/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-
+<!-- <script type="text/javascript" src="/mvc/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+-->
+<style>
+header{
+    	display:flex;
+    }
+#thumb_img{
+	height : 100px;
+	width : 100px;
+}
+</style>
 </head>
 <body><!-- 커스텀 폼태그 사용가능 -->
 	<div class = "inner">
-	<form:form method = "post" action = "./doWrite" modelAttribute = "writeArticleModel" id = "writeArticleForm">
+	<form:form enctype = "multipart/form-data" method = "post" action = "./doWrite" modelAttribute = "writeArticleModel" id = "writeArticleForm">
 		<label for = "b_subject">enter your subject</label>
 		<form:input type = "text" path = "b_subject"></form:input>
 		<form:errors path = "b_subject"/>
@@ -28,12 +37,14 @@
 		<form:textarea name = "b_content" path = "b_content" id = "ir1" rows="10" cols="100" style ="min-width:260px;width:100%"/>
 		<form:errors path = "b_content"/>
 		<input type = "submit" value = "submit" id = "submitBtn" class = "boardBtn"></input>
+		<form:input type = "file" path = "imageFile" id = "imageFile" accept = "image/*"/>
+		<img src = "#" alt = "이미지를 올리시면 썸네일이 표시됩니다." id = "thumb_img"/>
 	</form:form>
 	</div>
 	
 </body>
 <script type="text/javascript">
-		
+		/*
 		var oEditors = [];
 		
 		nhn.husky.EZCreator.createInIFrame({
@@ -53,6 +64,10 @@
 				$("#writeArticleForm").submit()
 			}catch(e){}
 		}
-		
+		*/
+		document.getElementById("imageFile").addEventListener("change" ,(event)=>{
+			const img_id = document.getElementById("thumb_img");
+			img_id.src = window.URL.createObjectURL(event.target.files[0]) 
+			})
 	</script>
 </html>

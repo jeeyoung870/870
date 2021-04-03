@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>    
+	<modelVersion>4.0.0</modelVersion>
 	<groupId>spring.app</groupId>
 	<artifactId>mvc</artifactId>
 	<name>FebWebSpring</name>
@@ -28,6 +28,11 @@
         <artifactId>spring-websocket</artifactId>
         <version>4.3.25.RELEASE</version>
     </dependency>
+    <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-messaging</artifactId>
+    <version>4.3.25.RELEASE</version>
+</dependency>
 <!-- WebSocket End-->
 
 		<dependency>

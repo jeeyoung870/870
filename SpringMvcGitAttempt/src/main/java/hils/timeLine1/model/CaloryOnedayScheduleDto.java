@@ -5,7 +5,14 @@ public class CaloryOnedayScheduleDto {
 	private String food_identifier;
 	private int food_calory;
 	private int food_amount;
+	private int food_goal;
 	
+	public int getFood_goal() {
+		return food_goal;
+	}
+	public void setFood_goal(int food_goal) {
+		this.food_goal = food_goal;
+	}
 	public String getFood_schedule_key() {
 		return food_schedule_key;
 	}

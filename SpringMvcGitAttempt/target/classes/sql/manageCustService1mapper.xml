@@ -37,7 +37,7 @@
 	</select>
 <!-- ///////////////////////////oneVOne  -->
 	<select id = "selectAskList" parameterType = "map" resultType = "hils.customerService.model.AskDto">
-		select ask_num, user_id, ask_title, ask_content, ask_date, is_replied from (select ask_num, user_id, ask_title, ask_content, ask_date, is_replied, rownum r from ask)
+		select ask_num, user_id, ask_title, ask_content, ask_date, is_replied, rownum from (select ask_num, user_id, ask_title, ask_content, ask_date, is_replied, rownum r from ask)
 		 where r >= #{ask_start_num} and r &lt;= #{ask_end_num} order by r 
 	</select>
 	<select id = "selectTotalAskCount" resultType = "int">

@@ -12,4 +12,7 @@ public interface IAnnouncementService {
 	public AnnouncementDto selectAnnouService(int annou_writing_num);
 	public void deleteAnnou(int annou_writing_num);
 	public void updateAnnou(String subject, String content, int annou_writing_num);
+
+	//user
+	public List<AnnouncementDto> userAnnouListService(int start_annou_num, int end_annou_num);
 }

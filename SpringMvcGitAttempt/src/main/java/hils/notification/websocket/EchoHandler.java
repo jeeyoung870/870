@@ -35,6 +35,8 @@ public class EchoHandler extends TextWebSocketHandler {
 		String payloadMessage = (String) message.getPayload();
 		System.out.println(payloadMessage);
 		session.sendMessage(new TextMessage("ECHO : " + payloadMessage));
+		
+	
 	} 
 
 	@Override

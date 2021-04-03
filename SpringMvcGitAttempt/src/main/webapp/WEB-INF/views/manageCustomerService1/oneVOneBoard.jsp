@@ -12,6 +12,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
+header{
+    	display:flex;
+    }
+
 .inner{
 	width : 420px;
 	margin : 0 auto;

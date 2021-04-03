@@ -10,6 +10,27 @@
 <link href="${contextPath}/resources/css/default.css" rel="stylesheet" />
 <link href="${contextPath}/resources/css/customerService1.css" rel="stylesheet" />
 <title>Insert title here</title>
+<style>
+	.singleAsk{
+		padding : 10px;
+		position : relative
+	}
+	.ask_title_box{
+		width : 280px;
+	}
+	.is_replied_box{
+		float:right;
+		position : absolute;
+		top : 20px;
+		right : 15px;
+		
+	}
+	.single_hr{
+		background-color:#FF9A7F; 
+		border: 0; 
+		height: 5px;
+	}
+</style>
 </head>
 <body>
 <div class ="inner">
@@ -35,6 +56,7 @@
 				</c:if>
 			</div>
 		</div>
+		<hr class ="single_hr"/>
 	</c:forEach>
 </div>
 </body>

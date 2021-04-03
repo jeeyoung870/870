@@ -34,11 +34,6 @@ public class EmailVO {
 	public void setReceiver(String receiver) {
 		this.receiver = receiver;
 	}
-	@Override
-	public String toString() {
-		return "EmailVO [subject=" + subject + ", content=" + content + ", date=" + date + ", receiver=" + receiver
-				+ "]";
-	}
     
     
 }

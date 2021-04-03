@@ -36,30 +36,30 @@
 
 	<!-- 관리자 페이지 faqRegistration -->
 	<definition name="managecustomerservice1/faqmanageboard"
-		extends="base_layout">
+		extends="manage_layout">
 		<put-attribute name="title" value="FAQ 게시판 관리" />
-		<put-attribute name="body"
+		<put-attribute name="bodyManage"
 			value="/WEB-INF/views/manageCustomerService1/faqManagementBoard.jsp" />
 	</definition>
 
 	<definition name="managecustomerservice1/faqRegistration"
-		extends="base_layout">
+		extends="manage_layout">
 		<put-attribute name="title" value="FAQ 게시판 글쓰기" />
-		<put-attribute name="body"
+		<put-attribute name="bodyManage"
 			value="/WEB-INF/views/manageCustomerService1/faqWriteForm.jsp" />
 	</definition>
 
 	<definition name="managecustomerservice1/faqContent"
-		extends="base_layout">
+		extends="manage_layout">
 		<put-attribute name="title" value="FAQ 게시판 내용" />
-		<put-attribute name="body"
+		<put-attribute name="bodyManage"
 			value="/WEB-INF/views/manageCustomerService1/faqContent.jsp" />
 	</definition>
 
 	<definition name="managecustomerservice1/faqupdateform"
-		extends="base_layout">
+		extends="manage_layout">
 		<put-attribute name="title" value="FAQ 수정" />
-		<put-attribute name="body"
+		<put-attribute name="bodyManage"
 			value="/WEB-INF/views/manageCustomerService1/faqUpdateForm.jsp" />
 	</definition>
 

@@ -29,7 +29,6 @@ import com.google.gson.Gson;
 import lombok.Setter;
 
 @Controller
-@Setter
 public class SetProfileController implements ApplicationContextAware{
 
 	private WebApplicationContext context = null;
@@ -37,56 +36,64 @@ public class SetProfileController implements ApplicationContextAware{
 	@Autowired
 	SetProfileService setp;
 	
-	//°æ·Î¿¡¼­ ÆÄÀÏ¸í¸¸ ±¸ÇÏ´Â ¸Ş¼Òµå
+	public void setContext(WebApplicationContext context) {
+		this.context = context;
+	}
+	public void setSetp(SetProfileService setp) {
+		this.setp = setp;
+	}
+	
+	
+	//ê²½ë¡œì—ì„œ íŒŒì¼ëª…ë§Œ êµ¬í•˜ëŠ” ë©”ì†Œë“œ
 	public String getFileName(String path) {
 		int index = path.lastIndexOf("\\");
 		String fName = path.substring(index + 1);
 		return fName;
 	}
-	//¸¶ÀÌÆäÀÌÁö·Î ÀÌµ¿
+	//ë§ˆì´í˜ì´ì§€ë¡œ ì´ë™
 		@RequestMapping("mypage")
 		public ModelAndView toMypage() {
-			//ÇÁ·ÎÇÊ Á¤º¸ ²¨³»¿À±â
+			//í”„ë¡œí•„ ì •ë³´ êº¼ë‚´ì˜¤ê¸°
 			ProfileDto profileInfo = setp.profileInfo("dummy1");
-			//ÇÁ»ç°æ·Î°¡ ¾ø´Ù¸é, ±âº»ÀÌ¹ÌÁö ÆÄÀÏ¸í Àü´Ş,
+			//í”„ì‚¬ê²½ë¡œê°€ ì—†ë‹¤ë©´, ê¸°ë³¸ì´ë¯¸ì§€ íŒŒì¼ëª… ì „ë‹¬,
 			if (profileInfo.getProfile_img() == null) {
 				profileInfo.setProfile_img("defaultimg.png");
-			}else {	//°æ·Î ÀÖ´Ù¸é ÇØ´ç ÆÄÀÏ¸í Àü´Ş
+			}else {	//ê²½ë¡œ ìˆë‹¤ë©´ í•´ë‹¹ íŒŒì¼ëª… ì „ë‹¬
 				String imgName = getFileName(profileInfo.getProfile_img());
 				profileInfo.setProfile_img(imgName);
 			}
-			//¿îµ¿Èú¸°´õ Á¤º¸ ²¨³»¿À±â
+			//ìš´ë™íë¦°ë” ì •ë³´ êº¼ë‚´ì˜¤ê¸°
 			Date hilDate = setp.latestdate("dummy1");
 			ProfileDto finder = new ProfileDto();
 			finder.setUser_id("dummy1");
 			finder.setWorkout_reg_date(hilDate);
-			ProfileDto hilDto = setp.workoutInfo1(finder); //¾ÆÀÌµğ, ¿îµ¿Å°, ³¯Â¥, ÀÎÁõ¼¦ Á¤º¸
-			List<ProfileDto> hilDto2 = setp.workoutInfo2(hilDto); //¿îµ¿ÀÌ¸§, ¿îµ¿Ä®·Î¸® list
+			ProfileDto hilDto = setp.workoutInfo1(finder); //ì•„ì´ë””, ìš´ë™í‚¤, ë‚ ì§œ, ì¸ì¦ìƒ· ì •ë³´
+			List<ProfileDto> hilDto2 = setp.workoutInfo2(hilDto); //ìš´ë™ì´ë¦„, ìš´ë™ì¹¼ë¡œë¦¬ list
 			//System.out.println(hilDto2.get(0).getWorkout_name()); 
 			
 			String imgName2 = getFileName(hilDto.getWorkout_certi_path());
 			hilDto.setWorkout_certi_path(imgName2);
 			
-			//¿îµ¿Å°¿Í °°Àº Å°ÀÇ ½Ä´ÜÈú¸°´õ Á¤º¸ ²¨³»¿À±â
+			//ìš´ë™í‚¤ì™€ ê°™ì€ í‚¤ì˜ ì‹ë‹¨íë¦°ë” ì •ë³´ êº¼ë‚´ì˜¤ê¸°
 			List<ProfileDto> hilDto3 = setp.dietInfo(hilDto.getWorkout_key());
 			
-			//mav¿¡ Á¤º¸¸¦ addÇÏ¿© mypage·Î Àü¼Û
+			//mavì— ì •ë³´ë¥¼ addí•˜ì—¬ mypageë¡œ ì „ì†¡
 			ModelAndView mav = new ModelAndView("mypage"); 
-			mav.addObject("mpInfo", profileInfo);  //ÇÁ·ÎÇÊÁ¤º¸
-			mav.addObject("woInfo1", hilDto);  //¾ÆÀÌµğ, ¿îµ¿Å°, ³¯Â¥, ÀÎÁõ¼¦
-			mav.addObject("woInfo2", hilDto2);  //¿îµ¿ÀÌ¸§, ¿îµ¿Ä®·Î¸® list
-			mav.addObject("dInfo", hilDto3);  //½ÄÇ°¸í, ¸îÀÎºĞ, Ä®·Î¸®, ¸ñÇ¥Ä®·Î¸®
+			mav.addObject("mpInfo", profileInfo);  //í”„ë¡œí•„ì •ë³´
+			mav.addObject("woInfo1", hilDto);  //ì•„ì´ë””, ìš´ë™í‚¤, ë‚ ì§œ, ì¸ì¦ìƒ·
+			mav.addObject("woInfo2", hilDto2);  //ìš´ë™ì´ë¦„, ìš´ë™ì¹¼ë¡œë¦¬ list
+			mav.addObject("dInfo", hilDto3);  //ì‹í’ˆëª…, ëª‡ì¸ë¶„, ì¹¼ë¡œë¦¬, ëª©í‘œì¹¼ë¡œë¦¬
 			return mav;
 		}
 		
-	//ÇÁ·ÎÇÊº¯°æÆäÀÌÁö·Î ÀÌµ¿
+	//í”„ë¡œí•„ë³€ê²½í˜ì´ì§€ë¡œ ì´ë™
 		@RequestMapping("profilechange")
 		public ModelAndView toProfilechange(String user_id) {
 			ProfileDto profileInfo = setp.profileInfo(user_id);
-			//ÇÁ»ç°æ·Î°¡ ¾ø´Ù¸é, ±âº»ÀÌ¹ÌÁö ÆÄÀÏ¸í Àü´Ş,
+			//í”„ì‚¬ê²½ë¡œê°€ ì—†ë‹¤ë©´, ê¸°ë³¸ì´ë¯¸ì§€ íŒŒì¼ëª… ì „ë‹¬,
 			if (profileInfo.getProfile_img() == null) {
 				profileInfo.setProfile_img("defaultimg.png");
-			}else {	//°æ·Î ÀÖ´Ù¸é ÇØ´ç ÆÄÀÏ¸í Àü´Ş
+			}else {	//ê²½ë¡œ ìˆë‹¤ë©´ í•´ë‹¹ íŒŒì¼ëª… ì „ë‹¬
 				String imgName = getFileName(profileInfo.getProfile_img());
 				System.out.println(imgName);
 				profileInfo.setProfile_img(imgName);
@@ -94,7 +101,7 @@ public class SetProfileController implements ApplicationContextAware{
 			return new ModelAndView("profilechange", "pInfo", profileInfo);
 		}
 		
-	//ÇÁ»ç »èÁ¦
+	//í”„ì‚¬ ì‚­ì œ
 	@RequestMapping("delpImg")
 	public ModelAndView delpImg(String user_id) {
 		int success = setp.delpimg(user_id);
@@ -106,37 +113,37 @@ public class SetProfileController implements ApplicationContextAware{
 		return toProfilechange(user_id);
 	}
 		
-	//ÇÁ»çº¯°æÆäÀÌÁö·Î ÀÌµ¿
+	//í”„ì‚¬ë³€ê²½í˜ì´ì§€ë¡œ ì´ë™
 	@RequestMapping("pimgchange")
 	public ModelAndView toPimgchange(String user_id) {
 		
 		return new ModelAndView("pimgchange", "user_id", user_id);
 	}
 	
-	//Å©·ÓÇÑ ÀÌ¹ÌÁö(file) ajax·Î Àü¼Û¹Ş±â
+	//í¬ë¡­í•œ ì´ë¯¸ì§€(file) ajaxë¡œ ì „ì†¡ë°›ê¸°
 	@PostMapping(value="saveIamge", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String saveIamge(
 			@RequestParam(value="croppedImage", required=true) MultipartFile[] file, String user_id) {
 		//System.out.println("file size : " + file[0].getSize() +" "+file[0].getOriginalFilename());
 		printInfo(user_id, file[0]);
-		String msg = "ÇÁ·ÎÇÊ »çÁøÀÌ º¯°æµÇ¾ú½À´Ï´Ù.";
+		String msg = "í”„ë¡œí•„ ì‚¬ì§„ì´ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.";
 		Gson json = new Gson(); 
 		return json.toJson(msg);
 	}
 	
-	//id + º¯°æ½Ã°¢À» ÆÄÀÏ¸íÀ¸·Î Áö¾î ÁöÁ¤Á¤°æ·Î¿¡ ¾÷·Îµå
+	//id + ë³€ê²½ì‹œê°ì„ íŒŒì¼ëª…ìœ¼ë¡œ ì§€ì–´ ì§€ì •ì •ê²½ë¡œì— ì—…ë¡œë“œ
 	private String upload(MultipartFile profileImg, String user_id) { 
-		String ext = "png";		//img¸¦ pngÈ®ÀåÀÚ·Î ÁöÁ¤
-		//ÆÄÀÏ¸í Áö¾îÁÖ±â
+		String ext = "png";		//imgë¥¼ pngí™•ì¥ìë¡œ ì§€ì •
+		//íŒŒì¼ëª… ì§€ì–´ì£¼ê¸°
 		String fileName = user_id + System.currentTimeMillis() + "." + ext;
-		//¾÷·Îµå °æ·Î (ÀÌÅ¬¸³½º ¿öÅ©½ºÆäÀÌ½º·Î ÁöÁ¤µÈ °æ·ÎÀÇ .metadata Æú´õ ¾È °æ·Î)
+		//ì—…ë¡œë“œ ê²½ë¡œ (ì´í´ë¦½ìŠ¤ ì›Œí¬ìŠ¤í˜ì´ìŠ¤ë¡œ ì§€ì •ëœ ê²½ë¡œì˜ .metadata í´ë” ì•ˆ ê²½ë¡œ)
 		String dir = context.getServletContext().getRealPath("/resources/images/profilepic/"); 
 		System.out.println("dir : " + dir);
 		File f = new File(dir + fileName); 
 		
 		try {
-			//File(ÆÄÀÏ°æ·Î¸í)ÀÌ ÀúÀåµÈ f(ÆÄÀÏ)À» ÇØ´ç°æ·Î¿¡ ÀúÀåÇÏ±â.
+			//File(íŒŒì¼ê²½ë¡œëª…)ì´ ì €ì¥ëœ f(íŒŒì¼)ì„ í•´ë‹¹ê²½ë¡œì— ì €ì¥í•˜ê¸°.
 			profileImg.transferTo(f);
 		} catch (IllegalStateException | IOException e) {
 			// TODO Auto-generated catch block
@@ -145,19 +152,19 @@ public class SetProfileController implements ApplicationContextAware{
 		return f.getPath();
 	}
 	
-	//upload()ÇÏ°í ÆÄÀÏÁ¤º¸ Ãâ·ÂÇÑ ÈÄ, ±âÁ¸ ÇÁ»çÆÄÀÏ Áö¿ì°í db¿¡ ÆÄÀÏÀúÀå°æ·Î ÀúÀå
+	//upload()í•˜ê³  íŒŒì¼ì •ë³´ ì¶œë ¥í•œ í›„, ê¸°ì¡´ í”„ì‚¬íŒŒì¼ ì§€ìš°ê³  dbì— íŒŒì¼ì €ì¥ê²½ë¡œ ì €ì¥
 	private void printInfo(String user_id, MultipartFile profileImg) {
 			String path = upload(profileImg, user_id);
-			//±âÁ¸ÀÇ ÇÁ»ç°æ·Î °¡Á®¿À±â
+			//ê¸°ì¡´ì˜ í”„ì‚¬ê²½ë¡œ ê°€ì ¸ì˜¤ê¸°
 			String oldimgPath = setp.findProfileImg(user_id);
-			//±âÁ¸ÇÁ»ç°¡ ¾ø´Ù¸é,
+			//ê¸°ì¡´í”„ì‚¬ê°€ ì—†ë‹¤ë©´,
 			if(oldimgPath == null) {
 				setp.addImgFile(user_id, path);
 			}else {
-				//±âÁ¸ÇÁ»çÆÄÀÏ Áö¿ì±â
+				//ê¸°ì¡´í”„ì‚¬íŒŒì¼ ì§€ìš°ê¸°
 				File deleteFile = new File(oldimgPath);
 				deleteFile.delete(); 
-				//»õ ÇÁ»ç°æ·Î db¿¡ µî·ÏÇÏ±â
+				//ìƒˆ í”„ì‚¬ê²½ë¡œ dbì— ë“±ë¡í•˜ê¸°
 				setp.addImgFile(user_id, path);
 			}
 		}

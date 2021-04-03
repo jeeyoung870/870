@@ -46,4 +46,12 @@ public class AnnouncementService implements IAnnouncementService {
 		
 		announcementDao.updateAnnou(paraMap);
 	}
+	//user
+	public List<AnnouncementDto> userAnnouListService(int start_annou_num, int end_annou_num){
+		Map<String, Integer> paraMap = new HashMap<String, Integer>();
+		paraMap.put("start_annou_num", start_annou_num);
+		paraMap.put("end_annou_num", end_annou_num);
+		
+		return announcementDao.userAnnouBoard(paraMap);
+	}
 }

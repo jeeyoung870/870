@@ -20,11 +20,7 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/mainpage/main.jsp" />
 	</definition>
-	<definition name="manageMainPage2" extends="base_layout">
-		<put-attribute name="title" value="메인페이지" />
-		<put-attribute name="body"
-			value="/WEB-INF/views/managemainpage2/mainpagemanagement.jsp" />
-	</definition>
+
 	<definition name="myalarm" extends="base_layout">
 		<put-attribute name="title" value="내 알림" />
 		<put-attribute name="body"
@@ -90,10 +86,28 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/Mypage1/locset.jsp" />
 	</definition>
-	<definition name="compinfo" extends="base_layout">
+	<definition name="compinfo" extends="manage_layout">
 		<put-attribute name="title" value="기본 정보 수정" />
-		<put-attribute name="body"
+		<put-attribute name="bodyManage"
 			value="/WEB-INF/views/ManageMainPage1/compInfo.jsp" />
 	</definition>
+	
+	<!-- 나의 활동 -->
+	<definition name="mypage2/mypagePost" extends="base_layout">
+		<put-attribute name="title" value="viewMyPost" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/mypage2/mypagePost.jsp" />
+	</definition>
+	
+	<definition name="myActCal" extends="base_layout">
+		<put-attribute name="title" value="myActCal" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/mypage2/myActCal.jsp" />
+	</definition>
+	
+	
+	
+	
+	
 	<!-- 여기에서 지정한 definition name을 컨트롤러에서 뷰네임으로 반환하면 타일즈가 반영된 상태로 출력된다! -->
 </tiles-definitions>

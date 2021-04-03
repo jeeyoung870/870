@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hils.community.model.BoardDto;
+import hils.community.model.LikeThumbDto;
 import hils.community.model.SubBoardDto;
 
 @Service
@@ -44,6 +45,9 @@ public class BoardService {
 		paraMap.put("b_number", b_number);
 		boardDao.updateArticle(paraMap);
 	}
+	public void readcountUpService(int b_number) {
+		boardDao.readcountUp(b_number);
+	}
 	
 	// subBoard
 	public List<SubBoardDto> selectSpecificSubBoardListService(int b_number){
@@ -55,5 +59,36 @@ public class BoardService {
 	public void insertNewCommentService(SubBoardDto subBoardDto) {
 		boardDao.insertNewComment(subBoardDto);
 	}
-	
+	//noti
+	public String selectBoardSubjectService(int b_number) {
+		return boardDao.selectBoardSubject(b_number);
+	}
+	//like thumb
+	public void newLikeThumbService(int b_number, String user_id) {
+		LikeThumbDto likeDto = new LikeThumbDto();
+		likeDto.setUser_id(user_id);
+		likeDto.setWriting_num(b_number);
+		
+		boardDao.newLikeThumb(likeDto);
+	}
+	public void cancelThumbService(int b_number, String user_id) {
+		LikeThumbDto likeDto = new LikeThumbDto();
+		likeDto.setUser_id(user_id);
+		likeDto.setWriting_num(b_number);
+		
+		boardDao.cancelThumb(likeDto);
+	}
+	public String isThumbService(int b_number, String user_id) {
+		LikeThumbDto likeDto = new LikeThumbDto();
+		likeDto.setUser_id(user_id);
+		likeDto.setWriting_num(b_number);
+		
+		return boardDao.isLikeThumbed(likeDto);
+	}
+	public void thumbUpCountService(int b_number) {
+		boardDao.thumbUpCount(b_number);
+	}
+	public void thumbDownCountService(int b_number) {
+		boardDao.thumbDownCount(b_number);
+	}
 }

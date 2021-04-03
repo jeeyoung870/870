@@ -3,6 +3,7 @@ package hils.community.model;
 import java.util.Date;
 
 public class BoardDto {
+	private int rownum;
 	private int b_number;
 	private String b_subject;
 	private Date b_reg_date;
@@ -11,6 +12,22 @@ public class BoardDto {
 	private String b_category;
 	private int b_readcount;
 	private int b_recommendcount;
+	private String board_img_path;
+	
+	
+	
+	public String getBoard_img_path() {
+		return board_img_path;
+	}
+	public void setBoard_img_path(String board_img_path) {
+		this.board_img_path = board_img_path;
+	}
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 	public int getB_number() {
 		return b_number;
 	}

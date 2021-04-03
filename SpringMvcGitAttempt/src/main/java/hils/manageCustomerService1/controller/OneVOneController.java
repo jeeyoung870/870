@@ -2,27 +2,33 @@ package hils.manageCustomerService1.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import hils.community.model.BoardDto;
 import hils.community.model.BoardPaging;
 import hils.customerService.model.AskDto;
 import hils.customerService.model.ReplyDto;
 import hils.customerService.service.OneOneDao;
 import hils.customerService.service.OneOneService;
 import hils.manageCustomerService1.model.AskAndReplyDto;
-import hils.manageCustomerService1.service.IOneVOneService;
+import hils.manageCustomerService1.service.IOneOneManageService;
+import hils.notification.model.ReplyNotiDto;
 
 @Controller
 public class OneVOneController {
 	
 	@Autowired	
-	@Qualifier("oneVOneService")
-	private IOneVOneService iOneVOneService;
+	@Qualifier("oneVOneManageService")
+	private IOneOneManageService iOneOneManageService; // 두 클래스 이름을 다르게 할것
 	
 	@Autowired
 	private OneOneService oneOneService;
@@ -33,8 +39,8 @@ public class OneVOneController {
 	
 	public OneVOneController() {};
 	
-	public OneVOneController(IOneVOneService iOneVOneService) {
-		this.iOneVOneService = iOneVOneService;
+	public OneVOneController(IOneOneManageService iOneOneManageService) {
+		this.iOneOneManageService = iOneOneManageService;
 	}
 	
 	@RequestMapping("goToOneVOneBoard")
@@ -43,16 +49,19 @@ public class OneVOneController {
 		return "redirect:/manageCustomerService/showOneVOneBoard";
 	}
 	@RequestMapping("showOneVOneBoard")
+	@Transactional
 	public ModelAndView showOneVOneBoard(@RequestParam(defaultValue = "10")int per, @RequestParam(defaultValue = "1")int requestPage) {
 		
 		int start = (requestPage - 1) * per + 1;
 		int end = start * per;
 		
-		List<AskDto> askList = iOneVOneService.getAskListService(start, end);
+		List<AskDto> askList = iOneOneManageService.getAskListService(start, end);
 		
 		BoardPaging rawBoardPaging = new BoardPaging();
 		rawBoardPaging.setPer(10);
-		BoardPaging boardPaging = rawBoardPaging.doPageCalculate(requestPage, iOneVOneService.getTotalAskCount());
+		BoardPaging boardPaging = rawBoardPaging.doPageCalculate(requestPage, iOneOneManageService.getTotalAskCount());
+		
+		processRowNum(askList, requestPage, per);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("askList", askList);
@@ -61,10 +70,20 @@ public class OneVOneController {
 		
 		return mav;
 	}
+	public void processRowNum(List<AskDto> askDtoList, int requestPage, int per ){
+		int tempRowNum = 0;
+		if(requestPage - 1 != 0) {
+			for(AskDto askDto : askDtoList) {
+				tempRowNum = askDto.getRownum();
+				askDto.setRownum(tempRowNum + (requestPage - 1) * per);
+			}
+		}
+		//return askDtoList; there is no need to return value
+	}
 	@RequestMapping("showAskContent")
 	public ModelAndView showAskContent(int ask_num) {
 		
-		AskAndReplyDto askAndReplyList = iOneVOneService.getAskAndReplyService(ask_num);
+		AskAndReplyDto askAndReplyList = iOneOneManageService.getAskAndReplyService(ask_num);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("askAndReplyList", askAndReplyList);
@@ -72,7 +91,19 @@ public class OneVOneController {
 		return mav;
 	}
 	@RequestMapping("writeReply")
-	public String writeReply(ReplyDto replyDto) {
+	@Transactional
+	public String writeReplyandSendNoti(HttpServletRequest request, ReplyDto replyDto) {
+		///noti
+		HttpSession session = request.getSession();
+		AskAndReplyDto specificOneOneData = iOneOneManageService.getAskAndReplyService(replyDto.getAsk_num());
+		
+		ReplyNotiDto replyNoti = new ReplyNotiDto();
+		replyNoti.setAsk_subject(specificOneOneData.getAsk_title());
+		replyNoti.setReply_date(specificOneOneData.getRep_date());
+		replyNoti.setUser_id((String)session.getAttribute("Email"));
+		
+		session.setAttribute("replyNoti", replyNoti);
+		///noti
 		oneOneService.insertNewReply(replyDto);
 		return "redirect:/manageCustomerService/showOneVOneBoard";
 	}

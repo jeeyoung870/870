@@ -3,6 +3,7 @@ package hils.customerService.model;
 import java.util.Date;
 
 public class AskDto {
+	private int rownum;
 	private int ask_num;
 	private String user_id;
 	private String ask_title;
@@ -20,6 +21,14 @@ public class AskDto {
 	public int getAsk_num() {
 		return ask_num;
 	}
+	public int getRownum() {
+		return rownum;
+	}
+
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
+
 	public void setAsk_num(int ask_num) {
 		this.ask_num = ask_num;
 	}

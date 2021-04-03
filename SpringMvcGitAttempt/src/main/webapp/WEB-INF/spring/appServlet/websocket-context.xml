@@ -13,7 +13,7 @@
     <bean id = "notificationHandler" class = "hils.notification.websocket.NotificationHandler"/>
 	<websocket:handlers>
 		
-		<websocket:mapping handler = "notificationHandler" path = "/noti"/>
+		<websocket:mapping handler = "notificationHandler" path = "/noti-ws"/>
 		<websocket:handshake-interceptors>
 			<bean class = "hils.notification.websocket.NotificationInterceptor"></bean>
 		</websocket:handshake-interceptors>

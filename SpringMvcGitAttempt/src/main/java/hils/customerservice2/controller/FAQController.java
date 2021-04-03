@@ -29,16 +29,7 @@ public class FAQController {
 		return "customerService2/faqIntro";
 	}
 	
-	/*@RequestMapping("faqView")
-	public String faqView(@RequestParam(value = "p", defaultValue = "1") int pageNum,
-			@RequestParam(value = "per", defaultValue = "10") int per, Model m) {
-		FAQListModel list = service.faqViewList(pageNum, per);
-		m.addAttribute("list",list);
-		int number = list.getCount() - (pageNum - 1) * per;
-		m.addAttribute("number",number);
-		return "customerService2/faqPage";
-	}*/
-	
+
 	@RequestMapping("faqViewCategory")
 	public String faqViewCategory(
 			@RequestParam(value = "p", defaultValue = "1") int requestPage,
@@ -46,21 +37,6 @@ public class FAQController {
 			@RequestParam(defaultValue = "general") String category,
 			Model m) {
 
-		if(category.equals("1")) {
-			category = "계정문제";
-		} else if(category.equals("2")) {
-			category = "커뮤니티";
-		} else if(category.equals("3")) {
-			category = "모바일";
-		} else if(category.equals("4")) {
-			category = "기능";
-		} else if(category.equals("5")) {
-			category = "통계";
-		} else if(category.equals("6")) {
-			category = "기타";
-		} else {
-			category="";
-		}
 		FAQListModel list = service.faqViewListCategory(requestPage, per, category);
 		m.addAttribute("list",list);
 		
@@ -86,11 +62,17 @@ public class FAQController {
 		
 		m.addAttribute("faqList", faqList);
 		m.addAttribute("category", category);
+		
 		/* 카테고리 분류시 카운트 where절 사용해서 가져오기.*/
 		int count = service.getPagingCategory(category);
+		
 		/*ajax 페이징 출력*/
 		FAQListModel list = service.faqViewListCategory(requestPage, per, category);
 		m.addAttribute("list",list);
+		
+		/*게시글 번호*/
+		int number = list.getCount() - (requestPage - 1) * per;
+		m.addAttribute("number",number);
 		
 		/*paging*/
 		Paging paging = new Paging();

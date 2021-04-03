@@ -60,13 +60,19 @@
 			</div>
 			<section class="autoplay visual">
 				<div>
-					<img src="${contextPath}/resources/images/main0.jpg">
+					<img
+						style="display: block; width: 100%; background: url(/mvc/resources/images/main0.jpg) no-repeat; background-position: center center; background-size: cover;" />
+					<!-- <img src="${contextPath}/resources/images/main0.jpg"> -->
 				</div>
 				<div>
-					<img src="${contextPath}/resources/images/main1.jpg">
+					<img
+						style="display: block; width: 100%; background: url(/mvc/resources/images/main1.jpg) no-repeat; background-position: center center; background-size: cover;" />
+					<!-- <img src="${contextPath}/resources/images/main1.jpg"> -->
 				</div>
 				<div>
-					<img src="${contextPath}/resources/images/main2.jpg">
+					<img
+						style="display: block; width: 100%; background: url(/mvc/resources/images/main2.jpg) no-repeat; background-position: center center; background-size: cover;" />
+					<!-- <img src="${contextPath}/resources/images/main2.jpg"> -->
 				</div>
 			</section>
 		</div>
@@ -93,9 +99,10 @@
 			<div class="inner">
 				<h1>이 달의 운동왕</h1>
 				<div class="section2-container">
-					<div class="usertable">test</div>
-					<div class="usertable">test</div>
-					<div class="usertable">test</div>
+					<!-- userList -->
+					<c:forEach var="userListValue" items="${userList}">
+						<div class="usertable">${userListValue}님 축하합니다!</div>
+					</c:forEach>
 				</div>
 			</div>
 			<div class="section-divider"></div>
@@ -103,19 +110,37 @@
 		<section id="section3">
 			<div class="inner">
 				<h1>최신글</h1>
-				<div class="section3-container">
-					<div class="item">test</div>
-					<div class="item">test</div>
-				</div>
-				<div class="section3-container">
-					<div class="item">test</div>
-					<div class="item">test</div>
-				</div>
+			</div>
+			<div class="main-section3-boardList autoplay2">
+				<c:if test="${list.count == 0}">
+					<table id="tableTest" border="1" cellpadding="0" cellspacing="0">
+						<tr>
+							<td align="center">게시판에 저장된 글이 없습니다.</td>
+						</tr>
+					</table>
+				</c:if>
+				<c:if test="${list.count > 0}">
+					<c:forEach var="article" items="${list.boardList}">
+						<div class="main-section3-boardList-form">
+							<a
+								href="showArticleContent?b_number=${article.b_number}&p=${list.requestPage}">
+								<div class="main-section3-boardList-form-div">
+									<p>${article.b_subject}</p>
+									<p>${article.b_reg_date}</p>
+								</div>
+							</a>
+						</div>
+					</c:forEach>
+				</c:if>
 			</div>
 			<div class="section-divider"></div>
 		</section>
 		<section id="section4">
-			<img src="${contextPath}/resources/images/main3.jpg">
+			<div>
+				<img border="0"
+					style="display: block; height: 300px; width: 100%; background: url(/mvc/resources/images/main0.jpg) no-repeat; background-position: center center; background-size: cover;" />
+			</div>
+			<!-- <img src="${contextPath}/resources/images/main4.jpg"> -->
 			<div class="inner">
 				<div class="textContents">
 					<h1>HILS</h1>
@@ -127,19 +152,21 @@
 				</div>
 			</div>
 		</section>
-		<section id="section5">
-				<section class="autoplay visual">
-					<div>
-						<img src="http://placehold.it/150x150" />
-					</div>
-					<div>
-						<img src="http://placehold.it/150x150" />
-					</div>
-					<div>
-						<img src="http://placehold.it/150x150" />
-					</div>
-				</section>
+		<!-- 
+			<section id="section5">
+			<section class="autoplay visual">
+				<div>
+					<img src="http://placehold.it/150x150" />
+				</div>
+				<div>
+					<img src="http://placehold.it/150x150" />
+				</div>
+				<div>
+					<img src="http://placehold.it/150x150" />
+				</div>
+			</section>
 		</section>
+		 -->
 	</div>
 	<script type="text/javascript">
 		$('.autoplay').slick({
@@ -147,6 +174,14 @@
 			slidesToScroll : 1,
 			autoplay : true,
 			autoplaySpeed : 3000,
+		});
+
+		$('.autoplay2').slick({
+			infinite : true,
+			speed : 300,
+			slidesToShow : 1,
+			arrows : false,
+			variableWidth : true
 		});
 	</script>
 </body>

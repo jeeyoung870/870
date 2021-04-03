@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style>
+
+	header{
+    	display:flex;
+    }
+
 	.inner{
 		margin : 0 auto;
 		width : 420px;

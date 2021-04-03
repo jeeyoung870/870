@@ -26,8 +26,8 @@ public class BoardValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		// TODO Auto-generated method stub
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "b_subject", "notempty", "Á¦¸ñÀÌ ºñ¾îÀÖ½À´Ï´Ù.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "b_content", "notempty", "³»¿ëÀÌ ºñ¾îÀÖ½À´Ï´Ù.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "b_subject", "notempty", "ì œëª©ì´ ëˆ„ë½ë˜ì—ˆìŠµë‹ˆë‹¤..");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "b_content", "notempty", "ë‚´ìš©ì´ ëˆ„ë½ë˜ì—ˆìŠµë‹ˆë‹¤..");
 	}
 
 }

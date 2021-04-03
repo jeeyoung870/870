@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- ÇÁ·ÎÇÊ ¼öÁ¤ Æû ÆäÀÌÁö -->
+<!-- í”„ë¡œí•„ ìˆ˜ì • í¼ í˜ì´ì§€ -->
 </body>
 </html>

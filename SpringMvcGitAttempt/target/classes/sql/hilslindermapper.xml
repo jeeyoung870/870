@@ -25,7 +25,7 @@
 		insert into calory_schedular values(#{user_id}, #{food_schedule_key}, #{schedule_date})
 	</insert>
 	<insert id = "insertSingleCalorySchedule" parameterType = "hils.timeLine1.model.CaloryOnedayScheduleDto">
-		insert into calory_oneday_schedule values(#{food_schedule_key}, #{food_identifier}, #{food_calory}, #{food_amount})
+		insert into calory_oneday_schedule values(#{food_schedule_key}, #{food_identifier}, #{food_calory}, #{food_amount}, #{food_goal})
 	</insert>
 <!-- hils Calendar -->
 	<select id = "selectCal" parameterType = "map" resultType = "hils.timeLine1.model.HilsCalendarDto">

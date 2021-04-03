@@ -12,9 +12,8 @@ $(function(){
 		
 	$(".menu>ul>li>a").click(function(){
 		if($(this).next().is(":visible"))
-		{
+		{	
 			$(this).next().stop().slideUp(300);
-
 		}else{
 			$(".sub").stop().slideUp(500);
 			$(this).next().stop().slideDown(500);

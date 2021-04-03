@@ -8,42 +8,39 @@ import hils.Mypage1.controller.UserSettingService;
 import lombok.Setter;
 
 @Controller
-@Setter
 public class NaviController {
 	
-	@Autowired
-	UserSettingService uset;
-	
-	@Autowired
-	SetProfileService setp;
-	
-	//³» ¾Ë¸²
+	//ë‚´ ì•Œë¦¼
 	@RequestMapping("myalarm")
 	public String toMyalarm() {
 		return "myalarm";
 	}
-	//³ªÀÇ È°µ¿
-	@RequestMapping("myActivitySchedule")
-	public String toHistory() {
-		return "myActivitySchedule";
-	}
-	//Ä¿¹Â´ÏÆ¼
+
+	/*
+	 * //ë‚˜ì˜ í™œë™
+	 * 
+	 * @RequestMapping("myActivitySchedule") public String toHistory() { return
+	 * "myActivitySchedule"; }
+	 */
+	
+	
+	//ì»¤ë®¤ë‹ˆí‹°
 	@RequestMapping("mainBoard")
 	public String toCommunity() {
 		return "mainBoard";
 	}
-	//Å¸ÀÓ¶óÀÎ
+	//íƒ€ì„ë¼ì¸
 	@RequestMapping("timeline")
 	public String toTimeline() {
 		return "timeline";
 	}
-	//°í°´¼¾ÅÍ
+	//ê³ ê°ì„¼í„°
 	@RequestMapping("custcenter")
 	public String toCustcenter() {
 		return "custcenter";
 	}
 	
-	//·Î±×¾Æ¿ô
+	//ë¡œê·¸ì•„ì›ƒ
 	@RequestMapping("logout")
 	public String toLogout() {
 		return "logout";

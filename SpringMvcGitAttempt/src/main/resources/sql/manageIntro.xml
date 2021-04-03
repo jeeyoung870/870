@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manageIntro">
+
+	<select id="subscriberStatistics" resultType="map">
+		<![CDATA[
+			select sum(nvl(case when EXTRACT(MONTH  FROM regi_date)= '01' then 1 end,0)) "1",  
+			    sum(nvl(case when EXTRACT(MONTH  FROM regi_date)= '02' then 1 end,0)) "2",  
+			    sum(nvl(case when EXTRACT(MONTH  FROM regi_date)= '03' then 1 end,0)) "3",
+			    sum(nvl(case when EXTRACT(MONTH  FROM regi_date)= '04' then 1 end,0)) "4",
+			    sum(nvl(case when EXTRACT(MONTH  FROM regi_date)= '05' then 1 end,0)) "5",
+			    sum(nvl(case when EXTRACT(MONTH  FROM regi_date)= '06' then 1 end,0)) "6",
+			    sum(nvl(case when EXTRACT(MONTH  FROM regi_date)= '07' then 1 end,0)) "7",
+			    sum(nvl(case when EXTRACT(MONTH  FROM regi_date)= '08' then 1 end,0)) "8",
+			    sum(nvl(case when EXTRACT(MONTH  FROM regi_date)= '09' then 1 end,0)) "9",
+			    sum(nvl(case when EXTRACT(MONTH  FROM regi_date)= '10' then 1 end,0)) "10",
+			    sum(nvl(case when EXTRACT(MONTH  FROM regi_date)= '11' then 1 end,0)) "11",
+			    sum(nvl(case when EXTRACT(MONTH  FROM regi_date)= '12' then 1 end,0)) "12"
+			from users_register  
+			where  EXTRACT(YEAR  FROM regi_date) =  EXTRACT(YEAR FROM SYSDATE)
+		]]>
+	</select>
+
+</mapper>

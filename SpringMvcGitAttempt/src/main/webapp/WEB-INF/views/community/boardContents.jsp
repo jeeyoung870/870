@@ -67,12 +67,25 @@
     .line2.div > .line2.elem2{
      	word-break:break-all;
     }
+    header{
+    	display:flex;
+    }
 </style>
 </head>
 <body>
+<br/>
 	<div class = "inner">
 	<a href = "goUpdateForm?b_number=${specificContent.b_number }" class = "boardBtn">update</a>
 	<a href = "deleteContent?b_number=${specificContent.b_number }" class = "boardBtn">delete</a>
+	<c:choose>
+	
+	<c:when test = "${isThumb eq 'N' or isThumb eq null or isThumb eq ''}">
+		<a href = "likeThumb?b_number=${specificContent.b_number }" class = "boardBtn">좋아용</a>
+	</c:when>
+	<c:otherwise>
+		<a href = "cancelThumb?b_number=${specificContent.b_number }" class = "boardBtn">좋아용 햇어용</a>
+	</c:otherwise>
+	</c:choose>
 	<!-- <a href = "writeSubArticle?b_number=${specificContent.b_number }">write sub article</a>-->
 	<div class = "content main">
 		<div class = "content line1">
@@ -122,9 +135,33 @@
 		<label for = "c_content"></label>
 		<div class = "form-group">
 			<textarea name = "c_content" class = "form-control">enter Comments</textarea>
-			<input type = "submit" value = "write new Comment" class = "boardBtn"></input>
+			<input type = "submit" value = "write new Comment" class = "boardBtn" onsubmit = "return handleSubmit(event)"></input>
 		</div>
 	</form>
+	<!-- 신고 기능 -->
+		<button class="btn btn-danger" onclick="popupOpen();" type="button">신고</button>
+		<script type="text/javascript">
+			
+		  		function popupOpen() {
+		  			var reporter_id = "${sessionScope.Email}";
+					var reported_id = "${specificContent.user_id}";
+					
+					if (reported_id == reporter_id){
+						alert("자신이 작성한 글은 신고할 수 없어요!!")
+					} 
+					else {
+					var popUrl = "${contextPath}/report/report/reportWrite?id=${specificContent.user_id}"
+					var popOption = "width=400, height=500, resizable=no, scrollbars=yes, status=no;";
+					var p = window.open(popUrl, "popup1", popOption);
+					p.focus();
+				}
+			}	
+		</script>
+		<!-- ====================================================================================== -->
+	
 	</div>
+	<script>
+		
+	</script>
 </body>
 </html>

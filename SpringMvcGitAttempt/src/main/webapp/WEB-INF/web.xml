@@ -66,6 +66,7 @@
 		<url-pattern>/manageCustomerService/*</url-pattern>
 		<url-pattern>/manageCommunity/*</url-pattern>
 		<url-pattern>/report/*</url-pattern>
+		<url-pattern>/websocket/*</url-pattern>
 	</servlet-mapping>
 
 </web-app>
