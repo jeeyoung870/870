@@ -31,7 +31,7 @@
       margin: 20px auto;
       max-width: 640px;
     }
-    img {
+    .pimg {
       max-width: 100%;
     }
     .cropper-view-box,
@@ -53,7 +53,7 @@
     	<input type="file" name="photoBtn" accept="image/jpeg, image/png" capture="camera" id="photoBtn">
     </div>
     <div class="them_img">
-      <img id="image" src="resources/images/usersetting/imgbox.png" >
+      <img id="image" class="pimg" src="resources/images/usersetting/imgbox.png" >
     </div>
     <h3>Result</h3>    
     <p>
@@ -87,7 +87,7 @@
    $(function(){
 	   //크롭 전 이미지 미리보기
 	   $('#photoBtn').on('change', function(){
-	        $('.them_img').empty().append('<img id="image" src="">');
+	        $('.them_img').empty().append('<img id="image" class="pimg" src="">');
 	        var image = $('#image');
 	        var imgFile = $('#photoBtn').val();
 	        var fileForm = /(.*?)\.(jpg|jpeg|png)$/;

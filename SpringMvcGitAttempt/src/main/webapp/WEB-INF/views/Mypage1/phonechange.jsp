@@ -23,7 +23,7 @@
 	#upper img{position: absolute; left:18px; margin-top:13px; height:27px;}
 	#upper hr{ background-color:#FF9A7F; border: 0; height: 20px; }
 	div{ width: 420px; margin:0 auto;
-	}
+	}   
 </style>
 </head>
 <body>

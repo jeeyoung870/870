@@ -25,9 +25,6 @@
 	#upper hr{ background-color:#FF9A7F; border: 0; height: 20px; }
 	div { width: 420px; margin:0 auto;
 	}
-    img {
-      max-width: 100%;
-    }
     
     #profile, #hilendar{ padding-top:30px;}
     #profile { width:380px; padding-top:30px;}

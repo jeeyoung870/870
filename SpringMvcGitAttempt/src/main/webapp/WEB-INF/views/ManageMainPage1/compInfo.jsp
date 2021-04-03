@@ -25,6 +25,11 @@
 	/*div{ width: 420px; margin:0 auto;
 	}*/
 	#content hr{ background-color:#BDBDBD; border: 0; height: 1px; }
+	#content{ padding: 20px; padding-top:0px;}
+	#compform{ line-height:35px; }
+	.textbox{ width:200px; height:40px; font-size:15px;
+		font-family: Noto Sans KR;font-weight:400; border: 2px solid #0383D8;
+		padding-left:8px;margin-bottom:5px;}
 </style>
 </head>
 <body>
@@ -34,30 +39,31 @@
 </div>
 
 <div id="content">
-<span style="font-size: 19px;line-height: 52px;">사업자 정보</span><hr>
+<span style="font-size: 19px;line-height: 52px;font-weight:500;">사업자 정보</span><hr>
 
-<form method="post" action="compinfo">
+<form method="post" action="compinfo" id="compform">
 <fieldset>
+	<br>
 	상호(법인명)<br>
-	<input type="text" name="company_name" value=${comp.company_name }><br><br>
+	<input class="textbox" type="text" name="company_name" value=${comp.company_name }><br><br>
 	대표자명<br>
-	<input type="text" name="representative_name" value=${comp.representative_name }><br><br>
+	<input class="textbox" type="text" name="representative_name" value=${comp.representative_name }><br><br>
 	사업자 등록 번호<br>
-	<input type="text" name="business_license_number" value=${comp.business_license_number }><br><br>
+	<input class="textbox" type="text" name="business_license_number" value=${comp.business_license_number }><br><br>
 	
 	사업장 소재지<br>	
-	<span style="color:#A7A7A7;font-size: 13px;">${comp.business_address }</span><br>
+	<span style="color:#A7A7A7;font-size:14px;">${comp.business_address }</span><br>
 	<input type="hidden" name="business_address" value="${comp.business_address }" />
 	
-	<input type="text" id="postcode" name="postcode" placeholder="우편번호">
+	<input class="textbox" type="text" id="postcode" name="postcode" placeholder="우편번호">
 	<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-	<input name="address" id="address" placeholder="도로명 주소"><br>
-	<input name="d_address" id="d_address" placeholder="상세주소 입력"><br><br>
+	<input class="textbox" name="address" id="address" placeholder="도로명 주소"><br>
+	<input class="textbox" name="d_address" id="d_address" placeholder="상세주소 입력"><br><br>
 	
 	대표 전화<br>
-	<input type="text" name="phone_number" value=${comp.phone_number }><br><br>
+	<input class="textbox" type="text" name="phone_number" value=${comp.phone_number }><br><br>
 	팩스<br>
-	<input type="text" name="fax_number" value=${comp.fax_number }><br>
+	<input class="textbox" type="text" name="fax_number" value=${comp.fax_number }><br>
 	<br><br>
 	<input type="submit" value="수정하기">
 	<input type="button" value="취 소" 
