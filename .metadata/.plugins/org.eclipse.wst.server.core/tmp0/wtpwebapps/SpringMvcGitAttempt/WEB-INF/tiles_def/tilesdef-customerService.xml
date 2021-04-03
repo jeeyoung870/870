@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name = "customerService/oneOneForm" extends = "base_layout">
+		<put-attribute name = "title" value = "문의 작성"/>
+		<put-attribute name = "body"
+			value = "/WEB-INF/views/customerService/oneOneForm.jsp"/>
+	</definition>
+	<definition name = "customerService/checkOneOne" extends = "base_layout">
+		<put-attribute name = "title" value = "문의 확인"/>
+		<put-attribute name = "body"
+			value = "/WEB-INF/views/customerService/checkOneOne.jsp"/>
+	</definition>
+	<definition name = "customerService/checkOneOneAnswer" extends = "base_layout">
+		<put-attribute name = "title" value = "문의 내용 조회"/>
+		<put-attribute name = "body"
+			value = "/WEB-INF/views/customerService/checkOneOneAnswer.jsp"/>
+	</definition>
+</tiles-definitions>

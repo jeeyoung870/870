@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,16 +35,26 @@ public class SettingController {
 	
 	//설정 및 회원정보로 이동
 	@RequestMapping("usersetting")
-	public ModelAndView toUsersetting() {
-		List<ProfileDto> userInfo = uset.userInfo("jyjy");
-		//pw를 *로 출력하기 위한 코드
-		String pw = userInfo.get(0).getPassword();
-		String pwpw = "";
-		for(int i=0; i < pw.length(); i++) {
-			pwpw += "*";
+	public ModelAndView toUsersetting(HttpServletRequest request) {
+		//사용자 id 구하기
+		HttpSession session = request.getSession();
+		String user_id = (String)session.getAttribute("Email");
+		
+		//로그인 안했을경우
+		if(user_id == null) {
+			ModelAndView mav1 = new ModelAndView("loginform"); 
+			return mav1;
+		}else {		//로그인했을경우
+			List<ProfileDto> userInfo = uset.userInfo(user_id);
+			//pw를 *로 출력하기 위한 코드
+			String pw = userInfo.get(0).getPassword();
+			String pwpw = "";
+			for(int i=0; i < pw.length(); i++) {
+				pwpw += "*";
+			}
+			userInfo.get(0).setPassword(pwpw);
+			return new ModelAndView("usersetting", "userInfo", userInfo);
 		}
-		userInfo.get(0).setPassword(pwpw);
-		return new ModelAndView("usersetting", "userInfo", userInfo);
 	}
 	
 	//비밀번호 변경하기

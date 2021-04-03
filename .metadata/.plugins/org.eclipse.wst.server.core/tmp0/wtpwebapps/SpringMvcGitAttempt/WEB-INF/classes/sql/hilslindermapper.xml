@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "hilslinder">
+<!-- workout -->
+	<insert id = "insertHilslinder" parameterType = "hils.timeLine1.model.HilslinderDto">
+		insert into hellinder values(#{user_id}, #{workout_key}, #{weight}, #{workout_reg_date}, #{workout_certi_path})
+	</insert>
+	<insert id = "insertWorkoutOneday" parameterType = "hils.timeLine1.model.WorkoutCalendarOnedayDto">
+		insert into workout_calendar_oneday values(#{workout_key}, #{workout_name}, #{workout_hours})
+	</insert>
+	<select id = "searchWorkout" parameterType = "String" resultType = "hils.timeLine1.model.WorkoutDataDto">
+		select gym_activities, pound_125, pound_155, pound_185, category1 from workout_data_final
+		where gym_activities like '%'||#{searchKeyword}||'%'
+	</select>
+	<select id = "getWorkoutCategory" resultType = "hils.timeLine1.model.WorkoutCategoryDto">
+		select category_num, workout_category from workout_category_table
+	</select>
+	<select id = "selectCategory" resultType = "hils.timeLine1.model.WorkoutDataDto" parameterType = "String">
+		select gymnastics, pound_125, pound_155, pound_185, category1 from workout_data_final
+		where category1 = #{category1}
+	</select>
+<!-- food schedule -->
+	<insert id = "insertCaloryScehdule" parameterType = "hils.timeLine1.model.CalorySchedulerDto">
+		insert into calory_schedular values(#{user_id}, #{food_schedule_key}, #{schedule_date})
+	</insert>
+	<insert id = "insertSingleCalorySchedule" parameterType = "hils.timeLine1.model.CaloryOnedayScheduleDto">
+		insert into calory_oneday_schedule values(#{food_schedule_key}, #{food_identifier}, #{food_calory}, #{food_amount}, #{food_goal})
+	</insert>
+<!-- hils Calendar -->
+	<select id = "selectCal" parameterType = "map" resultType = "hils.timeLine1.model.HilsCalendarDto">
+		select h.user_id, h.workout_key, h.workout_reg_date, cs.food_schedule_key from hellinder h left outer join calory_schedular cs on h.user_id = cs.user_id
+		AND h.workout_reg_date = cs.schedule_data 
+		<where>
+			<choose>
+				<when test = "input_date != null">
+					h.workout_reg_date between TRUNC(#{input_date}, 'MM') and LAST_DAY(#{input_date})
+				</when>
+				<otherwise>
+					h.workout_reg_date between TRUNC(sysdate, 'MM') and LAST_DAY(sysdate)
+				</otherwise>
+			</choose>
+			<if test = "user_id != '' and user_id != null">
+				and h.user_id = #{user_id} 
+			</if>
+		</where>
+	</select>
+</mapper>

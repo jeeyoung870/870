@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- <annotation-driven /> -->
+	<annotation-driven>
+		<message-converters>
+			<beans:bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
+				<beans:property name="supportedMediaTypes">
+					<beans:list>
+						<beans:value>text/html;charset=UTF-8</beans:value>
+					</beans:list>
+				</beans:property>
+			</beans:bean>
+		</message-converters>
+	</annotation-driven>
+	
+	<!-- 한글깨짐방지 -->
+	<annotation-driven>
+		<message-converters>
+			<beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<beans:property name="supportedMediaTypes">
+					<beans:list><beans:value>text/html;charset=UTF-8</beans:value></beans:list>
+				</beans:property>
+			</beans:bean>
+		</message-converters>
+	</annotation-driven>
+	
+<!-- NLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="naverLoginBO" class="hils.Login.Controller.NLoginBO" />
+
+	<!-- google Class Bean설정 추가 -->
+	<!-- 클라이언트ID와 보안비밀 세팅 -->
+	<beans:bean id="googleConnectionFactory"
+		class="org.springframework.social.google.connect.GoogleConnectionFactory">
+		<beans:constructor-arg
+			value="682293530114-c80ahhfq30vtb3lgonk24tjh7o05v6l4.apps.googleusercontent.com" />
+		<beans:constructor-arg
+			value="BQfGgwv6zWNi6VsU0FA7FVeP" />
+	</beans:bean>
+	
+	<!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
+	<beans:bean id="googleOAuth2Parameters"
+		class="org.springframework.social.oauth2.OAuth2Parameters">
+		<beans:property name="scope"
+			value="https://www.googleapis.com/auth/plus.login"/>
+		<beans:property name="redirectUri"
+			value="http://localhost:8090/test/user/login/G/mainPass" />
+	</beans:bean>
+	
+	<!-- 메일전송 빈설정 -->
+	<beans:bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <beans:property name="host" value="smtp.gmail.com" />
+    <beans:property name="port" value="587" /><!-- 안되면 465 or 25 -->
+    <beans:property name="username" value="vomitup9@gmail.com" />
+    <beans:property name="password" value="@146289ad" />
+    <beans:property name="defaultEncoding" value="utf-8" />
+    <beans:property name="javaMailProperties">
+        <beans:props>
+            <beans:prop key="mail.transport.protocol">smtp</beans:prop>
+            <beans:prop key="mail.smtp.auth">true</beans:prop>
+            <beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+            <beans:prop key="mail.debug">true</beans:prop>
+        </beans:props>
+    </beans:property>
+	</beans:bean>
+	
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<beans:bean id="tilesviewResolver"
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
+	<beans:bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<beans:property name="definitions">
+			<beans:list>
+				<beans:value>/WEB-INF/tiles_def/tilesdef.xml</beans:value>
+				<beans:value>/WEB-INF/tiles_def/tilesdef-community.xml</beans:value>
+				<beans:value>/WEB-INF/tiles_def/tilesdef-customerService.xml</beans:value>
+				<beans:value>/WEB-INF/tiles_def/tilesdef-hilslinder.xml</beans:value>
+				<beans:value>/WEB-INF/tiles_def/tilesdef-faq.xml</beans:value>
+				<beans:value>/WEB-INF/tiles_def/tilesdef-manager1.xml</beans:value>
+				<beans:value>/WEB-INF/tiles_def/tilesdef-mypage1.xml</beans:value>
+				<beans:value>/WEB-INF/tiles_def/tilesdef-manageLayout.xml</beans:value>
+			</beans:list>
+		</beans:property>
+		<beans:property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory"/>
+	</beans:bean>
+
+	<!-- <beans:bean id="menuPreparer" class="view.tiles.MenuPreparer" /> -->
+	<beans:bean id="viewResolver1"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+
+	<beans:bean id="viewResolver2"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<beans:bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<beans:property name="basenames">
+			<beans:list>
+				<beans:value>message.label</beans:value>
+				<beans:value>message.validation</beans:value>
+				<beans:value>message.errorMessage_ko</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	
+	<context:component-scan base-package="hils.*" />
+
+
+</beans:beans>

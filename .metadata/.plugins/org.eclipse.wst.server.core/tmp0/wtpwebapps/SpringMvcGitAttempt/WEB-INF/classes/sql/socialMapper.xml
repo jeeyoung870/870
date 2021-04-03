@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+
+	<!-- 소셜 로그인 추가 정보 저장 시 
+	<insert id="register" parameterType="map"> 
+		insert into userData (userName, email, userImg, ENABLED ) 
+		values (#{userName}, #{email}, #{userImg}, #{enabled})
+	</insert>
+	 -->
+	
+	<!-- 소셜로그인 이메일만 -->
+	<insert id="emailRegister" parameterType="hils.Register.Model.RegisterDto">
+		insert into userData (email)
+		values (#{email})
+	</insert>
+
+</mapper>

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,38 +53,47 @@ public class SetProfileController implements ApplicationContextAware{
 	}
 	//마이페이지로 이동
 		@RequestMapping("mypage")
-		public ModelAndView toMypage() {
-			//프로필 정보 꺼내오기
-			ProfileDto profileInfo = setp.profileInfo("dummy1");
-			//프사경로가 없다면, 기본이미지 파일명 전달,
-			if (profileInfo.getProfile_img() == null) {
-				profileInfo.setProfile_img("defaultimg.png");
-			}else {	//경로 있다면 해당 파일명 전달
-				String imgName = getFileName(profileInfo.getProfile_img());
-				profileInfo.setProfile_img(imgName);
+		public ModelAndView toMypage(HttpServletRequest request) {
+			//사용자 id 구하기
+			HttpSession session = request.getSession();
+			String user_id = (String)session.getAttribute("Email");
+			//로그인 안했을경우
+			if(user_id == null) {
+				ModelAndView mav1 = new ModelAndView("loginform"); 
+				return mav1;
+			}else {		//로그인했을경우
+				//프로필 정보 꺼내오기
+				ProfileDto profileInfo = setp.profileInfo(user_id);
+				//프사경로가 없다면, 기본이미지 파일명 전달,
+				if (profileInfo.getProfile_img() == null) {
+					profileInfo.setProfile_img("defaultimg.png");
+				}else {	//경로 있다면 해당 파일명 전달
+					String imgName = getFileName(profileInfo.getProfile_img());
+					profileInfo.setProfile_img(imgName);
+				}
+				//운동힐린더 정보 꺼내오기
+				Date hilDate = setp.latestdate(user_id);
+				ProfileDto finder = new ProfileDto();
+				finder.setUser_id(user_id);
+				finder.setWorkout_reg_date(hilDate);
+				ProfileDto hilDto = setp.workoutInfo1(finder); //아이디, 운동키, 날짜, 인증샷 정보
+				List<ProfileDto> hilDto2 = setp.workoutInfo2(hilDto); //운동이름, 운동칼로리 list
+				//System.out.println(hilDto2.get(0).getWorkout_name()); 
+				
+				String imgName2 = getFileName(hilDto.getWorkout_certi_path());
+				hilDto.setWorkout_certi_path(imgName2);
+				
+				//운동키와 같은 키의 식단힐린더 정보 꺼내오기
+				List<ProfileDto> hilDto3 = setp.dietInfo(hilDto.getWorkout_key());
+				
+				//mav에 정보를 add하여 mypage로 전송
+				ModelAndView mav = new ModelAndView("mypage"); 
+				mav.addObject("mpInfo", profileInfo);  //프로필정보
+				mav.addObject("woInfo1", hilDto);  //아이디, 운동키, 날짜, 인증샷
+				mav.addObject("woInfo2", hilDto2);  //운동이름, 운동칼로리 list
+				mav.addObject("dInfo", hilDto3);  //식품명, 몇인분, 칼로리, 목표칼로리
+				return mav;
 			}
-			//운동힐린더 정보 꺼내오기
-			Date hilDate = setp.latestdate("dummy1");
-			ProfileDto finder = new ProfileDto();
-			finder.setUser_id("dummy1");
-			finder.setWorkout_reg_date(hilDate);
-			ProfileDto hilDto = setp.workoutInfo1(finder); //아이디, 운동키, 날짜, 인증샷 정보
-			List<ProfileDto> hilDto2 = setp.workoutInfo2(hilDto); //운동이름, 운동칼로리 list
-			//System.out.println(hilDto2.get(0).getWorkout_name()); 
-			
-			String imgName2 = getFileName(hilDto.getWorkout_certi_path());
-			hilDto.setWorkout_certi_path(imgName2);
-			
-			//운동키와 같은 키의 식단힐린더 정보 꺼내오기
-			List<ProfileDto> hilDto3 = setp.dietInfo(hilDto.getWorkout_key());
-			
-			//mav에 정보를 add하여 mypage로 전송
-			ModelAndView mav = new ModelAndView("mypage"); 
-			mav.addObject("mpInfo", profileInfo);  //프로필정보
-			mav.addObject("woInfo1", hilDto);  //아이디, 운동키, 날짜, 인증샷
-			mav.addObject("woInfo2", hilDto2);  //운동이름, 운동칼로리 list
-			mav.addObject("dInfo", hilDto3);  //식품명, 몇인분, 칼로리, 목표칼로리
-			return mav;
 		}
 		
 	//프로필변경페이지로 이동

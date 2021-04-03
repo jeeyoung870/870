@@ -1,7 +1,6 @@
 package hils.Report.Service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +26,18 @@ public class ReportDao {
 
 	// 여러개의 데이터를 가져오게 되므로 List로 받아서 가져옴.
 	public List<ReportDto> selectReport() throws Exception {
-		return sql.selectList(Namespace + ".reportSelect");
+		return sql.selectList(Namespace + ".selectReport");
 	}
 
-	// 입력메서드 확인할것
-	public void insertMethod(Map<String, Object> map) {
-		sql.insert(Namespace + ".reportInsert", map);
+	// 신고글 작성
+	public void writeMethod(ReportDto write) {
+		System.out.println("신고글 작성 쿼리 실행");
+		sql.insert(Namespace + ".writeReport", write);
 	}
-	
-	// 게시물 삭제
+
+	// 신고글 삭제
 	public void deleteMethod(String delete) {
 		sql.delete(Namespace + ".deleteReport", delete);
 	}
+
 }

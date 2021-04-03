@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<!-- 사용자 페이지 -->
+	<definition name="customerService2/faqIntro"
+		extends="base_layout">
+		<put-attribute name="title" value="FAQ" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customerService2/faqIntro.jsp" />
+	</definition>
+	
+	<definition name="customerService2/faqViewListCategory"
+		extends="base_layout">
+		<put-attribute name="title" value="FAQ 게시판1" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customerService2/faqBoard.jsp" />
+	</definition>
+	
+	<definition name="customerService2/faqPage"
+		extends="base_layout">
+		<put-attribute name="title" value="FAQ 게시판2" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customerService2/faqBoard.jsp" />
+	</definition>
+	
+	<definition name="customerService2/faqViewContent"
+		extends="base_layout">
+		<put-attribute name="title" value="FAQ 내용" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customerService2/faqViewContent.jsp" />
+	</definition>
+
+	<!-- 관리자 페이지 faqRegistration -->
+	<definition name="managecustomerservice1/faqmanageboard"
+		extends="manage_layout">
+		<put-attribute name="title" value="FAQ 게시판 관리" />
+		<put-attribute name="bodyManage"
+			value="/WEB-INF/views/manageCustomerService1/faqManagementBoard.jsp" />
+	</definition>
+
+	<definition name="managecustomerservice1/faqRegistration"
+		extends="manage_layout">
+		<put-attribute name="title" value="FAQ 게시판 글쓰기" />
+		<put-attribute name="bodyManage"
+			value="/WEB-INF/views/manageCustomerService1/faqWriteForm.jsp" />
+	</definition>
+
+	<definition name="managecustomerservice1/faqContent"
+		extends="manage_layout">
+		<put-attribute name="title" value="FAQ 게시판 내용" />
+		<put-attribute name="bodyManage"
+			value="/WEB-INF/views/manageCustomerService1/faqContent.jsp" />
+	</definition>
+
+	<definition name="managecustomerservice1/faqupdateform"
+		extends="manage_layout">
+		<put-attribute name="title" value="FAQ 수정" />
+		<put-attribute name="bodyManage"
+			value="/WEB-INF/views/manageCustomerService1/faqUpdateForm.jsp" />
+	</definition>
+
+</tiles-definitions>

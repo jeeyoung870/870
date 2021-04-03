@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+<aop:config>
+
+	<aop:pointcut id = "doNotiComment" expression = "execution(public String hils.community.controller.BoardController.writeCommentsandSendNoti(..))"/>
+	<aop:aspect ref = "notificationAspect">
+		<aop:after-returning method = "doNoti" pointcut-ref = "doNotiComment" returning = "returnValue"/>
+	</aop:aspect>
+</aop:config>
+<aop:config>
+	<aop:pointcut expression="execution(public String hils.manageCustomerService1.controller.OneVOneController.*andSendNoti(..))" id="doNotiReply"/>
+	<aop:aspect ref = "notificationAspect">
+		<aop:after-returning method = "doReplyNoti" pointcut-ref = "doNotiReply" returning = "returnValue"/>
+	</aop:aspect>
+</aop:config>
+<aop:config>
+	<aop:pointcut expression="execution(public String hils.community.controller.BoardController.likeThumbAndSendNoti2(..))" id="doLikeNoti"/>
+	<aop:aspect ref = "notificationAspect">
+		<aop:after-returning method = "doLikeNoti" pointcut-ref = "doLikeNoti" returning = "returnValue"/>
+	</aop:aspect>
+</aop:config>
+<!-- 
+<aop:config>
+	<aop:pointcut id = "getNotiList" expression = "execution(public void hils.notification.websocket.NotificationHandler.afterConnectionEstablished(..))"/>
+	<aop:aspect ref = "notificationAspect">
+		<aop:after-returning method = "distributeNoti" pointcut-ref = "getNotiList" returning = "returnValue"/>
+	</aop:aspect>
+</aop:config>
+-->
+</beans>
+	

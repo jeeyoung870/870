@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="timeLine1/hilslinderMain" extends="base_layout">
+		<put-attribute name="title" value="힐린더" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/timeLine1/hilslinderMain.jsp" />
+	</definition>
+	<definition name="timeLine1/hilslinderCalendar" extends="base_layout">
+		<put-attribute name="title" value="힐린더 달력" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/timeLine1/hilslinderCalendar.jsp" />
+	</definition>
+</tiles-definitions>

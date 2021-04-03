@@ -21,13 +21,7 @@ public class ReportService {
 		ReportDao.deleteMethod(delete);
 	}
 
-//	// 확인
-//	public void insertMethod(Map<String, Object> param) {
-//		return ReportDao.insertMethod(param);
-//	}
-//
-//	public void deleteMethod(String delete) {
-//		return ReportDao.deleteMethod(delete);
-//	}
-
+	public void writeMethod(ReportDto write) {
+		ReportDao.writeMethod(write);
+	}
 }

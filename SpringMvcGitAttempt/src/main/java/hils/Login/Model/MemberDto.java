@@ -1,25 +1,25 @@
 package hils.Login.Model;
 
 public class MemberDto {
-	private String userName;
-	private String email;
+	private String user_name;
+	private String user_email;
 	private String userImg;
 	private int enabled;
 
 	public String getUserName() {
-		return userName;
+		return user_name;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserName(String user_name) {
+		this.user_name = user_name;
 	}
 
 	public String getEmail() {
-		return email;
+		return user_email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String user_email) {
+		this.user_email = user_email;
 	}
 
 	public String getUserImg() {

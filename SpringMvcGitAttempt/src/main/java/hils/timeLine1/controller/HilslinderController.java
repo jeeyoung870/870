@@ -151,7 +151,7 @@ public class HilslinderController implements ApplicationContextAware{
 		
 		String originalFileName = imageFile.getOriginalFilename();
 		String url = applicationContext.getServletContext().getRealPath("");
-		url += "/tempRepository";
+		url += "tempRepository\\";
 		File file = new File(url);
 		file.mkdirs();
 		url += originalFileName;
@@ -169,8 +169,8 @@ public class HilslinderController implements ApplicationContextAware{
 		hilslinderDto.setUser_id(user_id);
 		hilslinderDto.setWeight(70);
 		hilslinderDto.setWorkout_certi_path(url);
-		//"@"¸¦ Æ÷ÇÔÇÏ°í ÀÕ´ÂÁö Ã¼Å©ÇØ¾ß ÇÑ´Ù	
-		String workoutKey = user_id.split("@")[0] + currentTimeIdentifier; ///// Á¶Á¤ ÇÊ¿ä du is user_id initial
+		//"@"ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Õ´ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½	
+		String workoutKey = user_id.split("@")[0] + currentTimeIdentifier; ///// ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ du is user_id initial
 		hilslinderDto.setWorkout_key(workoutKey);
 		hilslinderDto.setWorkout_reg_date(date);
 		hilslinderService.insertHilslinderService(hilslinderDto);
@@ -202,7 +202,7 @@ public class HilslinderController implements ApplicationContextAware{
 		calorySchedulerDto.setUser_id(user_id);
 		//calorySchedulerDto.setFood_schedule_key();
 		String dateToken = makeDateToIdentifierToken(date);
-		String identifier = user_id + dateToken; // du´Â user_id ÀÌ´Ï¼ÈÀÔ´Ï´Ù.
+		String identifier = user_id + dateToken; // duï¿½ï¿½ user_id ï¿½Ì´Ï¼ï¿½ï¿½Ô´Ï´ï¿½.
 		calorySchedulerDto.setFood_schedule_key(identifier);
 		calorySchedulerDto.setSchedule_date(date);
 		hilslinderService.insertCaloryScheduler(calorySchedulerDto);

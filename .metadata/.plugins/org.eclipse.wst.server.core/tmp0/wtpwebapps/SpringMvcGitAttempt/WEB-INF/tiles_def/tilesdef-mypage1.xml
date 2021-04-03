@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<!-- <definition name="base_layout"
+		template="/WEB-INF/viewtiles/template/layout.jsp">
+		
+		<put-attribute name="header"
+			value="/WEB-INF/viewtiles/template/header.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/viewtiles/template/footer.jsp" />
+	</definition> -->
+
+	<definition name="mypage" extends="base_layout">
+		<put-attribute name="title" value="마이페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Mypage1/mypage/mypage.jsp" />
+	</definition>
+	<definition name="pimgchange" extends="base_layout">
+		<put-attribute name="title" value="프로필 사진 변경" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Mypage1/mypage/pimgchange.jsp" />
+	</definition>
+	<definition name="profilechange" extends="base_layout">
+		<put-attribute name="title" value="프로필 변경" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Mypage1/mypage/profilechange.jsp" />
+	</definition>
+	
+</tiles-definitions>

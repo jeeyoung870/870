@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="faq">
+	<!-- 공용 -->
+	<select id="count" resultType="int">
+		select count(*) from faq
+	</select>
+	<select id="max" resultType="int">
+		select nvl(max(num),0) from faq
+	</select>
+	<!-- 사용자 페이지 -->
+	<select id="faqViewList" parameterType="map"
+		resultType="hils.customerservice2.model.FAQDto">
+		select *
+		from (select num,subject,category,rownum r
+		from
+		(select *
+		from faq order by num desc)
+		order by num desc)
+		where r >=
+		#{start} and r
+		&lt;= #{end}
+	</select>
+	<!-- 사용자 페이지/카테고리 검색 -->
+	<select id="selectFaqList" parameterType="map"
+		resultType="hils.customerservice2.model.FAQDto">
+		select * from (select num, subject, category, rownum r
+		from (select * from faq
+		<if test='category != null and category != ""'>
+			where category = #{category}
+		</if>
+		order by num desc) order by num desc)
+		where r >= #{start_writing_num} and r &lt;= #{end_writing_num}
+	</select>
+
+	<select id="faqViewListCategory" parameterType="map"
+		resultType="hils.customerservice2.model.FAQDto">
+		select *
+		from (select num,subject,category,rownum r
+		from
+		(select * from faq order by num desc)
+		<if test='category != null and category != ""'>
+			where category = #{category}
+		</if>
+		order by num desc)
+		where r >= #{start} and r
+		&lt;= #{end}
+	</select>
+
+	<select id="getPagingCategory" parameterType="String"
+		resultType="int">
+		select count(*) from faq where category=#{category}
+	</select>
+	
+	<select id="viewOne"
+		resultType="hils.customerservice2.model.FAQDto"
+		parameterType="int">
+		select * from faq where num = #{num}
+	</select>
+
+	<!-- 관리자 페이지 -->
+
+	<select id="searchList" parameterType="map"
+		resultType="hils.manageCustomerService1.model.FAQManagementDto">
+		select *
+		from (select num,subject,category, rownum r
+			from (select *
+			from faq 
+				<include refid="search"></include>
+			order by num desc) order by num desc)
+		where r >= #{start} and r &lt;= #{end}
+	</select>
+	<sql id="search">
+		<where>
+			<if test='category != null and category != ""'>
+				<if test="category == 'subject'.toString()">
+					AND subject like '%' || #{searchWord} || '%'
+				</if>
+				<if test="category == 'content'.toString()">
+					AND content like '%' || #{searchWord} || '%'
+				</if>
+			</if>
+		</where>
+	</sql>
+
+	<insert id="insert"
+		parameterType="hils.manageCustomerService1.model.FAQManagementDto">
+		insert into
+		faq(num,subject,content,category)
+		values(faq_num.NEXTVAL,#{subject},#{content},#{category})
+	</insert>
+
+	<select id="one"
+		resultType="hils.manageCustomerService1.model.FAQManagementDto"
+		parameterType="int">
+		select * from faq where num = #{num}
+	</select>
+
+	<update id="update"
+		parameterType="hils.manageCustomerService1.model.FAQManagementDto">
+		update faq set
+		subject=#{subject}, content=#{content},
+		category=#{category}
+		where num=#{num}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from faq where
+		num=#{num}
+	</delete>
+
+
+
+
+</mapper>

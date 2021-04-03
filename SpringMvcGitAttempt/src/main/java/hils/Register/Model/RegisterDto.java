@@ -1,12 +1,16 @@
 package hils.Register.Model;
 
+import java.sql.Date;
+
 public class RegisterDto {
 
 	private String user_id;
-	private String user_pw;
+	private String password;
 	private String user_name;
 	private String user_phone;
 	private String user_email;
+	private String auth;
+	private Date regi_date;
 
 	public String getUser_id() {
 		return user_id;
@@ -16,12 +20,12 @@ public class RegisterDto {
 		this.user_id = user_id;
 	}
 
-	public String getUser_pw() {
-		return user_pw;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setUser_pw(String user_pw) {
-		this.user_pw = user_pw;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getUser_name() {
@@ -48,10 +52,26 @@ public class RegisterDto {
 		this.user_email = user_email;
 	}
 
+	public String getAuth() {
+		return auth;
+	}
+
+	public void setAuth(String auth) {
+		this.auth = auth;
+	}
+
+	public Date getRegi_date() {
+		return regi_date;
+	}
+
+	public void setRegi_date(Date regi_date) {
+		this.regi_date = regi_date;
+	}
+
 	@Override
 	public String toString() {
-		return "RegisterDto [user_id=" + user_id + ", user_pw=" + user_pw + ", user_name=" + user_name + ", user_phone="
-				+ user_phone + ", user_email=" + user_email + "]";
+		return "RegisterDto [user_id=" + user_id + ", password=" + password + ", user_name=" + user_name
+				+ ", user_phone=" + user_phone + ", user_email=" + user_email + ", auth=" + auth + "]";
 	}
 
 }

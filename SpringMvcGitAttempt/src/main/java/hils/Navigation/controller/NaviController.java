@@ -29,11 +29,7 @@ public class NaviController {
 	public String toCommunity() {
 		return "mainBoard";
 	}
-	//타임라인
-	@RequestMapping("timeline")
-	public String toTimeline() {
-		return "timeline";
-	}
+	
 	//고객센터
 	@RequestMapping("custcenter")
 	public String toCustcenter() {
