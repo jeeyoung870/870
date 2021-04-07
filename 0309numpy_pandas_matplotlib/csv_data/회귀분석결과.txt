@@ -1,0 +1,49 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:        jobSatisfaction   R-squared:                       0.097 설명력
+Model:                            OLS   Adj. R-squared:                  0.054
+Method:                 Least Squares   F-statistic:                     2.266
+Date:                Wed, 10 Mar 2021   Prob (F-statistic):              0.147 유의확률
+Time:                        11:15:41   Log-Likelihood:                -36.243
+No. Observations:                  23   AIC:                             76.49
+Df Residuals:                      21   BIC:                             78.76
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef:계수값 std err          t      P>|t|      [0.025      0.975] 
+------------------------------------------------------------------------------
+Intercept      5.7052      1.615      3.532      0.002       2.346       9.065
+English       -0.0039      0.003     -1.505      0.147      -0.009       0.002
+==============================================================================
+Omnibus:                        0.120   Durbin-Watson:                   0.777
+Prob(Omnibus):총괄검정유의확률       0.942   Jarque-Bera (JB):                0.306
+Skew:                          -0.126   Prob(JB):                        0.858
+Kurtosis:                       2.495   Cond. No.                     3.90e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 3.9e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+
+총괄검정유의확률
+: 오차들이 정규분포하는지 검증하는 수치
+1에 가까울수록 좋은 회귀모델을 의미
+
+설명력 지표 0.097
+:해당 모델이 관측치에 얼마나 잘 맞는지 알려준다.
+0~1의 범위
+모델이 관측치에 들어맞을 경우 1에 가까워짐
+일반적으로 0.3~0.7사이
+(너무 점수가 낮음 : 직업 만족도는 영어점수 하나로 설명할 수 없다.)
+
+유의확률 지표 0.147
+0.1보다 크면 전체 모형이 유의하지 않음을 의미
+(영어점수가 직업 만족도에 영향을 준다고 말하기 어려움)
+
+계수값 지표  -0.0039 
+음수 : 반비례 
+영어점수가 높음 -> 직업만족도가 낮음
+영어점수가 낮음 -> 직업만족도가 높음
+
