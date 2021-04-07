@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BS">
+	
+	<!-- 쿼리문 -->
+	<select id="bookSales" resultType="spring.model.salesDto" parameterType="String">
+	 select bookname, publisher, price, saleprice from Book B, Orders O
+     where B.bookid = O.bookid  and bookname like '%' || #{bookname} || '%'
+	</select>
+	
+	<select id="customSales1" resultType="spring.model.salesDto" parameterType="String">
+	select count(*) as count, sum(saleprice) as saleprice from Orders
+	where custid = (select custid from Customer where name = #{name})
+	</select>
+	<select id="customSales2" resultType="spring.model.salesDto" parameterType="String">
+	select orderdate, bookname, publisher, saleprice from Orders O, Book B
+   	where O.bookid = B.bookid and custid = (select custid from Customer where name = #{name})
+	</select>
+	
+	<select id="allCust" resultType="spring.model.customDto">
+	select * from Customer
+	</select>
+	
+	
+	<select id="newCustid" resultType="int">
+	select max(custid)+1 custid from Customer
+	</select>
+	
+	<insert id="insertCust" parameterType="spring.model.customDto">
+	insert into Customer values(#{custid}, #{name}, #{address}, #{phone})
+	</insert>
+	
+	<!-- custid로 주소 수정 -->
+	<update id="updateAddr" parameterType="spring.model.customDto">
+	update Customer 
+	set address = #{address} where custid = #{custid}
+	</update>
+	
+</mapper>

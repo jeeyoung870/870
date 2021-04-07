@@ -1,0 +1,12 @@
+
+public class Main {
+
+	public static void main (String[] args) {
+		// TODO Auto-generated method stub
+		String str1 = "안녕하세요. 11월3일 첫 수업입니다.";
+		String str2 = "강사님 발음이 너무 안좋아서 눈물이 납니다.";
+		System.out.println(str1+str2);
+
+	}
+
+}

@@ -1,0 +1,11 @@
+
+public class DriverExample {
+
+	public static void main(String[] args) {
+		// 현대 - 투싼, 싼타페, 그랜저, 아반떼 중 택1
+		Driver dv1 = new Driver("박자바", "010-2233-1144", "현대", "싼타페", "navy");
+		dv1.setColor("red");
+		dv1.displayDriver();
+	}
+
+}

@@ -1,0 +1,91 @@
+import java.util.Scanner;
+
+public class Driver {
+	private String name;
+	private String phone;
+	private String company = "없는 회사명";
+	private String model = "없는 모델명";
+	private String color;
+	
+	private int maxSpeed = 0;
+	private int productYear;
+	private int price;
+	
+	String mdName [] = {"투싼", "싼타페", "그랜저", "아반떼"};
+	
+	public Driver (String n, String ph, String com, String md, String col) {
+		setName(n); setPhone(ph); setCompany(com); setModel(md); setColor(col);
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setCompany(String company) {
+		if (company == "현대")
+			this.company = company;
+	}
+	
+	public void setModel(String model) {
+		int i;
+		for (i=0; i < mdName.length; ++i) {
+			if (model == mdName[i])
+				this.model = model;
+		}
+		if (model == "투싼") {
+			maxSpeed = 300;
+			productYear = 2004;
+			price = 1000;
+		}
+		else if (model == "싼타페") {
+			maxSpeed = 340;
+			productYear = 2020;
+			price = 600;
+		}
+		else if (model == "그랜저") {
+			maxSpeed = 350;
+			productYear = 2006;
+			price = 2000;
+		}
+		else if (model == "아반떼"){
+			maxSpeed = 330;
+			productYear = 2019;
+			price = 500;
+		}
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public void setMaxSpeed(int maxSpeed) {
+		this.maxSpeed = maxSpeed;
+	}
+
+	public void setProductYear(int productYear) {
+		this.productYear = productYear;
+	}
+	
+	public void displayDriver () {
+		if () 
+			System.out.printf("판매자명 : %s\n연락처 : %s\n\n<자동차정보>\n제조회사 : %s\n모델명 : %s\n컬러 : %s\n최고속도 : %dkm/h\n출시 : %d년\n",
+								name, phone, company, model, color, maxSpeed, productYear);
+			Scanner scan = new Scanner(System.in);
+			int call;
+			do {
+				System.out.print("\n금액 제시(만원) : ");
+				call = scan.nextInt();
+				if (call < price)
+					System.out.println("안팔아요. " + (price - call) + "만원 더 주세요.");
+				else {
+					System.out.println("팔겠습니다.");
+					break;
+				}
+			} while (true);
+			
+	}
+}

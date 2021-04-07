@@ -1,0 +1,39 @@
+
+public class Employee {
+	private String name = "김자바";
+	private String level = "사원";
+	private int income = 300;
+	private String number = "000-0000-0000";
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getLevel() {
+		return level;
+	}
+	public void setLevel(String level) {
+		this.level = level;
+	}
+	public int getIncome() {
+		return income;
+	}
+	public void setIncome(int income) {
+		this.income = income;
+	}
+	public String getNumber() {
+		return number;
+	}
+	public void setNumber(String number) {
+		this.number = number;
+	}
+	
+	public void setEmployee(String n, String lv, int ic, String num) {
+		setName(n); setLevel(lv); setIncome(ic); setNumber(num);
+	}
+	
+
+}

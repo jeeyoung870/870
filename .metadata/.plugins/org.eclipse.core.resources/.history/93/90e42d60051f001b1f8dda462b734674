@@ -1,0 +1,36 @@
+import java.util.Calendar;
+
+public class EnumWeekExample {
+	public static void main(String [] args) {
+		Week today = null;
+		
+		Calendar cal = Calendar.getInstance();
+		int week =cal.get(Calendar.DAY_OF_WEEK);
+		
+		switch(week) {
+			case1:
+				today = Week.sunday; break;
+			case2:
+				today = Week.monday; break;
+			case3:
+				today = Week.tuesday; break;
+			case4:
+				today = Week.wednesday; break;
+			case5:
+				today = Week.thursday; break;
+			case6:
+				today = Week.friday; break;
+			case2:
+				today = Week.saturday; break;
+		}
+		
+		System.out.println("오늘 요일 : "+ today);
+		
+		if(today == Week.sunday) {
+			System.out.println("일요일에는 축구를 합니다.");
+		} else {
+			System.out.println("열심히 자바 공부합니다.");
+		}
+		
+	}
+}

@@ -1,0 +1,24 @@
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int [] aveTemp = new int[12];	//new int[i], aveTemp는 i-1까지
+		aveTemp[0] = -4;
+		aveTemp[1] = -1;
+		aveTemp[2] = 4;
+		aveTemp[3] = 11;
+		aveTemp[4] = 17;
+		aveTemp[5] = 21;
+		aveTemp[6] = 24;
+		aveTemp[7] = 25;
+		aveTemp[8] = 20;
+		aveTemp[9] = 13;
+		aveTemp[10] = 6;
+		aveTemp[11] = -1;
+		for(int i = 0; i<12; ++i)
+			System.out.println(aveTemp[i]);
+
+	}
+
+}

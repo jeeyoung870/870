@@ -1,0 +1,25 @@
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//명령문이 하나일때는 중괄호 없어도 되지만 두개 이상이면 중괄호 써야 함.
+		//위에 쓰여 있는 조건문부터 맞는지 계산함. 부합하면 아래 조건문은 비교X
+		int score;
+		String result;
+		score = 89;
+		
+		if(score >= 90) 
+			result = "아주 좋습니다.";
+		else if (score >= 80)
+			result = "참 잘했어요.";
+		else if (score >= 70)
+			result = "좋습니다.";
+		else  		//모든 경우의 점수를 조건에 포함하지 않으면 에러 발생(다른 모든 경우)
+			result = "분발하세요.";
+		
+		System.out.println(result);
+		
+	}
+
+}

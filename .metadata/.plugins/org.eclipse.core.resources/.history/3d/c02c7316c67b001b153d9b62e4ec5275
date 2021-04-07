@@ -1,0 +1,5 @@
+package sec.custom;
+
+public class UserPermission {
+
+}

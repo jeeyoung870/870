@@ -1,0 +1,16 @@
+
+public class LogicalOperatorExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int charCode = 'A';
+		
+		if ((charCode >= 65) & (charCode <= 90)) {
+			System.out.println("대문자입니다.");
+		}
+		
+		
+
+	}
+
+}

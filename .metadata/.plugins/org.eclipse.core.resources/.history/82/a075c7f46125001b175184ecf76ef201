@@ -1,0 +1,20 @@
+package Airplane;
+
+public class Airplane1 {
+	
+	public static final int LOCAL = 1;
+	public static final int ABROAD = 2;
+	
+	public int passenger;
+	public int height;
+	
+	
+	public Airplane1 () {
+		System.out.print("어서오세요. 여객기를 선택하세요.\n1 : 국내선\t2 : 국제선\n입력 > ");
+	}
+	
+	public void GetTickets () {
+		System.out.print("매수 입력 > ");
+	}
+	
+}

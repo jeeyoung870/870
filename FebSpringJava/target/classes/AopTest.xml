@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	
+	<context:annotation-config/>
+	<context:component-scan base-package="spring.aop"/>
+	
+	<!-- 어노테이션 사용 위해 추가 -->
+	<aop:config proxy-target-class="true"/>
+	<aop:aspectj-autoproxy/>
+	
+	
+	<!-- 
+	<bean id="greeting" class="spring.aop.GreetingServiceImpl" p:greeting="안녕" />
+	
+	<bean id="logAspect" class="spring.aop.LogAspect" />
+	<bean id="performanceAspect" class="spring.aop.PerformanceAspect" />
+	-->
+	
+	
+	<!-- public접근제한자인 아무 메소드 실행시 before에 logAspect의 beforeLogging메소드실행 -->
+	<!-- 
+	<aop:config proxy-target-class="true">
+		<aop:pointcut expression="execution(public * *(..))" id="publicMethod" />
+		
+		<aop:aspect ref="logAspect">
+			<aop:before method="beforeLogging" pointcut-ref="publicMethod"/>
+			<aop:after-returning method="afterLogging" pointcut-ref="publicMethod"
+			returning="returnValue"/>
+			<aop:after-throwing method="throwingLogging" pointcut-ref="publicMethod"
+			throwing="ex"/>
+			<aop:after method="alwaysLogging" pointcut-ref="publicMethod"/>
+		</aop:aspect>
+		
+		<aop:aspect ref="performanceAspect">
+			<aop:around method="timeCheck" pointcut="execution(* *..*.say*(..))"/>
+		</aop:aspect>
+		
+	</aop:config>
+	-->
+
+</beans>

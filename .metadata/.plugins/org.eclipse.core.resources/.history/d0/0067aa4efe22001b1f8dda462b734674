@@ -1,0 +1,14 @@
+
+public class Member {
+	String name;
+	String phone;
+	int month;
+	
+	public Member(String n, String p, int m) {
+		name = n;
+		phone = p;
+		month = m;
+	}
+	
+
+}

@@ -1,0 +1,10 @@
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//명령문이 하나일때는 중괄호 없어도 되지만 두개 이상이면 중괄호 써야 함.
+
+	}
+
+}

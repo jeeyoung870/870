@@ -1,0 +1,16 @@
+
+public class EmployeeExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Employee em1 = new Employee("박지영", true, "대리", "010-5525-1084");
+		Employee em2 = new Employee("어쩌구", false, "부장", "010-1233-5332");
+		em1.setName("김바바");
+		
+		em1.printEmployee();
+		em2.printEmployee();
+		
+	}
+
+}

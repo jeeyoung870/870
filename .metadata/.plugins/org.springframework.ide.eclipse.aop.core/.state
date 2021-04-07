@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="Board"/>
+<aop-project name="Feb23Ex"/>
+<aop-project name="BookStroreProject"/>
+<aop-project name="SecurityEx">
+<aspect-definition advice-class-name="org.springframework.transaction.interceptor.TransactionInterceptor" advice-method-name="invoke" advice-method-parameter-types="org.aopalliance.intercept.MethodInvocation" advice-type="AROUND" aspect-end-line-number="21" aspect-name="org.springframework.transaction.interceptor.TransactionInterceptor#SecurityEx#src/main/resources/spring-application.xml#21" aspect-start-line-number="21" factory-id="org.springframework.ide.eclipse.aop.core.javaAdvisorDefinitionElementFactory" file="/SecurityEx/src/main/resources/spring-application.xml" pointcut-expression="(@within(org.springframework.transaction.annotation.Transactional) || @annotation(org.springframework.transaction.annotation.Transactional)) &amp;&amp; execution(* *..*(..))" proxy-target-class="true">
+<aop-reference advice-type="AROUND" bean="1:BeansModel|2:SecurityEx|3:src/main/resources/spring-application.xml|7:beans:8|8:userJoinService:28" bean-file="/SecurityEx/src/main/resources/spring-application.xml" bean-start-line="28" factory-id="org.springframework.ide.eclipse.aop.core.aopReferenceElementFactory" file="/SecurityEx/src/main/resources/spring-application.xml" source="=SecurityEx/C:\/Users\/Jiyoung\/.m2\/repository\/org\/springframework\/spring-tx\/4.3.2.RELEASE\/spring-tx-4.3.2.RELEASE.jar=/maven.pomderived=/true=/=/org.eclipse.jst.component.dependency=/\/WEB-INF\/lib=/=/maven.pomderived=/true=/=/org.eclipse.jst.component.archivename=/spring-tx-4.3.2.RELEASE.jar=/=/maven.groupId=/org.springframework=/=/maven.artifactId=/spring-tx=/=/maven.version=/4.3.2.RELEASE=/=/maven.scope=/compile=/&lt;org.springframework.transaction.interceptor(TransactionInterceptor.class[TransactionInterceptor~invoke~Lorg.aopalliance.intercept.MethodInvocation;" source-start-line="-1" target="=SecurityEx/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;sec.user{UserJoinService.java[UserJoinService~join~QNewUser;" target-start-line="27"/>
+</aspect-definition>
+</aop-project>
+</aop-reference-model>

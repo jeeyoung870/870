@@ -1,0 +1,30 @@
+package SetEx;
+
+import java.util.*;
+
+public class HashSetEx {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//Set 컬렉션 : 객체 배열저장. List와 다르게 index가 없고(순서저장x), 중복저장 불가.
+		//집합과 같은 개념.
+		//Iterator 사용가능
+		//HashSet : Set 인터페이스의 구현 클래스. 순서없이 저장, 동일객체 중복저장x
+		//같은 문자열을 갖는 String 객체는 동등객체.(.equals()메소드)
+
+		Set<String> set = new HashSet<>();
+		set.add("java");
+		set.add("jdbc");
+		set.add("Servlet");
+		set.add(new String("java"));
+		set.add("ibatis");
+		
+		int size = set.size();	//set에 저장된 객체의 수 얻기
+		System.out.println(size);	
+		//"java"는 new로 저장해도 .equals()메소드에 의해 같은 객체로 인식됨. 4 출력.
+		
+		
+	}
+
+}

@@ -1,0 +1,55 @@
+
+public class Date {
+	private int year;
+	private int month;
+	private int day = 1;
+	
+	public Date (int yy, int mm, int dd) {
+		year = yy;
+		month = mm;
+		day = dd;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		if (0 <= year)
+			this.year = year;
+	}
+
+	public int getMonth() {
+		return month;
+	}
+
+	public void setMonth(int month) {
+		if ((1 <= month) && (month <= 12))
+			this.month = month;
+	}
+
+	public void setDay(int day) {
+		int [] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		boolean b = day <= days[month-1];
+		if (b == true) {
+			this.day = day;
+		}
+	}
+	
+	public int getDay() {
+		return day;
+	}
+	
+	public void printDate() {
+		System.out.printf("%4d년 %2d월 %2d일", year, month, day);
+	}
+}
+
+
+
+
+
+
+
+
+

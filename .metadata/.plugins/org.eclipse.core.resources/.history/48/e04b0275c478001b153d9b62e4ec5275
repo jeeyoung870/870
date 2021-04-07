@@ -1,0 +1,111 @@
+package files.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import board.model.BoardDto;
+import board.model.BoardListModel;
+import board.service.BoardService;
+import board.service.PasswordCheckException;
+import files.model.FBoardDto;
+import files.service.FBoardService;
+
+@Controller
+public class FileBController {
+	
+	@Autowired
+	FBoardService service;
+	 
+	@GetMapping("/flist")
+	public String list(@RequestParam(value = "p", defaultValue = "1") int pageNum,
+			@RequestParam(value = "per", defaultValue = "4") int per, Model m) {
+		
+		BoardListModel list = service.list(pageNum, per);
+		list.setPer(per);
+		m.addAttribute("list", list);
+		m.addAttribute("per", per);
+		int number = list.getCount() - (pageNum - 1) * per;
+		m.addAttribute("number", number);
+		return "file/FList";
+	}
+	
+	@PostMapping("/flist")
+	public String write(FBoardDto dto, HttpServletRequest request,
+			MultipartHttpServletRequest mtfRequest) {
+		int res = 0;
+		System.out.println("제목 : " + dto.getSubject());
+		System.out.println("내용 : " + dto.getContent());
+		service.insert(dto, request);
+		return "redirect:/file/FList";
+	}
+	
+	@PutMapping("/flist")
+	public String update(FBoardDto dto) {
+		try {
+			System.out.println(dto.getNum() + dto.getContent());
+			service.update(dto);
+		}catch(PasswordCheckException e) {
+			return "redirect:/board/error";
+		}
+		return "redirect:/file/FList";
+	}
+	
+	@DeleteMapping("/flist")
+	public String delete(int num, String passwd, int p) {
+		try {
+			service.delete(num, passwd);
+		}catch(PasswordCheckException e) {
+			return "redirect:/board/error";
+		}
+		return "redirect:/file/FList";
+	}
+	
+	//@ModelAttribute:돌려줄 모델데이터의 이름 지정하기
+	@GetMapping("/fWriteForm")
+	public String writeForm(@ModelAttribute("dto") FBoardDto dto) {
+		return "file/uploadForm";
+	}
+	
+	@GetMapping("/fContent")
+	public String content(@RequestParam(value = "p") int pageNum, int num, Model m) {
+		FBoardDto dto = service.getContent(num);
+		m.addAttribute("article", dto);
+		m.addAttribute("pageNum", pageNum);
+		return "content";
+	}
+	
+	@GetMapping("/fUpdateForm")
+	public String updateForm(int num, int p, Model m) {
+		FBoardDto dto = service.updateForm(num);
+		m.addAttribute("article", dto);
+		m.addAttribute("pageNum", p);
+		return "updateForm";
+	}
+	
+	@GetMapping("/fError")
+	public String error() {
+		return "error/exception";
+	}
+	
+	@GetMapping("/fDeleteForm")
+	public String deleteForm(int num, int p, Model m) {
+		m.addAttribute("num", m);
+		m.addAttribute("pagrNum", p);
+		return "deleteForm";
+	}
+
+	public void setService(FBoardService service) {
+		this.service = service;
+	}
+	 
+}

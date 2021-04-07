@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Sign/src/CompareOperatorExample.java&apos; to &apos;CompareOperatorExample2.java&apos;" description="Rename resource &apos;CompareOperatorExample.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/CompareOperatorExample.java" name="CompareOperatorExample2.java" stamp="1604562633445" updateReferences="true"/>
+</session>

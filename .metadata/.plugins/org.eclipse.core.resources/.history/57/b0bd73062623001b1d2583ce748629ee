@@ -1,0 +1,13 @@
+
+public class DateExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Date bDay = new Date(1996, 1, 15);	//값지정
+		bDay.setDay(17);	//값변경
+		
+		
+		bDay.printDate();
+	}
+
+}

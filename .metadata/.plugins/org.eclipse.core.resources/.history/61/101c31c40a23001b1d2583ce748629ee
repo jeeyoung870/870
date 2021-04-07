@@ -1,0 +1,53 @@
+
+public class Car {
+	//필드
+	private String company = "현대자동차";		//초기값
+	private String model = "그랜져";
+	private String color = "검정";
+	private int maxSpeed = 350; 
+	private int productYear;
+	private int currentSpeed;	//필드는 캡슐화(비공개), 메소드는 공개(퍼블릭)
+								//다른클래스에서 사용하려면 같은 패키지 안에 넣어야함
+	public Car(String cp, String md, String col, int ms, int py) {
+		company = cp;
+		model = md;
+		color = col;
+		maxSpeed = ms;
+		productYear = py;
+		currentSpeed = 0;
+	}
+	public int getSpeed() {
+		return currentSpeed;
+	}
+	public void turnOn() {
+		System.out.println("Key Turn On.");
+	}
+	public void run() {
+		for (int i = 10; i <= maxSpeed; i += 10) {
+			currentSpeed = i;	//10씩 증가하는 현재속도
+			System.out.println("Running at " + currentSpeed + "km/h");
+		}
+	}
+	
+	public String getCompany() {
+		return company;
+	}
+	public String getModel() {
+		return model;
+	}
+	public String getColor() {
+		return color;
+	}
+	public int getMaxSpeed() {
+		return maxSpeed;
+	}
+	public int getProductYear() {
+		return productYear;
+	}
+	public int getCurrentSpeed() {
+		return currentSpeed;
+	}
+	
+	
+	
+}

@@ -1,0 +1,11 @@
+
+public class SwitchNoBreakExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int time = (int)(Math.random() * 4) + 8;	//8<=~<=11사이의 정수 뽑기
+		
+
+	}
+
+}

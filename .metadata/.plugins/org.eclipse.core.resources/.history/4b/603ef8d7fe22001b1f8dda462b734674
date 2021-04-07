@@ -1,0 +1,16 @@
+
+public class Member {
+	String name;
+	String phone;
+	int month;
+	
+	public Member(String n, String p, int m) {
+		name = n;
+		phone = p;
+		month = m;
+	}
+	public void printMember() {
+		System.out.printf("회원명 : %s \n번호 : %s \n수강 : %d", name, phone, month);
+	}
+
+}

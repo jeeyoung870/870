@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="emp">
+ 	<!-- 알파벳 입력시, 이름이 해당 글자로 시작하는 사원을 찾고싶다! -->
+ 	<select id="findEmp" resultType="dept.dto.EmpDto" parameterType="String">
+ 		select * from emp where UPPER(ename) like #{ename}||'%'
+ 	</select>
+ 	
+ 	<select id="count" resultType="int">
+ 		select count(*) from emp
+ 	</select>
+ 	
+ 	<select id="findEmpno" resultType="dept.dto.EmpDto" parameterType="int">
+ 		select * from emp where empno = #{empno}
+ 	</select>
+ 	
+ 	<!-- 사원정보를 ","구분자로 복수개 받고, 해당하는 사원의 정보를 출력 -->
+ 	<select id="emps" resultType="dept.dto.EmpDto">
+ 		select * from emp where empno in
+ 		<foreach item="item" index="index" collection="array"
+ 		open="(" separator="," close=")" >
+ 		#{item}
+ 		</foreach>
+ 	</select>
+ </mapper>

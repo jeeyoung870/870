@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="file">
+	<insert id="addFile" parameterType="download.upload.FileDto">
+		insert into fileInfo values(fileno.NEXTVAL, #{OrigName}, #{savePath})
+	</insert>
+	
+	<!-- 쿼리문 -->
+	<!-- <select id="" resultType="" parameterType="">
+	</select>
+	
+	<insert id="" parameterType="">
+	</insert>
+	
+	<update id="" parameterType="">
+	</update> -->
+	
+</mapper>

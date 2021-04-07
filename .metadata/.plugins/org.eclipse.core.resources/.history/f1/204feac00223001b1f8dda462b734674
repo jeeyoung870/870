@@ -1,0 +1,31 @@
+
+public class Car {
+	//필드
+	String company = "현대자동차";		//초기값
+	String model = "그랜져";
+	String color = "검정";
+	int maxSpeed = 350; 
+	int productYear;
+	int currentSpeed;
+	
+	public Car(String cp, String md, String col, int ms, int py) {
+		company = cp;
+		model = md;
+		color = col;
+		maxSpeed = ms;
+		productYear = py;
+		currentSpeed = 0;
+	}
+	
+	int getSpeed() {
+		return currentSpeed;
+	}
+	void turnOn() {
+		System.out.println("Ket Turn On.");
+	}
+	void run() {
+		for (int i = 10; 1 <= maxSpeed; i += 10) {
+			System.out.println("Running at " + currentSpeed + "km/h");
+		}
+	}
+}

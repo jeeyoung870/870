@@ -1,0 +1,69 @@
+
+public class Driver {
+	private String name;
+	private String phone;
+	private String company = "없는 회사명";
+	private String model = "아반떼";
+	private String color;
+	private int maxSpeed = 330;
+	private int productYear;
+	
+	public Driver (String n, String ph, String com, String md, String col) {
+		setName(n); setPhone(ph); setCompany(com); setModel(md); setColor(col);
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setCompany(String company) {
+		if (company == "현대")
+			this.company = company;
+	}
+
+	public void setModel(String model) {
+		String mdName [] = {"투싼", "싼타페", "그랜저", "아반떼"};
+		int i;
+		for (i=0; i < mdName.length; ++i) {
+			if (model == mdName[i])
+				this.model = model;
+		}
+		if (model == "투싼") {
+			maxSpeed = 300;
+			productYear = 2004;
+		}
+		else if (model == "싼타페") {
+			maxSpeed = 340;
+			productYear = 2020;
+		}
+		else if (model == "그랜저") {
+			maxSpeed = 350;
+			productYear = 2006;
+		}
+		else {
+			maxSpeed = 330;
+			productYear = 2019;
+		}
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public void setMaxSpeed(int maxSpeed) {
+		this.maxSpeed = maxSpeed;
+	}
+
+	public void setProductYear(int productYear) {
+		this.productYear = productYear;
+	}
+	
+	public void displayDriver () {
+		System.out.printf("차주명 : %s\n연락처 : %s\n\n<자동차정보>\n제조회사 : %s\n모델명 : %s\n컬러 : %s\n최고속도 : %dkm/h\n출시 : %d년\n",
+							name, phone, company, model, color, maxSpeed, productYear);
+	}
+}

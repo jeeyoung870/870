@@ -1,0 +1,27 @@
+
+public class CarExample {
+	public static void main(String [] args) {
+		//객체 생성
+		Car myCar = new Car("현대", "그랜져", "black", 350, 2020);
+		
+		//필드값 읽기
+		System.out.println("제작회사 : " + myCar.getCompany());
+		System.out.println("모델명 : " + myCar.getModel());
+		System.out.println("색깔 : " + myCar.getColor());
+		System.out.println("최고속도 : " + myCar.getMaxSpeed());
+		System.out.println("현재속도 : " + myCar.getCurrentSpeed());	//int 초기값인 0으로 출력됨
+		
+		myCar.setMaxSpeed(500);
+		
+		myCar.turnOn();
+		myCar.run();
+		int speed = myCar.getMaxSpeed();
+		System.out.println(speed);
+		
+		myCar.setColor("빨강");	//set메소드로 값변경
+		System.out.println(myCar.getColor());
+		
+		
+	}
+
+}

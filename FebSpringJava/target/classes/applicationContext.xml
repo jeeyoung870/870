@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	
+	<!-- 생성자 방식 - 생성자의 매개변수 설정(articleDao타입의 매개변수 한 개를 받음) -->
+	<!-- class값이 제대로 링크가 걸리는지 꼭 확인 -->
+	<!-- 
+	<bean id="writeArticleService"  class="spring.chap01.WriteArticleServiceImpl" >
+		<constructor-arg> 
+			<ref bean="articleDao" /> 
+		</constructor-arg>
+	</bean>
+	-->
+	
+	<context:annotation-config/>
+	<context:component-scan base-package="spring.chap01"/>
+	
+	<!-- setter방식 -->  <!-- 
+	<bean id="writeArticleService" class="spring.chap01.WriteArticleServiceImpl" 
+	p:articleDao-ref="articleDao"/>
+
+	<bean id="articleDao" class="spring.chap01.MySQLArticleDao">
+	</bean>
+	-->
+
+</beans>

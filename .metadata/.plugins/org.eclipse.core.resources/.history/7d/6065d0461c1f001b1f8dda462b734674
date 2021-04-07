@@ -1,0 +1,13 @@
+
+public class AgeRainbow {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int age;
+		age = 25;
+		System.out.println("저는 " + age + "살 입니다.");
+		age1 = 10000000;
+
+	}
+
+}

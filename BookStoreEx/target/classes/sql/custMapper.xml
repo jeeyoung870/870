@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cust">
+<!-- insert, update, delete에는 resultType이 없고
+row의 개수를 반환한다.
+insert의 경우는 삽입된 행의 개수를 반환
+update의 경우는 수정에 성공한 행의 개수를 반환(실패시 0 반환)
+delete의 경우는 삭제한 행의 개수를 반환
+-->
+	<select id="orderList2" parameterType="int" resultType="spring.bookstore.OrderListDto">
+		select customer.name, bookname, orderdate
+		from book, orders, Customer
+		where orders.bookid = book.bookid and orders.custid = customer.custid
+		and custid = #{custid}
+	</select>
+	<select id="sumPrice" parameterType="int" resultType="int">
+		select sum(saleprice)
+		from orders o, Customer c, where o.custid = c.custid group by c.custid
+		having c.custid = #{custid}
+	</select>
+	
+	<select id="orderList1" parameterType="String" resultType="spring.bookstore.BookDto">
+		select bookname, publisher, price from book, orders, Customer
+		where orders.bookid = book.bookid and orders.custid = customer.custid
+		and customer.name = #{name}
+	</select>
+	
+	<select id="allCust" resultType="spring.bookstore.CustDto">
+		select * from Customer
+	</select>
+	
+	<insert id="addCust" parameterType="spring.bookstore.CustDto">
+		<selectKey keyProperty="custid" resultType="int" order="BEFORE">
+			select max(custid)+1 as custid from customer
+		</selectKey>
+		insert into Customer values (#{custid}, #{name}, #{address}, #{phone})
+	</insert>
+	
+	
+</mapper>

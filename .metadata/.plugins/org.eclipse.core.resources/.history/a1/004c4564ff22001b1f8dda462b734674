@@ -1,0 +1,7 @@
+
+public class MemberExample {
+	public static void main(String [] args) {
+		Member m1 = new Member("박지영", "010-5525-1084", 13);
+		m1.printMember();
+	}
+}

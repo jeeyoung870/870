@@ -1,0 +1,12 @@
+
+public class Main {
+
+	public static void main (String[] args) {
+		// TODO Auto-generated method stub
+		String str1 = "안녕하세요. 첫 번째 자바 프로그램입니다.";
+		String str2 = "강사님 발음이 너무 안좋네여,,";
+		System.out.println(str1+str2);
+
+	}
+
+}

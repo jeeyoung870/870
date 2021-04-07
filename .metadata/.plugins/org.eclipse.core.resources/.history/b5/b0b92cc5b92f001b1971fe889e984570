@@ -1,0 +1,16 @@
+package SetEx;
+
+public class HashSetEx {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//Set 컬렉션 : 객체 배열저장. List와 다르게 index가 없고(순서저장x), 중복저장 불가.
+		//집합과 같은 개념.
+		//Iterator 사용가능
+		//HashSet : Set 인터페이스의 구현 클래스. 순서없이 저장, 동일객체 중복저장x
+		//같은 문자열을 갖는 String 객체는 동등객체.(.equals()메소드)
+
+	}
+
+}

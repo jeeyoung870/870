@@ -1,0 +1,11 @@
+package net.madvirus.spring4.chap16.user;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/user/join")
+public class JoinController {
+	public static final String USER_JOIN_SUCCESS = "user/joinSuccess";
+	public static final String USER_JOIN_FORM = "user/joinForm";
+}

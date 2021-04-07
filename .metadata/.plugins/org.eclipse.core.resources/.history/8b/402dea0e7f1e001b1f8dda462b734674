@@ -1,0 +1,14 @@
+
+public class Enum {
+	enum Week {Sun, Mon, Tue, Wed, Thur, Fri, Sat};	//각각 0~6까지의 값 저장
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Week week;
+		week = Week.Sun;
+		System.out.println(week);
+		
+
+	}
+
+}

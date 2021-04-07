@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="Collection" class="spring.collection.CollectionEx">
+		<property name="greeting">
+			<list>
+				<value>hello</value>
+				<value>안녕하세요</value>
+			</list>
+		</property>
+		<property name="names">
+			<map>
+				<entry>
+					<key><value>1</value></key>
+					<value>김자바</value>
+				</entry>
+				<entry>
+					<key><value>2</value></key>
+					<value>이자바</value>
+				</entry>
+			</map>
+		</property>
+		<property name="props">
+			<!-- <prop key=“key값">value값</prop> -->
+			<props>
+				<prop key="ip">localhost</prop>
+				<prop key="port">8080</prop>
+			</props>
+		</property>
+	
+	</bean>
+</beans>

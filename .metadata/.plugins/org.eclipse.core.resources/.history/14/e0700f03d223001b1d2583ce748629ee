@@ -1,0 +1,44 @@
+
+public class Driver {
+	private String name;
+	private String phone;
+	private String company;
+	private String model;
+	private String color;
+	private int maxSpeed;
+	private int productYear;
+	
+	public Driver (String n, String ph, String com, String md, String col) {
+		setName(n); setPhone(ph); setCompany(com); setModel(md); setColor(col);
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public void setMaxSpeed(int maxSpeed) {
+		this.maxSpeed = maxSpeed;
+	}
+
+	public void setProductYear(int productYear) {
+		this.productYear = productYear;
+	}
+	
+	
+}

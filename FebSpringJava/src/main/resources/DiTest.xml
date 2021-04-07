@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="bar" class="spring.di.Bar"/>
+	<bean id="baz" class="spring.di.Baz"/>
+	
+	<bean id="foo" class="spring.di.Foo" autowire="byType"
+	p:str="hi" p:i="100000" 
+	init-method="start" destroy-method="stop"></bean>
+	
+	<!-- lookup 의존성주입 -->
+	<!-- 
+	<bean id="foo" class="spring.di.Foo">
+		<lookup-method name="getBaz" bean="baz" />
+	</bean>
+	-->
+	
+	<!--  
+	<bean id="foo" class="spring.di.Foo" p:bar-ref="bar" p:baz-ref="baz"
+	p:str="안녕" p:i="1000"/>
+	-->
+	
+	<!--
+	<bean id="foo" class="spring.di.Foo">
+		<property name="bar">
+			<ref bean="bar"/>
+		</property>
+		<property name="baz" ref="baz"/>
+		<property name="str" value="hi"></property>
+		<property name="i" value="100"/>
+	</bean>
+	-->
+	
+	<!--
+	<bean id="foo" class="spring.di.Foo">
+		<constructor-arg>
+			<ref bean="bar"/>
+		</constructor-arg>
+		<constructor-arg ref="baz"/>
+	</bean>
+	
+	<bean id="foo" class="spring.di.Foo">
+		<constructor-arg>
+			<ref bean="bar"/>
+		</constructor-arg>
+		<constructor-arg ref="baz"/>
+		<constructor-arg>
+			<value>hello</value>
+		</constructor-arg>
+		<constructor-arg value="10"/>
+	</bean>
+	-->
+
+</beans>

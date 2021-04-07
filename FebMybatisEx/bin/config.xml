@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+ 	<properties resource="db.properties"/>
+ 	<!-- null값이 가능하다는 setting태그설정 -->
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	
+	 <environments default="development">
+ 		<environment id="development">
+ 			<transactionManager type="JDBC"/>
+ 			<dataSource type="POOLED">
+ 				<property name="driver" value="${driver}"/>
+ 				<property name="url" value="${url}"/>
+ 				<property name="username" value="${username}"/>
+ 				<property name="password" value="${password}"/>
+ 			</dataSource>
+ 		</environment>
+	</environments>
+	
+	<!-- 사용할 mapper파일을 꼭! 등록헤야 사용할 수 있다. -->
+	<mappers>
+		<mapper resource="mybatis/deptMapper.xml" />
+		<mapper resource="mybatis/empMapper.xml" />
+		<mapper class="dept.dao.DeptMapper" />
+	</mappers>
+	
+</configuration>
+

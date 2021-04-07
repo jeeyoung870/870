@@ -1,0 +1,70 @@
+
+public class Employee {
+	private String name = "김자바";
+	private String level = "사원";
+	private int income = 300;
+	private String number = "000-0000-0000";
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getLevel() {
+		return level;
+	}
+	public void setLevel(String lev) {
+		String [] levels = {"사원", "대리", "과장", "부장"};
+		for (int i = 0; i < levels.length; ++i)
+			if(lev == levels[i])
+				this.level = lev;
+		if (level == "사원")
+			income = 300;
+		else if (level =="대리")
+			income = 400;
+		else if (level == "과장")
+			income = 500;
+		else 
+			income = 600;
+	}
+	public int getIncome() {
+		return income;
+	}
+	public void setIncome(int income) {
+		this.income = income;
+	}
+	public String getNumber() {
+		return number;
+	}
+	public void setNumber(String number) {
+		this.number = number;
+	}
+	
+	public Employee(String n, String lv, String num) {	//class이름과 같은이름으로 지정
+		setName(n); setLevel(lv); setNumber(num);
+	}
+	
+	public void printEmployee() {
+		System.out.printf("이름 : %s\n직급 : %s\n월급 : %d만원\n전화번호 : %s\n", name, level, income, number);
+	}
+
+}
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+

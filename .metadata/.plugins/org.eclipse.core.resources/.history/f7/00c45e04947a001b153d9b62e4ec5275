@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="file">
+	<!-- table : fileInfo -->
+	<insert id="addFile" parameterType="files.model.FileDto">
+		insert into fileInfo values(fileNo.NEXTVAL, #{num}, #{OrigName}, #{savePath})
+	</insert>
+	<delete id="delFile" parameterType="int">
+		delete from fileInfo where no = #{no}
+	</delete>
+	
+	<!-- table : fileboard -->
+	<select id="count" resultType="int">
+		select count(*) from fileboard
+	</select>
+
+	<select id="list" parameterType="map"
+		resultType="board.model.BoardDto">
+		<!-- CDATA : 태그 안의 <>, & 등의 특수기호를 문자로 인식함 -->
+		 <![CDATA[select * from (select num,writer,email,subject,passwd,reg_date,ref,re_step,re_level,content,ip,readcount,rownum r 
+            from (select * from fileboard order by ref desc, re_step asc) 
+            order by ref desc, re_step asc ) where r >= #{start} and r <= #{end}  ]]>
+	</select>
+	
+	<select id="max" resultType="int">
+		select nvl(max(num),0) from fileboard
+	</select>
+	
+	<select id="password" resultType="string" parameterType="int">
+		select passwd from fileboard where num = #{num}
+	</select>
+	
+	<!-- 상세보기 -->
+	<select id="one" resultType="board.model.BoardDto"
+		parameterType="int">
+		select * from fileboard where num = #{num}
+	</select>
+	
+	<!-- insert -->
+	<insert id="insert" parameterType="board.model.BoardDto">
+			insert into
+			fileboard(num, writer,subject,passwd,reg_date,ref,re_step,re_level,content,ip)
+			values(fileboard_num.NEXTVAL,#{writer},#{subject},#{passwd},#{reg_date},#{ref},#{re_step},#{re_level},#{content},#{ip})
+	</insert>
+	
+	<!-- update -->
+	<update id="update" parameterType="board.model.BoardDto">
+		update fileboard set
+		writer=#{writer},subject=#{subject},passwd=#{passwd},content=#{content}
+		where num=#{num}
+	</update>
+	
+	<update id="update_ref" parameterType="map">
+			update fileboard set
+			re_step=re_step+1 where ref= #{ref} and re_step> #{re_step}
+	</update>
+	
+	<update id="readcount" parameterType="int">
+		update fileboard set
+		readcount=readcount+1 where num = #{num}
+	</update>
+	
+	<!-- delete -->
+	<delete id="delete" parameterType="int">
+		delete from fileboard where num=#{num}
+	</delete>
+</mapper>

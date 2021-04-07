@@ -1,0 +1,33 @@
+package Airplane;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Airplane1 a = new Airplane1();
+		
+		while(true) {
+			Scanner scan = new Scanner(System.in);
+			int tk = scan.nextInt();
+			if (tk == Airplane1.LOCAL) {
+				System.out.println("국내선 티켓을 발매하세요.");
+				break;
+			}
+			else if (tk == Airplane1.ABROAD) {
+				System.out.println("국제선 티켓을 발매하세요.");
+				break;
+			}
+			else System.out.println("다시 선택하세요.\n>");
+		}
+		
+		
+		
+		
+		
+		
+	}
+
+}

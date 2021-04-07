@@ -1,0 +1,11 @@
+
+public class DateExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Date bDay = new Date(1996, 10, 30);
+		
+		bDay.printDate();
+	}
+
+}

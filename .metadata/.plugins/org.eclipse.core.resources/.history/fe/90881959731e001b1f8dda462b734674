@@ -1,0 +1,14 @@
+
+public class OperationsPromotionExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		byte byteValue1 = 10;
+		byte byteValue2 = 20;
+		
+		int intValue1 = byteValue1 + byteValue2;
+		System.out.println(intValue1);
+
+	}
+
+}

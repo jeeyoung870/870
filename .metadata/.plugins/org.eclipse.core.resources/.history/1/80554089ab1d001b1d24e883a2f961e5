@@ -1,0 +1,22 @@
+
+public class Hello {
+
+	public static void main (String[] args) {
+		// TODO Auto-generated method stub
+		String str1 = "안녕하세요. 첫 번째 자바 프로그램입니다.";
+		String str2 = " 강사님 목소리가 졸려서 눈물이 납니다.";
+		System.out.println(str1+str2);
+		
+		int q = 34;
+		int q2 = 7;
+		System.out.println(q%q2);	//i를 i2로 나눈 나머지 출력
+		int i1 = 10; 
+		int i2 = 10; 
+		int r1 = 2 * ++i1; 
+		int r2 = 2 * i2++;
+		System.out.println(r1, r2);
+
+
+	}
+
+}

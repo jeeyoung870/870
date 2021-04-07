@@ -1,0 +1,47 @@
+package Airplane;
+
+import java.util.Scanner;
+
+public class Airplane1 {
+	
+	Scanner scan = new Scanner(System.in);
+	
+	public static final int LOCAL = 1;
+	public static final int ABROAD = 2;
+	public int Lseat = 20;
+	public int Aseat = 30;
+	
+	
+	public int height;
+	
+	
+	public Airplane1 () {
+		System.out.print("어서오세요. 여객기를 선택하세요.\n1 : 국내선\t2 : 국제선\n입력 > ");
+	}
+	
+	public void GetTickets () {
+		while (true) {	
+			System.out.print("매수 입력 > ");
+		}
+	}
+	
+	public void Lseat (int tkn) {
+		if(tkn > 20) {
+			System.out.println("좌석이 모자랍니다. 다시 입력");
+		}else if (tkn < 1) {
+			System.out.println("잘못 입력하셨습니다.");
+		} else {
+			System.out.println(tkn + "매 발매합니다.즐거운 여행 되십시오.");
+			break;}
+		
+	}
+	public void Aseat (int tkn) {
+		if(tkn > 30) {
+			System.out.println("좌석이 모자랍니다. 다시 입력");
+		}else if (tkn < 1) {
+			System.out.println("잘못 입력하셨습니다.");
+		} else System.out.println(tkn + "매 발매합니다.즐거운 여행 되십시오.");
+	}
+	
+	
+}

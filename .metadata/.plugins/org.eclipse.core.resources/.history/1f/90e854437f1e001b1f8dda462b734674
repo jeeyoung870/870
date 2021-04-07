@@ -1,0 +1,9 @@
+
+public enum Week {Sun, Mon, Tue, Wed, Thur, Fri, Sat}	//각각 0~6까지의 값 저장
+
+	
+		
+
+	}
+
+}

@@ -1,0 +1,71 @@
+
+public class Car {
+	//필드
+	private String company = "현대자동차";		//초기값
+	private String model = "그랜져";
+	private String color = "검정";
+	private int maxSpeed = 350; 
+	private int productYear;
+	private int currentSpeed;	//필드는 캡슐화(비공개), 메소드는 공개(퍼블릭)
+								//다른클래스에서 사용하려면 같은 패키지 안에 넣어야함
+	public Car(String cp, String md, String col, int ms, int py) {
+		company = cp;
+		model = md;
+		color = col;
+		maxSpeed = ms;
+		productYear = py;
+		currentSpeed = 0;
+	}
+	public int getSpeed() {
+		return currentSpeed;
+	}
+	public void turnOn() {
+		System.out.println("Key Turn On.");
+	}
+	public void run() {
+		for (int i = 10; i <= maxSpeed; i += 10) {
+			currentSpeed = i;	//10씩 증가하는 현재속도
+			System.out.println("Running at " + currentSpeed + "km/h");
+		}
+	}
+	
+	public String getCompany() {	//우클릭-source-Generate getters and setters에서
+		return company;				//자동으로 메소드를 생성시킬 수 있음
+	}
+	public String getModel() {		//get메소드는 값을 가져옴
+		return model;				//set메소드는 값을 설정/변경함
+	}
+	public String getColor() {		//같은 클라스 안의 메소드로 설정하면 private으로 만든 필드를 외부에서도 사용가능
+		return color;
+	}
+	public int getMaxSpeed() {
+		return maxSpeed;
+	}
+	public int getProductYear() {
+		return productYear;
+	}
+	public int getCurrentSpeed() {
+		return currentSpeed;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	public void setCompany(String company) {
+		this.company = company;
+	}
+	public void setModel(String model) {
+		this.model = model;
+	}
+	public void setMaxSpeed(int maxSpeed) {
+		if (maxSpeed <= 400)
+			this.maxSpeed = maxSpeed;
+	}
+	public void setProductYear(int productYear) {
+		this.productYear = productYear;
+	}
+	public void setCurrentSpeed(int currentSpeed) {
+		this.currentSpeed = currentSpeed;
+	}
+	
+	
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;SuperclassAndChild/src/Airplane/Airplane.java&apos; to &apos;Airplane1.java&apos;" description="Rename resource &apos;Airplane.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/Airplane/Airplane.java" name="Airplane1.java" stamp="1605234981182" updateReferences="true"/>
+</session>

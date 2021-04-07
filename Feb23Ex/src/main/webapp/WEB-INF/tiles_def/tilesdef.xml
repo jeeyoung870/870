@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+  
+  <tiles-definitions>
+  <!-- template으로 지정된 jsp에 맞춰서 화면이 출력된다. base_layout은 조상 definition으로 사용하기위해 작성 -->
+  <!-- preparer 지정해주면 dispatcher-servlet에 등록된 해당 클래스의 execute메소드가 실행된다. -->
+  	<definition name="base_layout" template="/WEB-INF/viewtiles/template/layout.jsp" 
+  	preparer="menuPreparer">
+  		<put-attribute name="header" value="/WEB-INF/viewtiles/template/header.jsp"></put-attribute>
+  		<put-attribute name="footer" value="/WEB-INF/viewtiles/template/footer.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- extends로 지정된 base_layout의 definition의 header와 footer를 그대로 상속받을 수 있다. -->
+  	<definition name="loginForm" extends="base_layout">
+  		<put-attribute name="title" value="로그인 폼"></put-attribute>
+  		<put-attribute name="body" value="/WEB-INF/view/jsp/loginForm.jsp"></put-attribute>
+  	</definition>
+  	<definition name="loginSuccess" extends="base_layout">
+  		<put-attribute name="title" value="로그인 성공"></put-attribute>
+  		<put-attribute name="body" value="/WEB-INF/view/jsp/loginSuccess.jsp"></put-attribute>
+  	</definition>
+  </tiles-definitions>

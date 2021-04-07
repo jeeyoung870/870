@@ -1,0 +1,58 @@
+
+public class Date {
+	private int year = 1970;	//초기값
+	private int month = 1;
+	private int day = 1;
+	
+	
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int yy) {
+		if (yy < 1970)
+			yy = year;	//잘못된 값일 경우 초기값 셋
+		year = yy;	
+	}
+
+	public int getMonth() {
+		return month;
+	}
+
+	public void setMonth(int mm) {
+		if (mm <= 0 || mm > 12)	//둘중하나충족하면(=오류값)
+			mm = month;		//잘못된 값일 경우 초기값 셋
+		month = mm;
+	}
+
+	public int getDay() {
+		return day;
+	}
+	
+	public void setDay(int dd) {
+		int [] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		if (dd <= 0 || dd > days[month - 1]) 
+			dd = day;	//잘못된 값일 경우 초기값 셋
+		day = dd;		//옳은 값일 경우 day에 날짜 저장
+	}
+	
+	
+	public Date (int y, int m, int d) {		//생성자
+		setYear(y);
+		setMonth(m);
+		setDay(d);
+	}
+	
+	public void printDate() {
+		System.out.printf("%4d년 %2d월 %2d일", getYear(), month, day);
+	}
+}
+
+
+
+
+
+
+
+
+

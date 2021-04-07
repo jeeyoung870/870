@@ -1,0 +1,24 @@
+
+public class Hello {
+
+	public static void main (String[] args) {
+		// TODO Auto-generated method stub
+		String str1 = "안녕하세요. 첫 번째 자바 프로그램입니다.";
+		String str2 = " 강사님 목소리가 졸려서 눈물이 납니다.";
+		System.out.println(str1+str2);
+		
+		int q = 34;
+		int q2 = 7;
+		System.out.println(q%q2);	//i를 i2로 나눈 나머지 출력
+		
+		double d = 123.456;	//123.456 실수의 표기
+		double d1 = 1.23456e+3;	//1234.56
+		double d2 = 1.23456e+4;	//12345.6
+		System.out.println(d);
+		System.out.println(d1);
+		System.out.println(d2);
+		
+
+	}
+
+}
