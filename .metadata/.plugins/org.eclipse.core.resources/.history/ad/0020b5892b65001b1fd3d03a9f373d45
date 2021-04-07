@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#btn").click(function(){
+			$.ajax({url : "getPerson.jsp",
+					type : "get",
+					dataType : "json",
+					timeout : 30000,
+					cache : false}			
+			)
+			.done(function (data) {
+				for(var p in data){
+				$("#info").append("<tr>")
+				$("#info").append(
+						"<td>"+data[p].name+"</td><td>"+data[p].age+"</td><td>"+data[p].gender+"</td>");
+				}
+				$("#info").append("</tr>")
+				
+			})
+			
+		});
+	});
+	
+</script>
+<style>
+	#info, td{ border: 1px solid black;
+			border-collapse : collapse;}
+			
+</style>
+</head>
+<body>
+	<button id="btn">회원 정보</button>
+	<div>
+		<table id="info"></table>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

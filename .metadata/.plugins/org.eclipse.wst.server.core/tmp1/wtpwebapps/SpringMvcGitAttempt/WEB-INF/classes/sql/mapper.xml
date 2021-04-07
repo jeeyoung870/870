@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "board">
+
+	<!-- mainBoard -->
+	<update id = "updateArticle" parameterType = "map">
+		update board set b_subject = #{b_subject}, b_content = #{b_content} where b_number = #{b_number}
+	</update>
+	<insert id = "insertNewArticle" parameterType = "hils.community.model.BoardDto">
+		insert into board values (main_board_seq.NEXTVAL, #{b_subject}, sysdate, #{user_id}, #{b_content}, #{b_category}, #{b_readcount}, #{b_recommendcount})
+	</insert>
+	<select id = "selectBoardList" parameterType = "map" resultType = "hils.community.model.BoardDto">
+		select b_number, b_subject, b_reg_date, user_id, b_content, b_category, b_readcount, b_recommendcount
+		from board where b_number >= #{start_writing_num} and b_number &lt;= #{end_writing_num}
+		<if test='b_category != null and b_category != ""'>
+		and b_category = #{b_category}
+		</if>
+		order by b_number
+	</select>
+	<select id = "checkTotalArticleCount" resultType = "int">
+		select nvl(max(b_number), 0) from board
+	</select>
+	<select id = "selectSpecificContent" parameterType = "int" resultType = "hils.community.model.BoardDto">
+		select b_number, b_subject, b_reg_date, user_id, b_content, b_category, b_readcount, b_recommendcount
+		 from board where b_number = #{b_number}
+	</select>
+	<select id = "selectCategory" parameterType = "String" resultType = "hils.community.model.BoardDto">
+		select b_number, b_subject, b_reg_date, user_id, b_content, b_category, b_readcount, b_recommendcount
+		from (b_number, b_subject, b_reg_date, user_id, b_content, b_category, b_readcount, b_recommendcount, rownum r) 
+		where b_category like #{b_category}
+		order by b_number
+	</select>
+	
+	
+	<!-- subBoard -->
+	
+	<insert id = "insertNewComment" parameterType = "hils.community.model.SubBoardDto">
+		insert into sub_board values (#{c_number}, #{b_number}, sysdate, #{user_id}, #{c_content}, #{c_recocount})	
+	</insert>
+	<select id = "selectSubArticleList" parameterType = "int" resultType = "hils.community.model.SubBoardDto">
+		select c_number, b_number, c_reg_date, user_id, c_content, c_recocount
+		from sub_board where b_number = #{b_number}
+	</select>
+	<select id = "selectCommentNumber" resultType = "int">
+		select nvl(max(c_number), 0) from sub_board
+	</select>
+</mapper>

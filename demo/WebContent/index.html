@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	 <head>
+		 <meta charset="utf-8">
+		 <title>자바 서블릿 & JSP</title>
+		 <link rel="stylesheet" href="styles/main.css" type="text/css"/>
+	 </head>
+	 <body>
+	 	<h1>이메일 목록 가입</h1>
+		 <p>이메일 목록에 가입려면 이름과 이메일 주소를 입력하세요.
+		 <form action="/emaillist" method="post">
+		 <input type="hidden" name="action" value="add">
+		 <label class="pad_top">이름 :</label>
+		 <input type="text" name="name" required><br>
+		 <label class="pad_top">이메일:</label>
+		 <input type="email" name="email" required><br>
+		 <label>&nbsp;</label>
+		 <input type="submit" value="지금 가입" class="margin_left">
+		 </form>
+	 </body>
+</html> 

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>sample2 </title>
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script>
+$(function(){
+	$("button").click(function(){
+		//한칸띄고 태그명 혹은 엘리먼트 : 이 파일에서 해당 요소만 읽어오기
+		$("div").load("./sample2_load.html p");
+	});
+});
+		</script>
+	</head>
+	<body>
+		<button>변경</button>
+		<div><p>변경전</p></div>
+	</body>
+</html>

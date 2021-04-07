@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  
+  <!-- xml의 변경 사항을반영하려면 톰캣(서버) 재실행해야 함. -->
+  
+  <!-- 여러 개의 servlet을 매핑할 경우, servlet끼리,servlet-mapping끼리 태그를 분리해서 작성 -->
+ <servlet>
+	<!-- servlet-mapping태그와 동일한 값 -->
+	<servlet-name>aaa</servlet-name>
+	<!-- 실제로 작동할 서블릿 클래스 설정 -->
+	<servlet-class>sec01.ex01.FirstServlet</servlet-class>
+</servlet>
+<servlet>
+	<servlet-name>bbb</servlet-name>
+	<servlet-class>sec01.ex01.SecondServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<!-- 매핑 이름으로 요청시 값이 같은 servlet태그 안의 servlet-name태그와 연결됨. -->
+	<servlet-name>aaa</servlet-name>
+	<!-- sec01.ex01.FirstServlet을 요청하는 논리적인 서블릿 이름(브라우저에서 호출하는 이름) -->
+	<url-pattern>/first</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>bbb</servlet-name>
+	<url-pattern>/second</url-pattern>
+</servlet-mapping>
+</web-app>

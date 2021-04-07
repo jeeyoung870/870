@@ -1,0 +1,55 @@
+<meta charset="utf-8">
+<!-- 1depth 移댄뀒怨좊━ -->
+<select name="category1" id="category1-1">
+  <option>----- �꽑�깮�븯�꽭�슂 -----</option>
+  <option value="�쓽瑜�" data-target="#category2-1">�쓽瑜�</option>
+  <option value="�뵒吏��꽭/媛��쟾" data-target="#category2-2">�뵒吏��꽭/媛��쟾</option>
+</select>
+
+<!-- �쓽瑜섏뿉 醫낆냽�맂 2depth 移댄뀒怨좊━ -->
+<select name="category2" id="category2-1">
+  <option>----- �꽑�깮�븯�꽭�슂 -----</option>
+  <option value="�뿬�꽦�쓽瑜�" data-target="#category2-1-1">�뿬�꽦�쓽瑜�</option>
+  <option value="�궓�꽦�쓽瑜�/罹먯＜�뼹�쓽瑜�" data-target="#category2-1-2">�궓�꽦�쓽瑜�/罹먯＜�뼹�쓽瑜�</option>
+</select>
+
+<!-- �뵒吏��꽭/媛��쟾 2depth 移댄뀒怨좊━ -->
+<select name="category2" id="category2-2">
+  <option>----- �꽑�깮�븯�꽭�슂 -----</option>
+  <option value="TV/�깋�옣怨�/�꽭�긽湲�" data-target="#category2-2-1">TV/�깋�옣怨�/�꽭�긽湲�</option>
+  <option value="�끂�듃遺�/�뜲�뒪�겕�깙" data-target="#category2-2-2">�끂�듃遺�/�뜲�뒪�겕�깙</option>
+</select>
+
+<!-- �쓽瑜� > �뿬�꽦�쓽瑜섏뿉 醫낆냽�맂 3dpeth 移댄뀒怨좊━ -->
+<select name="category3" id="category2-1-1">
+  <option>----- �꽑�깮�븯�꽭�슂 -----</option>
+  <option value="�떚�뀛痢�">�떚�뀛痢�</option>
+  <option value="釉붾씪�슦�뒪/�뀛痢�/�궓諛�">釉붾씪�슦�뒪/�뀛痢�/�궓諛�</option>
+  <option value="媛��뵒嫄�">媛��뵒嫄�</option>
+  <option value="�땲�듃/�뒪�썾�꽣">�땲�듃/�뒪�썾�꽣</option>
+</select>
+
+<!-- �쓽瑜� > �궓�꽦�쓽瑜�/罹먯＜�뼹�쓽瑜섏뿉 醫낆냽�맂 3dpeth 移댄뀒怨좊━ -->
+<select name="category3" id="category2-1-2">
+  <option>----- �꽑�깮�븯�꽭�슂 -----</option>
+  <option value="罹먯＜�뼹�뀛痢�/�궓諛�">罹먯＜�뼹�뀛痢�/�궓諛�</option>
+  <option value="湲댄뙏�떚/留⑦닾留⑥떊洹쒖퐫�꼫">湲댄뙏�떚/留⑦닾留⑥떊洹쒖퐫�꼫</option>
+  <option value="泥�諛붿��씤湲곗퐫�꼫">泥�諛붿��씤湲곗퐫�꼫</option>
+  <option value="罹먯＜�뼹 諛붿�/�뙩痢�">罹먯＜�뼹 諛붿�/�뙩痢�</option>
+</select>
+
+<!-- �뵒吏��꽭/媛��쟾 > TV/�깋�옣怨�/�꽭�긽湲곗뿉 醫낆냽�맂 3dpeth 移댄뀒怨좊━ -->
+<select name="category3" id="category2-2-1">
+  <option>----- �꽑�깮�븯�꽭�슂 -----</option>
+  <option value="3D TV">3D TV</option>
+  <option value="源�移섎깋�옣怨�">源�移섎깋�옣怨�</option>
+  <option value="�뱶�읆�꽭�긽湲�">�뱶�읆�꽭�긽湲�</option>
+</select>
+
+<!-- �뵒吏��꽭/媛��쟾 > �끂�듃遺�/�뜲�뒪�겕�깙�뿉 醫낆냽�맂 3dpeth 移댄뀒怨좊━ -->
+<select name="category3" id="category2-2-2">
+  <option>----- �꽑�깮�븯�꽭�슂 -----</option>
+  <option value="�끂�듃遺�">�끂�듃遺�</option>
+  <option value="釉뚮옖�뱶PC">釉뚮옖�뱶PC</option>
+  <option value="議곕┰PC">議곕┰PC</option>
+</select>

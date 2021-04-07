@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+.bg {
+	background-image: url(../../../images/tirza-van-dijk-TEYrLTKKMSg-unsplash.jpg);
+	background-size: cover;
+	background-repeat:no-repeat;
+	background-position:50% 50%;
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	z-index: -1;
+}
+
+.layout_wrap {
+	width: 420px;
+	margin: 0 auto;
+	background: #fff;
+	position: relative;
+	overflow: hidden;
+}

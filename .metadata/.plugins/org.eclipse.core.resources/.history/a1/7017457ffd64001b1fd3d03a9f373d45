@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>sample1 </title>
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script>
+$(function(){
+	$("button").click(function(){
+		//load함수 : 해당 셀렉터 안의 내용 변경시킴
+		$("p").load("sample1.txt");
+	});
+});
+		</script>
+	</head>
+	<body>
+		<button>변경</button>
+		<p>변경전</p>
+	</body>
+</html>

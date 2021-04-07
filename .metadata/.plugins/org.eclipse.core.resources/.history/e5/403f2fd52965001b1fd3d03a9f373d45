@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("button").click(function() {
+			$.getJSON("./sample5_load.json", function(result) {
+				     // $("div").append(result.employees[0].firstName + " ");
+				      $.each(result.employees, function(i, field){
+							// i: 객체의 갯수, field: key값
+						      $("div").append(field.firstName + " ");
+						    });
+			});
+		});
+	});
+</script>
+</head>
+<body>
+
+	<button>Get JSON data</button>
+
+	<div></div>
+
+</body>
+</html>

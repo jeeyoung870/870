@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+		<title>text(1)</title>
+
+		<!-- 공통 css -->
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+
+		<!-- jQuery Framework 참조하기 필수추가! -->
+		<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+		
+		<!-- 사용자 스크립트 블록 -->
+		<script>
+			$(function() {
+				$("#mybtn").click(function() {
+					$ajax({
+						url:"ajax/text/02.txt",
+						type: "get",
+						dataType: "text",
+						timeout: 30000,
+						cache: false
+					}).done(function(data) {
+						$("#result").html(data);
+					})
+					.fail(function(xhr, textStatus, errorThrown) {
+						$("div").html("<div>" + textStatus + " (HTTP-" + xhr.status + " / " + errorThrown + ")</div>");
+					});
+				});//click function
+			});//ready function
+		</script>
+
+	</head>
+	<body>
+		<h1 class="title">$.ajax() 함수를 사용한 텍스트 읽기</h1>
+		<div class="exec">
+			<input type="button" value="txt파일 가져오기" id="mybtn" />
+		</div>
+		<div class="console" id="result"></div>
+	</body>
+</html>

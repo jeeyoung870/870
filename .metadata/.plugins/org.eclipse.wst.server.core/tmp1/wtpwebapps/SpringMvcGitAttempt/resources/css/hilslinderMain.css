@@ -1,0 +1,64 @@
+@charset "UTF-8";
+.inner{
+	width:420px; margin: 0 auto;
+}
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 0%;
+  left: 50%;
+  margin-left: -80px;
+}
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+.dummy{
+  height : 50px
+	
+}
+#backgroundBar{
+	height : 10px;
+	width : 420px;
+	background-color : beige;
+}
+
+#caloryBar{
+	height : 10px;
+	width : 1%;
+	background-color : green;
+}
+
+#hilslinderBox{
+	position:relative;
+	height : 300px;
+	width : 300px;
+	border : solid 3px black;
+	clear : left
+}
+.hilslinderUnit{
+	border-radius : 25px;
+	border: 2px solid #73AD21;
+	padding : 5px;
+	float : left;
+}
+#workout_one_day{
+	display : none;
+}
+#secretRepository{
+	display : none;
+}

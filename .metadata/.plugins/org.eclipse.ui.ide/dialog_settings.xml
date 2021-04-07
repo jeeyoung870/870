@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.jdt.ui.wizards.JavaProjectWizard"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.emf.codegen.ecore.ui.wizardCategory"/>
+			<item value="org.eclipse.jdt.ui.java"/>
+			<item value="org.eclipse.jst.j2ee.internal"/>
+		</list>
+	</section>
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\Jiyoung\eclipse-workspace_E\Servers"/>
+		</list>
+	</section>
+	<section name="ExternalProjectImportWizard">
+		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\Jiyoung\gitTest\latest_jyjy_branch"/>
+			<item value="C:\Users\Jiyoung\gitTest\0322"/>
+			<item value="C:\Users\Jiyoung\eclipse-workspace_E\MVCBoard"/>
+			<item value="C:\Users\Jiyoung\Documents\카카오톡 받은 파일\MVCBoard"/>
+			<item value="C:\Users\Jiyoung\Desktop\디컨B\자료\java교재\자바 웹을 다루는 기술\예제파일\pro16"/>
+			<item value="C:\Users\Jiyoung\Desktop\디컨B\자료\java교재\자바 웹을 다루는 기술\예제파일\pro22"/>
+			<item value="C:\Users\Jiyoung\Desktop\디컨B\자료\java교재\자바 웹을 다루는 기술\예제파일\pro21"/>
+			<item value="C:\Users\Jiyoung\Desktop\디컨B\자료\java교재\자바 웹을 다루는 기술\예제파일\pro20"/>
+			<item value="C:\Users\Jiyoung\Desktop\디컨B\자료\java교재\자바 웹을 다루는 기술\예제파일\pro19"/>
+			<item value="C:\Users\Jiyoung\Desktop\디컨B\자료\java교재\자바 웹을 다루는 기술\예제파일\pro18"/>
+			<item value="C:\Users\Jiyoung\Desktop\디컨B\자료\java교재\자바 웹을 다루는 기술\예제파일\pro17"/>
+			<item value="C:\Users\Jiyoung\Desktop\디컨B\자료\java교재\자바 웹을 다루는 기술\예제파일\pro15"/>
+			<item value="C:\Users\Jiyoung\Desktop\디컨B\자료\java교재\자바 웹을 다루는 기술\예제파일\pro14"/>
+			<item value="C:\Users\Jiyoung\Desktop\디컨B\자료\java교재\자바 웹을 다루는 기술\예제파일\pro13"/>
+			<item value="C:\Users\Jiyoung\Desktop\디컨B\자료\java교재\자바 웹을 다루는 기술\예제파일\pro12"/>
+			<item value="C:\Users\Jiyoung\Desktop\디컨B\자료\java교재\자바 웹을 다루는 기술\예제파일\pro11"/>
+			<item value="C:\Users\Jiyoung\Desktop\디컨B\자료\java교재\자바 웹을 다루는 기술\예제파일\pro10"/>
+			<item value="C:\Users\Jiyoung\Desktop\디컨B\자료\java교재\자바 웹을 다루는 기술\예제파일\pro09"/>
+			<item value="C:\Users\Jiyoung\Desktop\디컨B\자료\java교재\자바 웹을 다루는 기술\예제파일\pro08"/>
+			<item value="C:\Users\Jiyoung\Desktop\디컨B\자료\java교재\자바 웹을 다루는 기술\예제파일\pro07"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+</section>

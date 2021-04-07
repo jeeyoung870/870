@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login Page</title>
+</head>
+<body>
+	<!-- WebContent가 아닌 test01폴더 하위의 html에서 요청하므로,서블릿 매핑명 앞에 프로젝트명을 붙여준다.-->
+	<form name="frmLogin" method="post" action="/pro06/loginTest2" encType="UTF-8">
+		ID : <input type="text" name="user_id"> <br>
+		PW : <input type="password" name="user_pw"><br>
+		<input type="submit" value="log-in"> <input type="reset" value="다시 입력">
+	</form>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="base_layout"
+		template="/WEB-INF/viewtiles/template/layout.jsp">
+		
+		<put-attribute name="header"
+			value="/WEB-INF/viewtiles/template/header.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/viewtiles/template/footer.jsp" />
+	</definition>
+	
+	<definition name="mainPage" extends="base_layout">
+		<put-attribute name="title" value="메인페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/mainpage/main.jsp" />
+	</definition>
+	<definition name="manageMainPage2" extends="base_layout">
+		<put-attribute name="title" value="메인페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/managemainpage2/mainpagemanagement.jsp" />
+	</definition>
+	<definition name="myalarm" extends="base_layout">
+		<put-attribute name="title" value="내 알림" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Navigation/myalarm.jsp" />
+	</definition>
+	<definition name="myActivitySchedule" extends="base_layout">
+		<put-attribute name="title" value="나의 활동" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Navigation/myActivitySchedule.jsp" />
+	</definition>
+	<definition name="mainBoard" extends="base_layout">
+		<put-attribute name="title" value="커뮤니티" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Navigation/mainBoard.jsp" />
+	</definition>
+	<definition name="timeline" extends="base_layout">
+		<put-attribute name="title" value="타임라인" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/TimeLine2/timeline.jsp" />
+	</definition>
+	<definition name="custcenter" extends="base_layout">
+		<put-attribute name="title" value="고객센터" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Navigation/custcenter.jsp" />
+	</definition> 
+	<definition name="usersetting" extends="base_layout">
+		<put-attribute name="title" value="설정 및 회원정보" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Mypage1/usersetting.jsp" />
+	</definition> 
+	<definition name="logout" extends="base_layout">
+		<put-attribute name="title" value="로그아웃" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Mypage1/logout.jsp" />
+	</definition> 
+	<definition name="reallyWithdraw" extends="base_layout">
+		<put-attribute name="title" value="회원탈퇴확인" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Mypage1/reallyWithdraw.jsp" />
+	</definition> 
+	<definition name="goodbye" extends="base_layout">
+		<put-attribute name="title" value="회원탈퇴완료" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Mypage1/goodbye.jsp" />
+	</definition> 
+	<definition name="pwchange" extends="base_layout">
+		<put-attribute name="title" value="비밀번호 변경" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Mypage1/pwchange.jsp" />
+	</definition>
+	<definition name="emailchange" extends="base_layout">
+		<put-attribute name="title" value="이메일 변경" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Mypage1/emailchange.jsp" />
+	</definition>
+	<definition name="phonechange" extends="base_layout">
+		<put-attribute name="title" value="연락처 변경" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Mypage1/phonechange.jsp" />
+	</definition>
+	<definition name="locset" extends="base_layout">
+		<put-attribute name="title" value="위치 설정" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Mypage1/locset.jsp" />
+	</definition>
+	<definition name="compinfo" extends="base_layout">
+		<put-attribute name="title" value="기본 정보 수정" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/ManageMainPage1/compInfo.jsp" />
+	</definition>
+	<!-- 여기에서 지정한 definition name을 컨트롤러에서 뷰네임으로 반환하면 타일즈가 반영된 상태로 출력된다! -->
+	<!-- 
+	manageMainPage2
+	 -->
+	<!-- <definition name="loginForm" extends="base_layout">
+		<put-attribute name="title" value="로그인폼" />
+		<put-attribute name="body"
+			value="/WEB-INF/view/jsp/loginForm.jsp" />
+	</definition>
+	
+	<definition name="loginSuccess" extends="base_layout">
+		<put-attribute name="title" value="로그인 성공" />
+		<put-attribute name="body"
+			value="/WEB-INF/view/jsp/loginSuccess.jsp" />
+	</definition> -->
+
+</tiles-definitions>
