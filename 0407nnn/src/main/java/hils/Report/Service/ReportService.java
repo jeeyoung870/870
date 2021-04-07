@@ -1,0 +1,32 @@
+package hils.Report.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hils.Report.Model.PagingDto;
+import hils.Report.Model.ReportDto;
+
+@Service
+public class ReportService {
+
+	@Autowired
+	private ReportDao ReportDao;
+
+	public void deleteMethod(String delete) {
+		ReportDao.deleteMethod(delete);
+	}
+
+	public void writeMethod(ReportDto write) {
+		ReportDao.writeMethod(write);
+	}
+	
+	public int countBoard() {
+		return ReportDao.countBoard();
+	}
+
+	public List<ReportDto> selectReportBoard(PagingDto pDto) throws Exception {
+		return ReportDao.selectReportBoard(pDto);
+	}
+}

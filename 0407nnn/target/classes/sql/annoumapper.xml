@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="annou">
+	<select id = "userAnnouList" parameterType = "map" resultType = "hils.manageCustomerService1.model.AnnouncementDto">
+		select * from (select annou_writing_num, subject, content, annou_reg_date, user_id from 
+		(select annou_writing_num, subject, content, annou_reg_date, user_id, rownum from ANNOUNCEMENT order by annou_writing_num)
+		order by annou_writing_num
+		) where annou_writing_num >= #{start_annou_num} and annou_writing_num &lt;= #{end_annou_num}
+	</select>
+</mapper>

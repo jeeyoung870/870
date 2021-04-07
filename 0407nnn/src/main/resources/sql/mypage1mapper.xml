@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "usersetting">
+	<!-- 설정 및 회원정보 mapper -->
+	<select id="uInfo" parameterType="String" resultType = "hils.Mypage1.controller.ProfileDto">
+		select p.user_id user_id, password, 
+		user_email, user_phone, is_hellinder_open, is_withboard, location 
+		from users_profile p, users_register r where p.user_id=r.user_id and p.user_id=#{user_id}
+	</select>
+	<select id="getPw" parameterType="String" resultType = "String">
+		select password from users_register where user_id=#{user_id}
+	</select>
+	<update id="changePw" parameterType="hils.Mypage1.controller.ProfileDto" >
+		update users_register set password = #{password} where user_id=#{user_id}
+	</update>
+	<select id="getPhone" parameterType="String" resultType = "String">
+		select user_phone from users_register where user_id=#{user_id}
+	</select>
+	<select id="phoneCheck" parameterType="String" resultType = "int">
+		select count(*) from users_register where user_phone=#{user_phone}
+	</select>
+	<update id="changePhone" parameterType="hils.Mypage1.controller.ProfileDto">
+		update users_register set user_phone=#{user_phone} where user_id=#{user_id}
+	</update>
+	<update id="changeEmail" parameterType="hils.Mypage1.controller.ProfileDto">
+		update users_register set user_email=#{user_email} where user_id=#{user_id}
+	</update>
+	<update id="changeLoc" parameterType="hils.Mypage1.controller.ProfileDto">
+		update users_profile set location=#{location} where user_id=#{user_id}
+	</update>
+	<update id="changeHilOpen" parameterType="hils.Mypage1.controller.ProfileDto">
+		update users_profile set is_hellinder_open=#{is_hellinder_open} where user_id=#{user_id}
+	</update>
+	<update id="changeHilWB" parameterType="hils.Mypage1.controller.ProfileDto">
+		update users_profile set is_withboard=#{is_withboard} where user_id=#{user_id}
+	</update>
+	<delete id="leaveHils" parameterType="String">
+		delete from users_profile where user_id=#{user_id}
+	</delete>
+	
+	
+	<!-- 마이페이지 프로필 mapper -->
+	<select id="profileInfo" parameterType="String" resultType = "hils.Mypage1.controller.ProfileDto">
+		select user_id, weight, height, introduce, profile_img, is_hellinder_open
+		from users_profile where user_id=#{user_id}
+	</select>
+	<update id="addImgFile" parameterType="hils.Mypage1.controller.ProfileDto">
+		update users_profile set profile_img=#{profile_img} where user_id=#{user_id}
+	</update>
+	<select id="findProfileImg" parameterType="String" resultType = "String">
+		select profile_img from users_profile where user_id=#{user_id}
+	</select>
+	<update id="changePInfo" parameterType="hils.Mypage1.controller.ProfileDto">
+		update users_profile set weight=#{weight}, height=#{height}, introduce=#{introduce}
+		where user_id = #{user_id}
+	</update>
+	<update id="delpimg" parameterType="String">
+		update users_profile set profile_img=null where user_id=#{user_id}
+	</update>
+	
+	
+	<!-- 힐린더 mapper  -->
+	<select id="latestdate" parameterType="String" resultType = "java.util.Date">
+		select max(workout_reg_date) workout_reg_date from hellinder where user_id=#{user_id}
+	</select>
+	<select id="workoutInfo1" parameterType="hils.Mypage1.controller.ProfileDto"
+	resultType="hils.Mypage1.controller.ProfileDto">
+		select user_id, workout_key, workout_reg_date, workout_certi_path from hellinder
+		where user_id=#{user_id} and workout_reg_date=#{workout_reg_date}
+	</select>
+	<select id="workoutInfo1_2" parameterType="String"
+	resultType="hils.Mypage1.controller.ProfileDto">
+		select user_id, workout_key, workout_reg_date, workout_certi_path from hellinder
+		where workout_key=#{workout_key}
+	</select>
+	<select id="workoutInfo2" parameterType="hils.Mypage1.controller.ProfileDto"
+	resultType="hils.Mypage1.controller.ProfileDto">
+		select workout_name, workout_hours from workout_calendar_oneday
+		where workout_key=#{workout_key}
+	</select>
+	<!-- 식단정보 -->
+	<select id="dietInfo" parameterType="String" resultType="hils.Mypage1.controller.ProfileDto">
+		select food_identifier, food_calory, food_amount, food_goal from calory_oneday_schedule 
+		where FOOD_SCHEDULE_KEY=#{workout_key}
+	</select>
+	<select id="early6key" parameterType="int" resultType="String">
+		<![CDATA[
+			select workout_key from (select rownum r, workout_key from 
+			(select workout_key from hellinder order by WORKOUT_REG_DATE desc)
+			) where r > #{last}-6 and r <= #{last}
+		]]>
+	</select>
+	
+</mapper>
+
