@@ -191,6 +191,35 @@ style="color:white; border:0;">더보기</button><br><br>
 
 <script src="${contextPath}/resources/js/mypage1/cropper.js"></script>
 <script>
+$(document).ready(function() { 
+	  //id="pimg"를 원형으로 보여주기
+    var croppedCanvas = document.getElementById("pimg");
+    // Round
+    var roundedCanvas = getRoundedCanvas(croppedCanvas);
+    // Show
+    document.getElementById("pimg").src = roundedCanvas.toDataURL(); 
+    //alert(pimg.src)   
+});
+
+//사진 업로드
+ function getRoundedCanvas(sourceCanvas) {
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+    var width = sourceCanvas.width;
+    var height = sourceCanvas.height;
+
+    canvas.width = width;
+    canvas.height = height;
+    context.imageSmoothingEnabled = true;
+    context.drawImage(sourceCanvas, 0, 0, width, height);
+    context.globalCompositeOperation = 'destination-in';
+    context.beginPath();
+    context.arc(width / 2, height / 2, Math.min(width, height) / 2, 0, 2 * Math.PI, true);
+    context.fill();
+    return canvas;
+  }
+
+
 //날짜 format
 function getFormatDate(date){
     var year = date.getFullYear();              //yyyy
@@ -269,32 +298,7 @@ function more6hil(){
       });
 }
 
-$(document).ready(function() { 
-	  //id="pimg"를 원형으로 보여주기
-    var croppedCanvas = pimg;
-    // Round
-    var  roundedCanvas = getRoundedCanvas(croppedCanvas);
-    // Show
-    pimg.src = roundedCanvas.toDataURL(); 
-});
 
-//사진 업로드
- function getRoundedCanvas(sourceCanvas) {
-    var canvas = document.createElement('canvas');
-    var context = canvas.getContext('2d');
-    var width = sourceCanvas.width;
-    var height = sourceCanvas.height;
-
-    canvas.width = width;
-    canvas.height = height;
-    context.imageSmoothingEnabled = true;
-    context.drawImage(sourceCanvas, 0, 0, width, height);
-    context.globalCompositeOperation = 'destination-in';
-    context.beginPath();
-    context.arc(width / 2, height / 2, Math.min(width, height) / 2, 0, 2 * Math.PI, true);
-    context.fill();
-    return canvas;
- }
  
 $(function () {
 	$(".openhil").hide();

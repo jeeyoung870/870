@@ -57,6 +57,7 @@
     	&nbsp;&nbsp;&nbsp;&nbsp;
     	<label for="photoBtn">사진 첨부하기</label><br>&nbsp;&nbsp;&nbsp;&nbsp;
     	<input type="file" name="photoBtn" accept="image/jpeg, image/png" capture="camera" id="photoBtn">
+    	<input type="file" id="ttt" style="display:none" >
     </div>
     <br>
     <div class="them_img">
@@ -134,19 +135,50 @@
 
 	     	          // Show
 	     	          roundedImage = document.createElement('img');
+	     	          //toDataURL : 그림 데이터를 리턴
 	     	          roundedImage.src = roundedCanvas.toDataURL()
 	     	          result.innerHTML = '';
 	     	          result.appendChild(roundedImage);
 	     	          
-	     	         croppedCanvas.toBlob((blob) => {
+	     	          //toBlob으로 png이미지 만들기
+	     	         roundedCanvas.toBlob((blob) => {
 	     	        	  const formData = new FormData();
 	     	        	  var user_id = $('#user_id').val();
 
 	     	        	  // Pass the image file name as the third parameter if necessary.
 	     	        	  formData.append('croppedImage', blob/*, 'example.png' */);
+	     	        	  
+	     	        	  
+	     	        	  
+	     	        	  
+	     	        	/* 실패한..input type='file'로 submit()하려는 시도  
+	     	        	//blob을 file객체로 변환하는 메소드
+	     	        	 function blobToFile(theBlob, fileName){
+	     	        	    //A Blob() is almost a File() - it's just missing the two properties below which we will add
+	     	        	    theBlob.lastModifiedDate = new Date();
+	     	        	    theBlob.name = fileName;
+	     	        	    return theBlob;
+	     	        	}
+	     	        	 //document.getElementById('ttt').files[0] = blob;
+	     	        	var form = document.createElement("form");
+	     	           var input = new Array();
+	     	         	const target = document.getElementById('ttt');
+	     	        	target.files[0] = blobToFile(blob, "exex.png");
+	     	           form.action = 'saveIamge?user_id='+user_id;
+	     	           form.method = "post";
+	     	           form.enctype="multipart/form-data";
+	     	          form.encoding="multipart/form-data";
+	     	        form.appendChild(target);
+	     	           document.body.appendChild(form);
+	     	           form.submit();
+	     	        	 console.log("blob test"); */
 
-	     	        	  // Use `jQuery.ajax` method for example
-	     	        	  $.ajax( {
+	     	        	 
+	     	        	 
+	     	        	 
+	     	        	 
+	     	        	  // Use `jQuery.ajax` method for example    
+	     	     		  $.ajax( {
 	     	        	    method: 'POST',
 	     	        	    url: 'saveIamge?user_id='+user_id,
 	     	        	    data: formData,

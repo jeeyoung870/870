@@ -174,7 +174,7 @@
       pimg.src = roundedCanvas.toDataURL(); 
   });
   
-  //사진 업로드
+  //원형으로 보여주기
    function getRoundedCanvas(sourceCanvas) {
       var canvas = document.createElement('canvas');
       var context = canvas.getContext('2d');

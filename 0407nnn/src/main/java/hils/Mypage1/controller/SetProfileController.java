@@ -133,9 +133,9 @@ public class SetProfileController implements ApplicationContextAware{
 	//크롭한 이미지(file) ajax로 전송받기
 	@PostMapping(value="saveIamge", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
-	public String saveIamge(
+	public String saveIamge(								
 			@RequestParam(value="croppedImage", required=true) MultipartFile[] file, String user_id) {
-		//System.out.println("file size : " + file[0].getSize() +" "+file[0].getOriginalFilename());
+		System.out.println("file size : " + file[0].getSize() +" "+file[0].getOriginalFilename());
 		printInfo(user_id, file[0]);
 		String msg = "프로필 사진이 변경되었습니다.";
 		Gson json = new Gson(); 
