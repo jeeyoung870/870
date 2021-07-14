@@ -1,0 +1,26 @@
+body {
+    margin: auto;
+    font-family: 'Noto Sans KR', sans-serif;
+    align-items: center;
+}
+div {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 5% 10%;
+    border: 6px dotted rgb(255, 202, 123);
+    background-color: rgb(255, 243, 225);
+}
+h1 {
+    margin:0;
+    padding: 25px 0;
+    color:darkgoldenrod;
+}
+p, li {
+    color:darkslategrey;
+}
+a:hover {
+    color:mediumpurple;
+}
+ul::first-line {
+    color:darkgoldenrod;
+}
