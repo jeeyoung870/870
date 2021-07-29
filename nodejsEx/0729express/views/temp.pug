@@ -1,0 +1,13 @@
+html 
+    head
+        //-  태그= 로 render()로 받아온 값을 할당할 수 있음
+        title= subject 
+    body 
+        h1= msg
+        //- js와 함께 반복출력 작성하기(앞에 -를 붙임)
+        ol 
+            -for(var i=0; i < 3; i++)
+                li Coding!
+        div= time
+        img(src= imgsrc, alt="screenshot", height="500px")
+        

@@ -1,0 +1,22 @@
+{
+  "name": "0728",
+  "version": "1.0.0",
+  "description": "serverside js tuto",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeeyoung870/870.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeeyoung870/870/issues"
+  },
+  "homepage": "https://github.com/jeeyoung870/870#readme",
+  "dependencies": {
+    "underscore": "^1.13.1"
+  }
+}
