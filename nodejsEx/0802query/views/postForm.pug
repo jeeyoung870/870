@@ -1,0 +1,13 @@
+doctype html 
+html 
+    head 
+        meta(charset='utf-8')
+        title formTest 
+    body 
+        h1 Form Test 
+        form(action="/form_receiver", method="post")
+            textarea(name="text", cols="30", rows="20", placeholder="send a message")
+            br
+            input(type="text", name="usrname", placeholder="Your name")
+            br
+            input(type="submit")
