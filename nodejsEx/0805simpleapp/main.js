@@ -12,6 +12,34 @@ app.use(express.urlencoded({extended : true}));
 app.get('/topic/new', (req, res) => {
     res.render('new');
 });
+
+//data 디렉토리안의 파일명을 배열로 반환하는 readdir로 view에 topic명들 전달해주기.
+app.get('/topic', (req, res) => {
+    fs.readdir('data', (err, files) => {
+        if(err){
+            console.log(err);
+            res.status(500).send('Internal Server Error');
+        }
+        res.render('view', {topics:files});
+    });
+});
+app.get('/topic/:id', (req, res) => {
+    var id = req.params.id;
+    fs.readdir('data', (err, files) => {
+        if(err){
+            console.log(err);
+            res.status(500).send('Internal Server Error');
+        }
+        fs.readFile('data/'+id, 'utf-8', (err, data) => {
+            if(err){
+                console.log(err);
+                res.status(500).send('Internal Server Error');
+            }
+            res.render('view', {topics:files, title:id, description:data});
+        });
+    });
+});
+
 app.post('/topic', (req, res) => {
     var title = req.body.title;
     var description = req.body.description;
@@ -19,8 +47,13 @@ app.post('/topic', (req, res) => {
     fs.writeFile('data/'+title, description, (err) => {
         if(err){
             res.status(500).send('Internal Server Error');
+            // console.log(err);
         }
-        res.render('success', title);
+        // res.render('success', title);
+        res.send(`
+            <h1>Success!</h1>
+            <a href="/topic">Move to Subject view</a>
+        `);
     });
 });
 

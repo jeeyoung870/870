@@ -1,0 +1,33 @@
+doctype html 
+head 
+    meta(charset='utf-8')
+    title Subjects View
+body 
+    h1 Server Side Javascript 
+    ul 
+        each topic, idx in topics
+            li
+                a(href="/topic/"+topic)= (idx+1)+'번째 수업 : '+ topic
+    br
+    article 
+        h2= title 
+        = description
+
+ 
+    br
+    -var vals = [];
+    ul  
+        each val in vals.length ? vals:['There are no values.']
+            li= val
+    ul 
+        each val in vals 
+            li= val 
+        else 
+            li= 'There are no values.'
+    ul 
+        -var n = 0;
+        while n < 4
+            li= n++
+        
+                
+        

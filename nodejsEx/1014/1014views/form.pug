@@ -1,0 +1,13 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        title Post Form
+    body 
+        form(action="/form_receiver" method="post") 
+            p
+                input(type='text', name="title")
+            p
+                textarea(name="description", cols="30", rows="5") 
+            p 
+                input(type='submit')
