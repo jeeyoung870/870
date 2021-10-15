@@ -3,7 +3,8 @@ head
     meta(charset='utf-8')
     title Subjects View
 body 
-    h1 Server Side Javascript 
+    h1 
+        a(href="/topic") Server Side Javascript 
     ul 
         each topic, idx in topics
             li
@@ -12,6 +13,10 @@ body
     article 
         h2= title 
         = description
+    br
+    div 
+        h3 
+            a(href="/topic/new") Make New Topic
 
  
     br

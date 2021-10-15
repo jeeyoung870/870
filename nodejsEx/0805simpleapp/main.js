@@ -14,29 +14,25 @@ app.get('/topic/new', (req, res) => {
 });
 
 //data 디렉토리안의 파일명을 배열로 반환하는 readdir로 view에 topic명들 전달해주기.
-app.get('/topic', (req, res) => {
+app.get(['/topic', '/topic/:id'], (req, res) => {
     fs.readdir('data', (err, files) => {
         if(err){
             console.log(err);
             res.status(500).send('Internal Server Error');
         }
-        res.render('view', {topics:files});
-    });
-});
-app.get('/topic/:id', (req, res) => {
-    var id = req.params.id;
-    fs.readdir('data', (err, files) => {
-        if(err){
-            console.log(err);
-            res.status(500).send('Internal Server Error');
+        var id = req.params.id;
+        // '/topic/:id'으로 호출할 경우,
+        if(id){
+            fs.readFile('data/'+id, 'utf-8', (err, data) => {
+                if(err){
+                    console.log(err);
+                    res.status(500).send('Internal Server Error');
+                }
+                res.render('view', {topics:files, title:id, description:data});
+            });
+        } else {
+            res.render('view', {topics:files, title:'Welcome!', description:'This is jy870 WebApp.'});
         }
-        fs.readFile('data/'+id, 'utf-8', (err, data) => {
-            if(err){
-                console.log(err);
-                res.status(500).send('Internal Server Error');
-            }
-            res.render('view', {topics:files, title:id, description:data});
-        });
     });
 });
 
@@ -50,11 +46,12 @@ app.post('/topic', (req, res) => {
             // console.log(err);
         }
         // res.render('success', title);
-        res.send(`
-            <h1>Success!</h1>
-            <a href="/topic">Move to Subject view</a>
-        `);
-    });
+        // res.send(`
+        //     <h1>Success!</h1>
+        //     <a href="/topic">Move to Subject view</a>
+        // `);
+        res.redirect('/topic/'+title);
+    });  
 });
 
 app.get('/redo', (req, res) => {
