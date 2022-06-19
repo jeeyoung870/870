@@ -24,47 +24,55 @@ const nameInput = nameForm.querySelector("input");
 const GREETINGINDEX = "greetingIndex";
 const USERNAME = "username";
 
-const userName = localStorage.getItem(USERNAME);
-
-if(userName === null) {
-    clock.classList.add("hidden2");
-    greeting.classList.add("hidden1");
-    mainFocusBox.classList.add("hidden2");
-    todoBox.classList.add("hidden2");
-
-    function loginHandler() {
-        console.log(nameInput.value); 
-        localStorage.setItem(USERNAME, nameInput.value);
-    }
-    nameForm.addEventListener("submit", loginHandler);
-} 
-else {
-    nameForm.classList.add("hidden1");
-
-    function getGreetingMent(greetIdx) {
-        const hour = (new Date()).getHours();
-        let greet = "";
-        if(hour>=6 && hour<12) {
-            greet = morning[greetIdx];
-        } else if(hour>=12 && hour<20) {
-            greet = afternoon[greetIdx];
-        } else {
-            greet = night[greetIdx];
-        }
-        return greet;
-    }
-    function changeGreeting() {
-        greetIdx = greetIdx+1 >= morning.length ? 0 : greetIdx+1;
-        localStorage.removeItem(GREETINGINDEX);
-        localStorage.setItem(GREETINGINDEX, greetIdx);
-        showGreeting(greetIdx);
-    }
-    function showGreeting(greetIdx) {
-        const greetingText = getGreetingMent(greetIdx);
-        greeting.innerText = `${greetingText+userName}.`;
-    }
-
-    let greetIdx = parseInt(localStorage.getItem(GREETINGINDEX));
-    showGreeting(greetIdx);
-    setInterval(changeGreeting, 30000);
+function loginHandler(event) {
+    event.preventDefault();
+    localStorage.setItem(USERNAME, nameInput.value);
+    localStorage.setItem(GREETINGINDEX, 0);
+    paintGreeting();
 }
+function getGreetingMent(greetIdx) {
+    const hour = (new Date()).getHours();
+    let greet = "";
+    if(hour>=6 && hour<12) {
+        greet = morning[greetIdx];
+    } else if(hour>=12 && hour<20) {
+        greet = afternoon[greetIdx];
+    } else {
+        greet = night[greetIdx];
+    }
+    return greet;
+}
+function changeGreeting() {
+    greetIdx = greetIdx+1 >= morning.length ? 0 : greetIdx+1;
+    localStorage.removeItem(GREETINGINDEX);
+    localStorage.setItem(GREETINGINDEX, greetIdx);
+    showGreeting(greetIdx);
+}
+function showGreeting(greetIdx, userName) {
+    const greetingText = getGreetingMent(greetIdx);
+    greeting.innerText = `${greetingText+userName}.`;
+}
+function paintGreeting() {
+    const userName = localStorage.getItem(USERNAME);
+    if(userName === null) {
+        clock.classList.add("hidden2");
+        greeting.classList.add("hidden1");
+        mainFocusBox.classList.add("hidden2");
+        todoBtn.classList.add("hidden2");
+    
+        nameForm.addEventListener("submit", loginHandler);
+    } 
+    else {
+        nameForm.classList.add("hidden1");
+        clock.classList.remove("hidden2");
+        greeting.classList.remove("hidden1");
+        mainFocusBox.classList.remove("hidden2");
+        todoBtn.classList.remove("hidden2");
+    
+        let greetIdx = parseInt(localStorage.getItem(GREETINGINDEX));
+        showGreeting(greetIdx, userName);
+        setInterval(changeGreeting, 30000);
+    }
+}
+
+paintGreeting();
