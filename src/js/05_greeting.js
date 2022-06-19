@@ -42,12 +42,6 @@ function getGreetingMent(greetIdx) {
     }
     return greet;
 }
-function changeGreeting() {
-    greetIdx = greetIdx+1 >= morning.length ? 0 : greetIdx+1;
-    localStorage.removeItem(GREETINGINDEX);
-    localStorage.setItem(GREETINGINDEX, greetIdx);
-    showGreeting(greetIdx);
-}
 function showGreeting(greetIdx, userName) {
     const greetingText = getGreetingMent(greetIdx);
     greeting.innerText = `${greetingText+userName}.`;
@@ -72,6 +66,12 @@ function paintGreeting() {
         let greetIdx = parseInt(localStorage.getItem(GREETINGINDEX));
         showGreeting(greetIdx, userName);
         setInterval(changeGreeting, 30000);
+        function changeGreeting() {
+            greetIdx = greetIdx+1 >= morning.length ? 0 : greetIdx+1;
+            localStorage.removeItem(GREETINGINDEX);
+            localStorage.setItem(GREETINGINDEX, greetIdx);
+            showGreeting(greetIdx, userName);
+        }
     }
 }
 
