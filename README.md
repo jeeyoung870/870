@@ -1,3 +1,3 @@
-# 870
-JAVA 언어를 공부하며 작성한 조각 코드 ~ 토이프로젝트
-JAVA 기본 문법 위주
+# javatoy 
+- Piece code written while studying JAVA language ~ Toy Project
+- JAVA basic grammar application.
